@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor hidden xl:block md:block min-h-0">
+            <div class=" w-full m-auto top" >
+
+                <div class="">
+                    <div class="">
+                        <div class="progress-bar w-full bg-gray-600 p-1 " >
+                            <p:repeat  rendered="#{not empty fasesController.fases}"  var="fas" value="#{fasesController.fases}"  >
+                                <div class="progress-tittle text-center">
+                                    <i class="ri-hashtag"></i>
+                                    Corte #{fas.numero}
+                                </div>
+                                >
+                                <i class="ri-calendar-line"></i>
+                                <div>
+                                    Inicia : #{fas.fechaInicial}
+                                </div>
+                                -
+                                <div>
+                                    Finaliza : #{fas.fechaFinal}
+                                </div>
+                            </p:repeat>
+                        </div>
+                    </div>
+                    <p:panel rendered="#{not empty evaluacionController.evaluacion}" class="inline-flex">
+                        <div class="progress-bar p-1 inline-flex">
+                            <div class="progress-tittle">
+                                <i class="ri-article-line"></i>
+                                Evaluacion
+                            </div>
+                            >
+                            <i class="ri-calendar-line"></i>
+                            <div>
+                                Sustentacion: #{evaluacionController.evaluacion.fechaprogramada}
+                            </div>
+
+                        </div>
+                    </p:panel>
+                </div>
+            </div>
+        </section>
+    </h:body>
+    <style>
+
+
+
+    </style>
+</html>

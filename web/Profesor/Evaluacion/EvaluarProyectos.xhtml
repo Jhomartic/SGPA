@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class=" contenedor top" >
+                <div class="card">
+                    <div class="relative pb-2 mb-2">
+                        <h3 class="text-2xl ">Gestor de Evaluacion</h3>
+                        <small class="block mb-4 text-gray-600">Una evaluación es un proceso sistemático y continuo que tiene como objetivo medir el progreso, el aprendizaje y el rendimiento de los estudiantes.</small>  
+                        <div class="espaceador"></div>
+                    </div>
+                    <p:tabView>
+                        <p:tab title="Evaluar">
+                                
+                            <div class="flex responsive-flex">
+                                <div style="margin-top:53px">
+                                    <p:dataTable   var="cri" value="#{evaluacionController.criteriosevaluacion}">
+                                        <p:column headerText="Criterio">                                             
+                                            <p style="height: 34px" class="flex align-items-center justify-content-center">#{cri.criterio.descripcion}</p>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+
+                                <p:repeat  var="integ" value="#{evaluacionController.proyectoAula.integrantes}">
+                                    <div class="flex flex-column justify-content-center">
+                                        <div class="flex gap-2 align-items-center justify-content-center">
+                                            <div class="w-3rem "><p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img h-3rem"  /></div>
+                                            <div class="cnomint"> <h:outputText  value="#{integ.matricula.estudiante.toString()}" /> </div>
+                                        </div>
+                                        <p:dataTable var="val" value="#{integ.valoracions}">
+                                            <p:column  headerText="Nota">                                             
+                                                <p:inputNumber  title="#{val.criterio.criterio.descripcion}" value="#{val.valor}" size="6"  minValue="0" maxValue="5" />
+                                            </p:column>
+                                        </p:dataTable>
+                                        <div class="text-center font-bold p-2">
+                                            <h:outputText value="Nota final: #{evaluacionController.notaFIntegrante(integ)}" />
+                                        </div>
+                                    </div>
+                                </p:repeat> 
+
+                            </div>
+                            <div class="btns-container justify-content-end">
+                                <div class="btn-p" title="seleccionar">
+                                    <label>Almacenar</label>
+                                    <h:commandButton value="almacenar" class="btn" action="#{evaluacionController.almacenarValoraciones()}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Información">
+                            <div >
+                                <div class="info-proyecto">
+                                    <div class="info-tittle">Infórmacion del proyecto</div>
+                                    <div class="info-data">
+                                        <div class="info-data-item">
+                                            <div>
+                                                <i class="ri-qr-code-line"></i>
+                                                Codigo del proyecto: 
+                                            </div>
+                                            <p>#{evaluacionController.proyectoAula.codigo}</p>
+
+                                        </div>
+                                        <div class="info-data-item">
+                                            <div>
+                                                <i class="ri-medal-2-line"></i>
+                                                Titulo: 
+                                            </div>
+                                            <p>#{evaluacionController.proyectoAula.titulo}</p>
+                                        </div>
+                                    </div>
+                                    <div class="espaceador"></div>
+                                </div>
+
+                                <div class="info-proyecto">
+                                    <div class="info-tittle">Información de la Asignatura</div>
+                                    <div class="info-data">
+                                        <div class="info-data-item">
+                                            <div>
+                                                <div class="w-1rem">
+                                                    <p:graphicImage value="/Imagenes/Perfiles/#{evaluacionController.asignaturaEvaluar.profesor.imagenPerfil()}" class="img"  />
+                                                </div>
+                                                Profesor: 
+                                            </div>
+                                            <p>#{evaluacionController.asignaturaEvaluar.profesor.toString()}</p>
+                                        </div>
+                                        <div class="info-data-item">
+                                            <div>
+                                                <i class="ri-file-3-line"></i>
+                                                Nombre: 
+                                            </div>
+                                            <p>#{evaluacionController.asignaturaEvaluar.nombreCorto}</p>
+                                        </div>
+                                        <div class="info-data-item">
+                                            <div>
+                                                <i class="ri-qr-code-fill"></i>
+                                                Codigo: 
+                                            </div>
+                                            <p>#{evaluacionController.asignaturaEvaluar.codigo}</p>
+                                        </div>
+
+                                        <div class="info-data-item">
+                                            <div>
+                                                <i class="ri-command-line"></i>
+                                                Area: 
+                                            </div>
+                                            <p>#{evaluacionController.asignaturaEvaluar.area.nombre}</p>
+                                        </div>
+
+                                        <div class="info-data-item">
+                                            <div>
+                                                <i class="ri-calendar-todo-fill"></i>
+                                                Seccion: 
+                                            </div>
+                                            <p>#{evaluacionController.asignaturaEvaluar.seccion.semestre.denominacion}-#{evaluacionController.asignaturaEvaluar.seccion.denominacion}</p>
+                                        </div>
+                                    </div>
+                                    <div class="espaceador"></div>
+                                </div>
+                            </div>
+                        </p:tab>
+
+                    </p:tabView>
+
+                </div>
+            </div>
+        </section>
+
+        <style>
+
+
+        </style>
+
+    </h:body>
+</html>

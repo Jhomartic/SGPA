@@ -1,0 +1,221 @@
+e<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class="contenedor top">
+                <div class="card ">
+
+                    <div class="relative pb-3 mb-2">
+                        <h3 class="text-2xl ">Proyectos de aula</h3>
+                        <div class="espaceador"></div>
+                    </div>
+                    <p:tabView scrollable="true" activeIndex="#{coordinadorController.activeIproy}" class="overflow-hidden">
+                        <div class="relative pb-3 mb-2">
+                            <h3 >Mis programas</h3>
+                            <div class="espaceador"></div>
+                        </div>
+                        <p:tab title="Programa">
+                            <p:dataTable scrollable="true" var="prog" value="#{programaController.programas}">
+                                <p:column headerText="Codigo">
+                                    #{prog.codigo}
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    #{prog.nombreCompleto}
+                                </p:column>
+                                <p:column headerText="Seleccionar">
+                                    <div class="btn-normal">
+                                        <i class="fa fa-hand-pointer"></i>
+                                        <h:commandButton class="btn" value="+" action="#{coordinadorController.seleccionarPrograma(prog)}" />
+                                    </div>
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>                
+                        <p:tab title="Semestre - Seccion">
+                            <div class="relative pb-3 mb-2">
+                                <h3 >Semestres</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <div class="grid-seis">
+
+                                <p:repeat    var="sem"  value="#{semestreController.semestres}">
+                                    <div class="relative img-negra bg-black" >
+                                        <div class="w-full h-full">
+                                            <h:graphicImage class="img" value="/resources/img/imgsemestres.jpg"/> 
+                                        </div>
+                                        <div class="contenido">
+                                            <p>Semestre <br></br>#{sem.denominacion}</p>
+                                        </div>
+                                        <h:commandButton   class="btn" value="Abrir" action="#{coordinadorController.seleccionarSemestre(sem)}" />
+                                    </div>
+                                </p:repeat>
+                            </div>
+                            <div class="relative pb-3 mb-2 mt-4">
+                                <h3 >Secciones</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <div class="grid-cuatro">
+                                <p:repeat var="sec" value="#{coordinadorController.secciones}">
+                                    <div class="relative img-negra bg-black">
+                                        <div class="w-full h-full">
+                                            <h:graphicImage class="img" value="/resources/img/imgsemestres.jpg"/> 
+                                        </div>
+                                        <div class="contenido-grid">
+                                            <h2 class="text-white">#{sec.programa.nombre}</h2>
+                                            <span>Semestre #{sec.semestre.denominacion} -  Seccion #{sec.denominacion}</span>
+                                            <h3 class="text-white">Año #{sec.periodo.anio} - #{sec.periodo.numero}</h3>
+                                        </div>
+                                        <h:commandButton   class="btn" value="Abrir" action="#{coordinadorController.obtenerProyectosSeccion(sec)}"  />
+                                    </div> 
+                                </p:repeat>
+                            </div>
+                            <div class="relative pb-3 mb-2 mt-4">
+                                <h3 >Proyectos por seccion</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <p:chart type="bar" class="w-5" model="#{reportesController.barMProyectosxSeccion}" />
+                        </p:tab>
+                        <p:tab rendered="#{not empty coordinadorController.seccion}" title="Proyectos de Aula, Seccion: #{coordinadorController.seccion.getSeccion()}">
+                            <div class="relative pb-3 mb-2">
+                                <h3 >Proyectos</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <p:dataTable scrollable="true" rendered="#{not empty coordinadorController.proyectosSeccion}" var="proa" value="#{coordinadorController.proyectosSeccion}">
+                                <p:column headerText="Codigo">
+                                    <h:outputText value="#{proa.codigo}" title="#{proa.titulo}" /><br/>
+                                </p:column>
+                                <p:column headerText="Ingreso">
+                                    <h:outputText value="#{proa.fecha_ingreso}" title="#{proa.problematica}" />                               
+                                </p:column>                             
+                                <p:column  headerText="Integrantes">
+                                    <p:repeat var="integ" value="#{proa.integrantes}">
+                                        <div class="flex gap-1 align-items-center">
+                                            <div class="w-1 border-circle overflow-hidden flex">
+                                                <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                                            </div>
+                                            <small>#{integ.matricula.estudiante.toString()}</small>
+                                        </div>
+                                    </p:repeat>
+                                </p:column>
+                                <p:column headerText="Opciones">
+                                    <div class="btn-normal" title="Ver proyecto">
+                                        <i class="uil uil-file-search-alt"></i><h:commandButton class="btn" value="." action="#{coordinadorController.consultarProyecto(proa)}" />
+                                    </div>
+                                </p:column>  
+                            </p:dataTable> 
+                        </p:tab>
+                        <p:tab title="Proyecto Seleccionado">
+                            <p:tabView>
+                                <p:tab title="Informacion Basica del Proyecto">
+
+                                    <div class="contpro ">
+                                        <div class="title-description-inplace">
+                                            <h3 class="inplace-h3">#{proyectoAulaController.proyecto.titulo}</h3>
+                                            <p class="inplace-p">#{proyectoAulaController.proyecto.problematica}</p>
+                                        </div>
+                                        <div class="info-proyecto">
+                                            <div class="info-tittle">Infórmacion del proyecto</div>
+                                            <div class="info-data">
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-qr-code-line"></i>
+                                                        Código Proyecto:
+                                                    </div>
+                                                    <p>#{proyectoAulaController.proyecto.codigo}</p>
+
+                                                </div>
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-slideshow-fill"></i>
+                                                        Estado:
+                                                    </div>
+                                                    <div class="flex align-items-center gap-1">
+                                                        <p>#{proyectoAulaController.proyecto.estado} </p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-medal-2-line"></i>
+                                                        Semestre:
+                                                    </div>
+                                                    <p>#{proyectoAulaController.proyecto.seccion.semestre.denominacion}</p>
+                                                </div>
+                                            </div>
+                                            <div class="espaceador"></div>
+                                        </div>
+
+                                        <div class="info-proyecto">
+                                            <div class="info-tittle">Fecha del proyecto</div>
+                                            <div class="info-data">
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-calendar-todo-fill"></i>
+                                                        Fecha Inicial:
+                                                    </div>
+                                                    #{proyectoAulaController.proyecto.fecha_inicio}
+                                                </div>
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-calendar-todo-fill"></i>
+                                                        Fecha Final:
+                                                    </div>
+                                                    #{proyectoAulaController.proyecto.fecha_finalizacion}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p:tab>
+                                <p:tab title="Items del Proyecto">
+
+                                    <p:dataTable scrollable="true" var="items" value="#{proyectoAulaController.proyecto.itenes_Proyecto}">
+                                        <p:column headerText="Tipo"> 
+                                            #{items.tipo.nombre}
+                                        </p:column>
+                                        <p:column headerText="Contenido"> 
+                                            <div class="btn-c">
+                                                <i class="ri-eye-line"></i>
+                                                <label>Ver</label>
+                                                <p:commandButton value="Show" class="btn" type="button" icon="pi pi-external-link" onclick="PF('#{items.contenido}').show()"/>
+                                            </div>
+                                            <p:dialog widgetVar="#{items.contenido}" modal="true" header="#{items.tipo.nombre}" hideEffect="fade" resizable="false" minHeight="40" width="700" showEffect="fade">
+                                                <p class="m-0 w-full">#{items.contenido}</p>
+                                            </p:dialog>
+                                        </p:column>
+                                        <p:column headerText="Fecha Creacion"> 
+                                            #{items.fecharegistro}
+                                        </p:column>
+                                        <p:column headerText="Ultima Modificacion"> 
+                                            #{items.fechamodificacion}
+                                        </p:column>
+                                        <p:column headerText="Autor/Editor"> 
+                                            #{items.editor.estudiante.toString()}
+                                        </p:column>                                
+                                    </p:dataTable>
+                                </p:tab>
+                            </p:tabView>
+                        </p:tab>
+
+                        <p:tab title="Proyectos Por Semestre">
+                            <p:chart type="bar"  model="#{reportesController.barMProyectos}">
+
+                            </p:chart>
+
+                        </p:tab>
+                    </p:tabView>
+                </div>    
+
+            </div>
+        </section>
+
+
+
+    </h:body>
+</html>
+

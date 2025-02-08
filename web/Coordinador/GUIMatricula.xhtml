@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div class="p-5  card">
+            <div class="btn-normal inline-block border-none" title="Volver">
+                <i class="ri-arrow-left-line text-xl"></i>
+                <h:commandButton class="btn" value="volver" action="#{matriculaController.volverEstudiantes()}" />
+            </div>
+            <header class="m-auto" >
+
+                <h4 class="text-center">Matricula</h4>
+                <div class="flex flex-grow-0 w-1"></div>
+            </header>
+            <main class="text-center">
+                <div class="flex flex-column align-items-center justify-content-center">
+                    <div class="w-2 text-center"> <p:graphicImage value="/Imagenes/Perfiles/#{matriculaController.matricula.estudiante.imagenPerfil()}" class="img"  /></div>
+                    <h2>#{matriculaController.matricula.estudiante.toString()}</h2>
+                    <p>#{matriculaController.matricula.seccion.programa.nombre}</p>
+                </div>
+                <div class="flex justify-content-center gap-5 mt-4">
+                    <div class="text-center">
+                        <h3>#{matriculaController.matricula.seccion.semestre.denominacion}</h3>
+                        <p>Semestre</p>
+                    </div>
+                    <div class="text-center">
+                        <h3>#{matriculaController.matricula.seccion.denominacion}</h3>
+                        <p>Sección</p>
+                    </div >
+                    <div class="text-center">
+                        <h3>#{matriculaController.matricula.seccion.periodo.numero}</h3>
+                        <p>Periodo</p>
+                    </div>
+                    <div class="text-center">
+                        <h3>#{matriculaController.matricula.seccion.periodo.anio}</h3>
+                        <p>Año</p>
+                    </div>
+                </div>
+
+                <h3 class="mt-4 mb-2 ">Más Información</h3>
+
+                <div class="flex gap-4 justify-content-center mt-4">
+                    <div class=" card" style="background-color: #C5BCBC">
+                        <i class="ri-slideshow-fill p-2 text-white  border-circle" style="background-color: black"></i>
+                        <div class="mt-4" >
+                            <p>Tipo de matricula</p>
+                            <h3>#{matriculaController.matricula.estado}</h3>
+                            <i class="ri-arrow-up-line"></i>
+                        </div>
+                    </div>
+                    <div class=" card " style="background-color: #FFF">
+                        <i class="ri-stack-fill p-2 text-white border-circle" style="background-color: black"></i>
+                        <div class="mt-4">
+                            <p >Estado de Proyecto aula</p>
+                            <h3>#{matriculaController.matricula.estadoPA}</h3>
+                            <i class="ri-arrow-up-line"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flex justify-content-center py-2 px-1 mt-4 gap-5" style="background-color: #EEEEEE">
+                    <h4>Fecha :</h4>
+                    <h4>#{matriculaController.matricula.fecha}</h4>
+                </div>
+                <div class="btns-container" style="justify-content: flex-end" >
+                    <div class="btn-eliminar" >
+                        <i class="uil uil-trash-alt" ></i>
+                        Eliminar Matricula
+                        <h:commandButton class="btn" value="volver" action="#{matriculaController.eliminarMatricula()}" />
+                    </div>
+                </div>
+            </main>
+        </div>
+    </h:body>
+</xhtml>
+

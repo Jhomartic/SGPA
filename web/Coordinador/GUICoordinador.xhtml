@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Facelet Title</title>
+
+    </h:head>
+    <h:body>
+        <header class="header" id="header">
+            <nav class="nav-up container-menu">
+                <div class="nav-toggle" id="nav_toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+                <a href="index.xhtml" class="logo-proac-container">
+                    <h:graphicImage class="img logo-proac" value="/resources/img/logo sgpa.png"/>
+                </a>
+                <div class="nav-search">
+                    <input type="search" placeholder="Buscar...."></input>
+                    <i class="ri-search-line"></i>
+                </div>
+                <div class="nav-unicolombo">
+                    <h:graphicImage class="img " value="/resources/img/logo unico.png"/>
+                </div>
+                <div class="nav-profile">
+                    <div class="profile-data">
+                        Coordinador<br></br>
+                        #{usuarioController.usuario.primerNombre}-#{usuarioController.usuario.primerApellido}<br></br>
+                        #{periodoController.periodoActual.anio}-#{periodoController.periodoActual.numero}
+                    </div>
+                    <div class="profile-img-btn">
+                        <div class="profile-img">
+                            <h:graphicImage class="img " value="/Imagenes/Perfiles/iperfilh.jpg"/>
+                        </div>
+                        <h:commandButton action="#{usuarioController.salir()}" class="log-out" value="Log out" />
+                    </div>
+
+
+                </div>
+            </nav>
+            <nav class="nav-menu" id="nav_menu">
+                <div class="nav-logos-close">
+                    <div class="nav-close" id="nav_close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                    <div class="nav-search w-3">
+                        <input type="search" placeholder="Buscar...."></input>
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+
+
+                <div class="nav-menu-container">
+                    <div class="nav-menu-horizontal">
+                        <h4 class="menu-tittle">Principal</h4>
+                        <ul class="nav-list-horizontal grids">
+                            <li class="nav-horizontal-item">
+                                <i class="ri-lightbulb-fill"></i>
+                                <h:commandLink action="#{coordinadorController.verTutorias()}" value="Tutorias"  />
+                            </li>
+                            <li class="nav-horizontal-item">
+                                <i class="fa fa-user-graduate"></i>
+                                <h:commandLink action="#{coordinadorController.matriculadosSeccion()}" value="Estudiantes"  />
+                            </li>
+                            <li class="nav-horizontal-item">
+                                <i class="ri-article-fill"></i>
+                                <h:commandLink action="#{coordinadorController.verProyectos()}" value="Proyectos de Aula"  />
+                            </li>
+                            <li class="nav-horizontal-item">
+                                <i class="ri-slideshow-fill"></i>
+                                <a href="" class="nav-down-link">Asignaturas</a>
+                            </li>
+                            <li class="nav-horizontal-item">
+                                <i class="fa fa-user-tie"></i>
+                                <a href="" class="nav-down-link">Profesores</a>
+                            </li>
+                            <li class="nav-horizontal-item">
+                                <i class="ri-booklet-fill"></i>
+                                <a href="" class="nav-down-link">Notas</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-menu-vertical">
+                        <h4 class="menu-tittle2">Menú</h4>
+                        <ul class="nav-list-vertical grids">
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Gestionar Profesores" class="nav-vertical-link" action="#{coordinadorController.gprofesores()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Matricular Estudiante" class="nav-vertical-link" action="#{coordinadorController.gmatriculas()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Gestionar Areas" class="nav-vertical-link" action="#{coordinadorController.gareas()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Asignar Coordinador PA" class="nav-vertical-link" action="#{coordinadorController.gcoordinadorPA()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Gestionar Asignaturas" class="nav-vertical-link" action="#{coordinadorController.gasignaturas()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Gestionar Seciones" class="nav-vertical-link" action="#{coordinadorController.gsecciones()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Asignacion Academica" class="nav-vertical-link" action="#{coordinadorController.gasignacionA()}"></h:commandButton>
+                            </li>
+                            <li class="nav-vertical-item">
+                                <h:commandButton value="Resultados de Aprendizaje" class="nav-vertical-link" action="#{coordinadorController.gresultadosA()}"></h:commandButton>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <ui:include src="#{coordinadorController.paginaActualC}" />
+
+        <script type="text/javascript" 
+                src="../resources/js/menu.js">
+        </script>
+
+    </h:body>
+    <style>
+
+
+
+
+
+
+    </style>
+
+</xhtml>

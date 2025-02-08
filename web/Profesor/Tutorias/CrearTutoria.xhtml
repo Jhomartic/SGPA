@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div class="btn-normal inline-flex border-none" title="Volver">
+            <i class="ri-arrow-left-line text-xl"></i>
+            <h:commandButton class="btn" value="volver" action="#{profesorController.volverTutorias()}" />
+        </div>
+
+
+
+        <div class="card">
+            <div class="relative pb-4 mb-2">
+                <h3>Proyectos Existentes</h3>
+                <div class="espaceador"></div>
+            </div>
+            <p:dataTable scrollable="true" var="proa" value="#{profesorController.proyectosSemestre}">
+                <p:column headerText="Codigo">
+                    #{proa.codigo}
+                </p:column>
+                <p:column headerText="Ingreso">
+                    #{proa.fecha_ingreso}
+                </p:column>                             
+                <p:column  headerText="Integrantes">
+                    <p:repeat var="integ" value="#{proa.integrantes}">
+                        <div class="flex gap-1 align-items-center">
+                            <div class="w-2 border-circle overflow-hidden flex">
+                                <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                            </div>
+                            <small class="w-full text-justify">#{integ.matricula.estudiante.toString()}</small>
+                        </div>
+                    </p:repeat>                                
+                </p:column>
+                <p:column headerText="Opciones">
+                    <div class="btn-normal" title="Crear Tutoria">
+                        <i class="uil uil-file-search-alt" ></i><h:commandButton class="btn" value="." action="#{profesorController.pcrearTutoria(proa)}" />
+                    </div>
+                </p:column>  
+            </p:dataTable> 
+        </div>
+
+    </h:body>
+</html>

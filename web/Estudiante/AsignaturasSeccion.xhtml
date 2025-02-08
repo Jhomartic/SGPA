@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class="contenedor top" >
+                <div class="card">
+
+                    <div class="relative pb-4 mb-2">
+                        <h3 class="text-2xl ">Mis Asignaturas</h3>
+                        <div class="espaceador"></div>
+                    </div>
+                    <p:panel rendered="#{!competenciasController.mostPcompetencias}">
+                        <div class="grid-dos">
+                            <p:repeat var="asig" value="#{asignaturaController.asignaturas}">
+                                <div class="p-4 flex justify-content-between card mb-1 responsive-flex cdppa">
+                                    <h:commandButton class="btn" value="seleccionar"  action="#{competenciasController.consultarCompetenciasAsignatura(asig)}" />
+                                    <div>
+                                        <div class="mb-2">
+                                            <h4>Asignatura</h4>
+                                            <p>#{asig.nombre}</p>
+                                        </div>
+                                        <div class="mb-1">
+                                            <h4><i class="fas fa-credit-card mr-1"></i>créditos : #{asig.creditos}</h4> 
+                                        </div>
+
+                                        <div >
+                                            <small>#{asig.area.nombre}</small>
+                                        </div>
+
+                                    </div>
+                                    <div class="flex flex-column gap-2">
+                                        <small>#{asig.seccion.programa.nombre}</small>
+                                        <h4>#{asig.seccion.semestre.denominacion} - #{asig.seccion.denominacion}</h4>
+                                        <small>#{asig.profesor.toString()}</small>
+                                    </div>
+                                </div>
+                            </p:repeat>
+                        </div>
+                    </p:panel>
+                    <p:panel rendered="#{competenciasController.mostPcompetencias}">
+                        <div class="btn-normal inline-flex border-none" title="Volver">
+                            <i class="ri-arrow-left-line text-xl"></i>
+                            <h:commandButton class="btn" value="volver" action="#{competenciasController.volverAsignaturas()}" />
+                        </div>
+                        <ui:include src="../Coordinador/CompetenciasAsignatura.xhtml" />
+                    </p:panel>
+                </div>
+
+            </div>
+        </section>
+
+    </h:body>
+</html>
+

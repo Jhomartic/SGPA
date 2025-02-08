@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <section class="contenido-contenedor">
+            <div class=" contenedor top">
+                <div class="card">
+
+
+                    <div class="relative pb-4 mb-2">
+                        <h3 class="text-2xl ">Configuracion De Perfil</h3>
+                        <div class="espaceador"></div>
+                    </div>
+                    <div class="perfil-conteiner">
+                        <div class="perfil-prof">
+                            <div class="perfil-img">
+                                <p:graphicImage value="/Imagenes/Perfiles/#{profesorController.profesor.imagenPerfil()}" style="max-width:100%;height: auto;"  />
+                            </div>
+                            <div class="perfil-data">
+                                <span class="perfil-data-name">#{profesorController.profesor.toString()}</span>
+                                <span class="perfil-data-tipe">#{profesorController.profesor.tipo}</span>
+                            </div>
+                        </div>
+
+                        <div class="perfil-buttons">
+                            <p:fileUpload  value="#{profesorController.iprofesor}"  mode="simple" skinSimple="true"/>
+                            <div class="btn-s"> 
+                                <i class="uil uil-image-times"></i>
+                                Cargar
+                                <h:commandButton class="btn" action="#{profesorController.subirImagenProfesor()}" value="xx" /> 
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form">
+                        <div>
+                            <h4>Primer Nombre</h4>
+                            <p:inputText   value="#{profesorController.profesor.primerNombre}" />
+                        </div>
+                        <div>
+                            <h4>Primer Apelldio</h4>
+                            <p:inputText  value="#{profesorController.profesor.primerApellido}" />
+                        </div>
+                        <div>  
+                            <h4>Segundo Nombre</h4>
+                            <p:inputText  value="#{profesorController.profesor.segundoNombre}" />
+                        </div>
+                        <div>
+                            <h4>Segundo Apellido</h4>
+                            <p:inputText  value="#{profesorController.profesor.segundoApellido}" />
+                        </div>
+                        <div>
+                            <h4>Genero</h4>
+                            <p:selectOneRadio  value="#{profesorController.profesor.genero}">
+                                <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                            </p:selectOneRadio>
+                        </div>
+                        <div>
+                            <h4>Tipo de contrado</h4>
+                            <p:selectOneRadio  disabled="true" value="#{profesorController.profesor.tipocontrato}">
+                                <f:selectItem itemLabel="Tiempo Completo" itemValue="Tiempo Completo"/>
+                                <f:selectItem itemLabel="Medio Tiempo" itemValue="Medio Tiempo"/>
+                                <f:selectItem itemLabel="3/4 de Tiempo" itemValue="3/4 de Tiempo"/> 
+                                <f:selectItem itemLabel="Catedra" itemValue="Catedra"/>
+                            </p:selectOneRadio>
+                        </div>
+                        <div>
+                            <h4>Tipo Identificacion</h4>
+                            <p:selectOneRadio  rendered="#{not empty profesorController.profesor}" value="#{coordinadorController.coordinador.tipo_ide}">
+                                <f:selectItem itemLabel="TI" itemValue="TI"/>
+                                <f:selectItem itemLabel="CC" itemValue="CC"/>
+                                <f:selectItem itemLabel="CE" itemValue="CE"/>
+                            </p:selectOneRadio>
+                        </div>
+                        <div>
+                            <h4>Identificacion</h4>
+                            <p:inputText  value="#{profesorController.profesor.identificacion}" /> 
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p:inputText   value="#{profesorController.profesor.email}" />
+                        </div>
+                        <div>
+                            <h4>Telefono</h4>
+                            <p:inputText  value="#{profesorController.profesor.telefono}" />
+                        </div>
+                        <div>
+                            <h4>Direccion</h4>
+                            <p:inputText  value="#{profesorController.profesor.direccion}" />
+                        </div>  
+
+                    </div>
+
+
+                    <p:card style="margin-top: 0.5rem;">
+                        <h3 style="margin-bottom: 1rem">Configura El usuario y contraseña</h3>
+                        <div class="form" style="padding-bottom: 0">
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                <p:inputText value="#{profesorController.profesor.login}" placeholder="Username"/>
+                            </div>
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="pi pi-lock"></i></div>
+                                <p:inputText value="#{profesorController.profesor.password}" placeholder="Password"/>
+                            </div>
+                        </div>
+                    </p:card>
+                    <div class="btns-container" style="justify-content: right">
+                        <div class="btn-p">
+                            <label>Actualizar</label>
+                            <h:commandButton class="btn" action="#{profesorController.actualizarprofesor()}" value="Registrar" />  
+                        </div>
+                    </div>
+f
+                </div>
+
+            
+
+            </div>
+        </section>
+
+    </h:body>
+    <style>
+        .ui-fileupload-simple .ui-button{
+            border: 1px solid #004F9E !important;
+            background: transparent !important;
+            color: #004F9E !important;
+        }
+    </style>
+
+</html>
+

@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:panel rendered="#{profesorController.mostPanelProyectoAula}">
+            <div class="relative pb-4 mb-2">
+                <h3 >Proyectos Existentes</h3>
+                <div class="espaceador"></div>
+            </div>
+            <p:dataTable scrollable="true" class="tabla-reporte" var="proa" value="#{profesorController.proyectosSemestre}">
+                <p:column  headerText="Codigo" >
+                    <div title="#{proa.titulo}">#{proa.codigo}</div>
+                </p:column>    
+                <p:column  headerText="Ingreso" >
+                    #{proa.fecha_ingreso}
+                </p:column>   
+                <p:column  headerText="Integrantes">
+                    <p:repeat var="integ" value="#{proa.integrantes}">
+                        <div class="flex gap-1 align-items-center">
+                            <div class="w-1 border-circle overflow-hidden flex">
+                                <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                            </div>
+                            <small>#{integ.matricula.estudiante.toString()}</small>
+                        </div>
+                    </p:repeat>
+                </p:column>
+                <p:column width="80" headerText="Opciones">
+                    <div class="btn-normal" title="Consultar">
+                        <i class="ri-search-line"></i><h:commandButton class="btn" value="." action="#{profesorController.consultarProyecto(proa)}" />
+                    </div>
+
+                    <div class="btn-normal" title="Evaluar">
+                        <i class="ri-quill-pen-line"></i><h:commandButton class="btn" value="." disabled="#{!evaluacionController.evaluacion.habilitarEvaluacion()}"  action="#{profesorController.evaluarProyecto(proa)}" />
+                    </div>
+                </p:column>  
+            </p:dataTable> 
+        </p:panel>
+        <p:panel rendered="#{!profesorController.mostPanelProyectoAula}">
+            <div class="btn-normal inline-flex border-none" title="Volver">
+                <i class="ri-arrow-left-line text-xl"></i>
+                <h:commandButton class="btn" value="volver" action="#{profesorController.volverProyectos()}"  />
+            </div>
+
+            <p:tabView scrollable="true">
+                <p:tab title="Informacion Basica del Proyecto">
+
+                    <div >
+                        <div class="title-description-inplace">
+                            <h3  class="inplace-h3" >#{proyectoAulaController.proyecto.titulo}</h3>
+                            <p class="inplace-p" >
+                                #{proyectoAulaController.proyecto.problematica}
+                            </p>
+                        </div>
+                        <div class="info-proyecto">
+                            <div class="info-tittle">Infórmacion del proyecto</div>
+                            <div class="info-data">
+                                <div class="info-data-item">
+                                    <div>
+                                        <i class="ri-qr-code-line"></i>
+                                        Código Proyecto:
+                                    </div>
+                                    <p>#{proyectoAulaController.proyecto.codigo}</p>
+
+                                </div>
+                                <div class="info-data-item">
+                                    <div>
+                                        <i class="ri-medal-2-line"></i>
+                                        Semestre- Seccion:
+                                    </div>
+                                    <p>#{proyectoAulaController.proyecto.seccion.semestre.denominacion} - #{proyectoAulaController.proyecto.seccion.denominacion}</p>
+                                </div>
+                            </div>
+                            <div class="espaceador"></div>
+                        </div>
+
+                        <div class="info-proyecto">
+                            <div class="info-tittle">Establezca la fecha del proyecto</div>
+                            <div class="info-data">
+                                <div class="info-data-item">
+                                    <div>
+                                        <i class="ri-calendar-todo-fill"></i>
+                                        Fecha Inicial:
+                                    </div>
+                                    <p:calendar   value="#{proyectoAulaController.proyecto.fecha_inicio}" />
+                                </div>
+                                <div class="info-data-item">
+                                    <div>
+                                        <i class="ri-calendar-todo-fill"></i>
+                                        Fecha Final:
+                                    </div>
+                                    <p:calendar   value="#{proyectoAulaController.proyecto.fecha_finalizacion}" />
+                                </div>
+                            </div>
+                            <div class="espaceador"></div>
+                        </div>
+                    </div>
+                </p:tab>
+                <p:tab title="Items del Proyecto">
+                    <p:dataTable class="tabla-reporte" var="items" value="#{proyectoAulaController.proyecto.itenes_Proyecto}">
+                        <p:column headerText="Tipo"> 
+                            #{items.tipo.nombre}
+                        </p:column>
+                        <p:column headerText="Contenido">
+                            <div class="btn-p">
+                                <i class="ri-eye-line"></i>
+                                <label>Ver</label>
+                                <p:commandButton value="Show" class="btn" type="button" icon="pi pi-external-link" onclick="PF('#{items.id}').show()"/>
+                            </div>
+                            <p:dialog header="#{items.tipo.nombre}" widgetVar="#{items.id}" minHeight="40" width="350" showEffect="fade">
+                                <p class="m-0">#{items.contenido}</p>
+                            </p:dialog>
+                        </p:column>
+                        <p:column headerText="Fecha Creacion"> 
+                            #{items.fecharegistro}
+                        </p:column>
+                        <p:column headerText="Ultima Modificacion"> 
+                            #{items.fechamodificacion}
+                        </p:column>
+                        <p:column headerText="Autor/Editor"> 
+                            #{items.editor.estudiante.toString()}
+                        </p:column>                                
+                    </p:dataTable>
+
+                </p:tab>
+                <p:tab title="Avances del Proyecto">
+                    <ui:include src="GestorAvances.xhtml" />
+                </p:tab>
+            </p:tabView> 
+        </p:panel>
+
+    </h:body>
+
+    <style>
+        .contproaula {  display: grid;
+                        grid-template-columns: 150px 150px;
+                        grid-template-rows: 70px 180px;
+                        grid-auto-columns: 1fr;
+                        gap: 0px 0px;
+                        grid-auto-flow: row;
+                        justify-items: stretch;
+                        align-items: stretch;
+                        grid-template-areas:
+                            "ccod cfec"
+                            "cdes cdes";
+        }
+
+        .ccod { grid-area: ccod; }
+
+        .cfec { grid-area: cfec; }
+
+        .cdes { grid-area: cdes; }
+
+    </style>
+</html>

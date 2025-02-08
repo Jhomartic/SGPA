@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class="contenedor top" >
+
+                <div class="card">
+                    <div class="relative pb-2 mb-2">
+                        <h3 class="text-2xl ">Gestor de nucleos problemicos</h3>
+                        <small class="block mb-4 text-gray-600">Con base en las competencias genéricas y específicas a desarrollar en un semestre, se formúla como una pregunta globalizante cuyas posibles soluciones permitirán articular las competencias propuestas por las asignaturas involucradas en el proyecto.</small>  
+                        <div class="espaceador"></div>
+                    </div>
+                    <p:tabView>
+                        <p:tab title="Semestres">
+                            <small><i class="ri-error-warning-fill mr-1"></i>Selecciona un Semestre</small>
+                            <div class="csemestres">
+                                <div class="grid-seis">
+                                    <p:repeat  var="sem" value="#{semestreController.semestres}">
+                                        <div class=" relative p-5 flex justify-content-center align-content-center" style="background-color: #eee" >
+                                            <p class="font-bold ">#{sem.denominacion}</p>
+                                            <h:commandButton value="" class="btn" action="#{programaController.agregarSemestreANucleo(sem)}" />
+                                        </div>
+                                    </p:repeat>
+                                </div>    
+
+                            </div>
+                        </p:tab>
+                        <p:tab title="Descripcion">
+                            <div class="progress-bar">
+                                <div class="progress-tittle">
+                                    <i class="ri-focus-3-line"></i>
+                                    Seleccionado :
+                                </div>
+                                Semestre #{programaController.nucleo.semestre.denominacion}         
+                            </div>
+
+                            <p:inputTextarea class="w-full" placeholder="Descripcion del Nucleo Problematico" widgetVar="editor1" value="#{programaController.nucleo.descripcion}"  />
+
+
+
+                            <div class="btns-container justify-content-end">
+                                <div class="btn-p">
+                                    <label>Agregar</label>
+                                    <h:commandButton value="agregar" class="btn" action="#{programaController.almacenarNucleo()}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Ver Nucleos">
+                            <div class="cnucleos">
+                                <p:dataTable var="nuc" value="#{programaController.nucleos}">
+                                    <p:column headerText="Semestre">
+                                        #{nuc.semestre.denominacion}
+                                    </p:column>
+                                    <p:column headerText="Descripcion">
+                                        <div class="btn-p">
+                                            <i class="ri-eye-line"></i>
+                                            <label>Ver</label>
+                                            <p:commandButton value="Show" class="btn" type="button" icon="pi pi-external-link" onclick="PF('#{nuc.id}').show()"/>
+                                        </div>
+                                        <p:dialog widgetVar="#{nuc.id}" modal="true" header="Descripción sem #{nuc.semestre.denominacion}" hideEffect="fade" resizable="false" minHeight="40" width="700" showEffect="fade">
+                                            <p class="m-0 w-full">#{nuc.descripcion}</p>
+                                        </p:dialog>
+                                    </p:column>
+                                    <p:column headerText="Opciones">
+                                        <h:commandButton value="seleccionar" action="#{programaController.seleccionarNucleo(nuc)}" />
+                                        <h:commandButton value="x" action="#{programaController.eliminarNucleo(nuc)}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </div>
+                        </p:tab>
+                    </p:tabView>
+
+
+                </div>
+            </div>
+
+
+
+        </section>
+
+    </h:body>
+    <style>
+
+    </style>
+</html>

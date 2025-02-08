@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class="contenedor top">
+                <div class="card">
+                    <div class="relative pb-2 mb-1">
+                        <h3 class="text-2xl">Gestor Usuarios</h3>
+                        <small class="block mb-4 text-gray-600">Restablece Correo, Usuario y Constraseña pulsando el boton de seleccionar. </small>  
+                        <div class="espaceador"></div>
+                    </div>
+                    <div class="form">
+                        <div ><h4>Tipo</h4><h:outputText value="#{usuarioController.usuarioTemp.tipo}" /></div>
+                        <div class="cide"><h4>Identificacion</h4><h:outputText value="#{usuarioController.usuarioTemp.identificacion}" /></div>
+                        <div ><h4>Nombre</h4><h:outputText value="#{usuarioController.usuarioTemp.primerNombre} #{usuarioController.usuarioTemp.segundoNombre}" /></div>
+                        <div ><h4>Apellido</h4> <h:outputText value="#{usuarioController.usuarioTemp.primerApellido} #{usuarioController.usuarioTemp.segundoApellido}" /></div>
+                    </div>
+                </div>
+                <p:card style="margin-top: 0.5rem;">
+                    <h3 style="margin-bottom: 1rem">Restablecer</h3>
+                    <div class="form" style="padding-bottom: 0">
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText value="#{usuarioController.usuarioTemp.login}" placeholder="Username"/>
+                        </div>
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-lock"></i></div>
+                            <p:inputText value="#{usuarioController.usuarioTemp.password}" placeholder="Password"/>
+                        </div>
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></div>
+                            <p:inputText value="#{usuarioController.usuarioTemp.email}" placeholder="Email"/>
+                        </div>
+                    </div>
+                </p:card>
+
+                <h:form>
+                    <div class="btns-container justify-content-end">
+                        <div class="btn-s">
+                            <label>Guardar</label>
+                            <p:defaultCommand target="submitUsuario" />
+                            <h:commandButton id="submitUsuario" class="btn" value="Guardar" action="#{usuarioController.almacenarUsuario()}" />
+                        </div>
+                    </div>
+                </h:form>
+                <p:separator />
+                <p:dataTable paginator="true" rows="10"  scrollable="true" var="usu" value="#{usuarioController.usuarios}">
+                    <p:column headerText="Tipo de Identificacion">
+                        #{usu.tipo_ide}
+                    </p:column>
+                    <p:column filterBy="#{usu.identificacion}" headerText="Identificacion">
+                        #{usu.identificacion}
+                    </p:column>
+                    <p:column filterBy="#{usu.primerNombre}" headerText="Primer Nombre">
+                        #{usu.primerNombre}
+                    </p:column>
+                    <p:column filterBy="#{usu.segundoNombre}" headerText="Segundo Nombre">
+                        #{usu.segundoNombre}
+                    </p:column>
+                    <p:column filterBy="#{usu.primerApellido}" headerText="Primer Apellido">
+                        #{usu.primerApellido}
+                    </p:column>
+                    <p:column filterBy="#{usu.segundoApellido}" headerText="Segundo Apellido">
+                        #{usu.segundoApellido}
+                    </p:column>                  
+
+                    <p:column headerText="Seleccionar">
+                        <div class="btn-normal">
+                            <i class="fa fa-hand-pointer"></i>
+                            <h:commandButton value="+" class="btn" action="#{usuarioController.seleccionarUsuario(usu)}" />
+                        </div>
+                    </p:column>
+                </p:dataTable>
+
+
+            </div>
+        </section>
+    </h:body>
+    <style>
+
+
+    </style>
+</html>

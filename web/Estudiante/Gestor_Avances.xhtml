@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:panel rendered="#{!avanceController.mostPAvance}">
+
+            <div class="relative pb-2 mb-2">
+                <h3 class="text-2xl ">Fases</h3>
+                <small class="block mb-4 text-gray-600">una fase o ciclo de corte se refiere a una etapa específica dentro del periodo en la cual se llevan a cabo revisiones y tutorías parciales para medir el progreso y el rendimiento de los proyectos desarrollados por los estudiantes</small>  
+                <div class="espaceador"></div>
+            </div>
+            <div class="grid-cuatro">
+
+                <p:repeat  var="fas"  value="#{fasesController.fases}" >
+                    <div class="fase-card">
+                        <div class="fase-img w-full" >
+                            <p:graphicImage class="img" value="/resources/img/fase-img.jpg" />
+                            <span class="fase-number">#{fas.numero}</span>
+                        </div>
+                        <div class="info-proyecto">
+                            <div class="info-data">
+                                <div class="info-data-item" style="background-color: #eee; margin: 0">
+                                    <div>
+                                        #{fas.periodo.anio}-#{fas.periodo.numero}
+                                    </div>
+                                    <div class="btn-e">
+                                        <i class="ri-eye-line"></i>
+                                        <label>ver</label>
+                                        <h:commandButton   class="btn" value="ver" action="#{avanceController.seleccionarFase(fas)}" />
+                                    </div>
+                                </div>
+
+                                <div class="info-data-item">
+                                    <div>
+                                        <i class="ri-calendar-todo-fill"></i>
+                                        Fecha Inicial:
+                                    </div>
+                                    <p>#{fas.fechaInicial}</p> 
+                                </div>
+                                <div class="info-data-item">
+                                    <div>
+                                        <i class="ri-calendar-todo-fill"></i>
+                                        Fecha Final:
+                                    </div>
+                                    <p>#{fas.fechaFinal}</p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:repeat>
+            </div>
+        </p:panel>
+
+
+        <p:panel rendered="#{avanceController.mostPAvance}">
+            <div class="progress-bar">
+                <div class="btn-normal" title="Atrás">
+                    <i class="ri-arrow-left-line"></i>
+                    <h:commandButton class="btn" value="volver" action="#{avanceController.volverFases()}" />
+                </div>
+                <div class="progress-tittle">
+                    <i class="ri-send-plane-fill"></i>
+                    Fase #{avanceController.avance.fase.numero}
+                </div>
+                <i class="ri-arrow-right-s-line"></i>
+                <div>
+                    DESDE: #{avanceController.avance.fase.fechaInicial} - HASTA: #{avanceController.avance.fase.fechaFinal}
+                </div>
+                <i class="ri-arrow-right-s-line"></i>
+                <div>
+                    PERIODO: #{avanceController.avance.fase.periodo.anio} - #{avanceController.avance.fase.periodo.numero}
+                </div>
+
+            </div>
+            <p:tabView activeIndex="#{avanceController.indexTabEntregable}">
+                <p:tab title="Avance">
+                    <div class="relative pb-2 mb-2">
+                        <h3>Avance</h3>
+                        <small class="block mb-4 text-gray-600">#{avanceController.avance.descripcion}</small>  
+                        <div class="espaceador"></div>
+                    </div>
+                    <div class="contavanc">
+                        <div class="relative pb-2 mb-2">
+                            <h4 >Agrega una descripción del avance</h4>
+                        </div>
+                        <div class="mb-4">
+                            <p:inputTextarea placeholder="Descripcion del avance" class="w-full" value="#{avanceController.avance.descripcion}" />
+                        </div>
+
+                        <div class="relative pb-4 mb-2">
+                            <h3 >Mis avances</h3>
+                            <div class="espaceador"></div>
+                        </div>
+                        <div class="centr">
+                            <p:dataTable scrollHeight="100px" scrollable="true" var="entr" value="#{avanceController.entregablesFase}">
+                                <p:column headerText="Fecha-Entrega">
+                                    #{entr.fechaEntrega}
+                                </p:column>
+                                <p:column headerText="Asignatura">
+                                    #{entr.asignatura.nombre}
+                                </p:column>
+                                <p:column headerText="Descripcion">
+                                    <div class="btn-s">
+                                        <i class="ri-eye-line"></i>
+                                        <label>Ver</label>
+                                        <p:commandButton value="Show" class="btn" type="button" icon="pi pi-external-link" onclick="PF('#{entr.descripcion} estudiante').show()"/>
+                                    </div>
+                                    <p:dialog widgetVar="#{entr.descripcion} estudiante" modal="true" header="Descripción" hideEffect="fade" resizable="false" minHeight="40" width="700" showEffect="fade">
+                                        <p class="m-0 w-full">#{entr.descripcion}</p>
+                                    </p:dialog> 
+                                </p:column>
+                                <p:column headerText="%Desarrollo">
+                                    #{entr.porcentajeAutoevaluacion}
+                                </p:column>
+                                <p:column headerText="Estado" class="font-bold" style="color : #{entr.colorEstado()}">
+                                    #{entr.estado}
+                                </p:column>
+                                <p:column headerText="Archivo">
+                                    <h:commandLink action="#{avanceController.descargar(entr)}" >
+                                        <h:graphicImage title="#{entr.nombreArchivo}.#{avanceController.conversor(entr.extencionArchivo)}" class="img" value="/Imagenes/Extenciones/#{avanceController.conversor(entr.extencionArchivo)}.png"/>                                    
+                                    </h:commandLink>
+                                </p:column>
+                                <p:column headerText="Valoracion">
+                                    <h:outputText value="#{entr.porcentajeEjecucion}%"/>
+                                </p:column>
+                                <p:column headerText="Observaciones">
+                                    <h:outputText value=""/>
+                                    <div class="btn-e">
+                                        <i class="ri-eye-line"></i>
+                                        <label>Ver</label>
+                                        <p:commandButton value="Show" class="btn" type="button" icon="pi pi-external-link" onclick="PF('#{entr.observaciones}%').show()"/>
+                                    </div>
+                                    <p:dialog widgetVar="#{entr.observaciones}%" modal="true" header="Observaciones" hideEffect="fade" resizable="false" minHeight="40" width="700" showEffect="fade">
+                                        <p class="m-0 w-full">#{entr.observaciones}%</p>
+                                    </p:dialog>
+                                </p:column>
+                                <p:column headerText="">
+                                    <div class="btn-normal" title="Desvincular entregable">
+                                        <i class="ri-delete-bin-line"></i>
+                                        <h:commandButton class="btn" value="+" action="#{avanceController.desvincularEntregable(entr)}" />
+                                    </div>
+                                </p:column>         
+                            </p:dataTable>                           
+                        </div>
+                        <div class="btns-container" style="justify-content: space-between">
+                            <div>
+                                <h:panelGroup layout="block" rendered="#{!avanceController.avanceRegistrado()}">
+                                    <div class="btn-normal" title="Guardar">
+                                        <i class="ri-save-3-line"></i>
+                                        <h:commandButton   class="btn"  value="Guardar" action="#{avanceController.almacenarAvance()}" />
+                                    </div>
+                                </h:panelGroup>
+                                <h:form style="display: initial" rendered="#{avanceController.avanceRegistrado()}">
+                                    <div class="btn-eliminar" title="Eliminar" >
+                                        <i class="ri-delete-bin-line"></i>
+                                        <h:commandButton   class="btn"  value="Eliminar" action="#{avanceController.eliminarAvance()}" />
+                                    </div>
+                                </h:form>
+                            </div>
+                            <div class="btn-e">
+                                <label>Siguiente</label>
+                                <i class="ri-arrow-right-line"></i>
+                                <h:commandButton   class="btn" value="" action="#{avanceController.gEntregable()}" />
+                            </div>
+
+                        </div>   
+
+                    </div>
+
+                </p:tab>
+                <p:tab title="Entregable">
+                    <div class="relative pb-2 mb-2">
+                        <h3>Entregable</h3>
+                        <small class="block mb-4 text-gray-600">Es un resultado o producto tangible que los estudiantes presentan como parte de su progreso en el proyecto. </small>  
+                        <div class="espaceador"></div>
+                    </div>
+                    <div class="info-tittle font-bold">Descripción del avance</div>
+                    <small class="pl-3">#{avanceController.avance.descripcion}</small>
+
+                    <p:panel class="mt-4" rendered="#{!avanceController.mostPEntregable}">
+                        <div class="flex responsive-flex justify-content-around">
+                            <div class="w-5">
+
+                                <p:panel rendered="#{!not empty avanceController.entregable.asignatura}" header="Asignatura Base">
+                                    <p:dataTable scrollable="true" var="asig" value="#{asignaturaController.asignaturas}">
+                                        <p:column headerText="Nombre">
+                                            #{asig.nombre}
+                                        </p:column>
+                                        <p:column headerText="Docente">
+                                            #{asig.profesor.toString()}
+                                        </p:column>
+                                        <p:column headerText="">
+                                            <div class="btn-agregar" title="Agregar">
+                                                <i class="ri-file-add-fill"></i>
+                                                <h:commandButton class="btn" value="+" action="#{estudianteController.agregarAsignaturaEntregable(asig)}" />
+                                            </div>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:panel>
+                                <p:panel rendered="#{not empty avanceController.entregable.asignatura}">
+                                    <div class="progress-bar">
+                                        <div class="progress-tittle">
+                                            <i class="ri-cursor-fill"></i>
+                                            Asignatura Base : #{avanceController.entregable.asignatura.nombre}
+                                        </div>
+                                    </div>
+                                </p:panel>
+                            </div>
+                            <div class="w-5">
+                                <p:panel rendered="#{!not empty avanceController.entregable.tipo }" header="Tipos Entregables">
+                                    <p:dataTable scrollable="true" var="tent" value="#{tipo_EntregableController.tipos_Entregable}">
+                                        <p:column headerText="Nombre">
+                                            #{tent.nombre}
+                                        </p:column>
+                                        <p:column headerText="Descripcion">
+                                            #{tent.descripcion}
+                                        </p:column>
+                                        <p:column headerText="">
+                                            <div class="btn-agregar" title="Agregar">
+                                                <i class="ri-file-add-fill"></i>
+                                                <h:commandButton class="btn" value="+" action="#{avanceController.agregarTipoEntregable(tent)}"/>
+                                            </div>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:panel>
+                                <p:panel rendered="#{not empty avanceController.entregable.tipo}">
+                                    <div class="progress-bar">
+                                        <div class="progress-tittle">
+                                            <i class="ri-cursor-fill"></i>
+                                            Tipo Entregable: #{avanceController.entregable.tipo.nombre}
+                                        </div>
+                                    </div>
+                                </p:panel>
+                            </div>
+                        </div>
+                        <div class="btns-container justify-content-between">
+                            <div class="btn-s" title="Volver">
+                                <i class="ri-arrow-left-line"></i>
+                                <label>Volver</label>
+                                <h:commandButton class="btn" value="+" action="#{avanceController.volverAvance()}" />
+                            </div>
+                            <div class="btn-e" title="Entregable">
+                                <label>Entregable</label>
+                                <h:commandButton class="btn" value="+"  action="#{avanceController.agregarEntregable()}" />
+                            </div>
+                        </div>
+                    </p:panel>
+                    <p:panel rendered="#{avanceController.mostPEntregable}">  
+                        <div class="info-tittle mb-4 mt-2 align-items-center flex font-bold">
+                            <i class="ri-focus-3-line mr-1"></i>Asignatura: #{avanceController.entregable.asignatura.nombre}<i class="ri-arrow-right-s-line mr-1 ml-1"></i>Tipo de Entregable: #{avanceController.entregable.tipo.nombre}
+                        </div>
+                        <div class="flex responsive-flex justify-content-between">
+
+                            <div class="">
+                                <h4 class="mb-2">Agrega Descripcion al entregable</h4>
+                                <p:inputTextarea class="w-full" placeholder="Descripcion del Entregable" value="#{avanceController.entregable.descripcion}" />
+                            </div>
+                            <div class="flex flex-column align-items-center ">
+                                <h4 class="mb-2">Autoevaluación</h4>
+                                <p:knob width="150" foregroundColor="darkgreen" backgroundColor="#495057" max="100" min="0" value="#{avanceController.entregable.porcentajeAutoevaluacion}"/>
+                            </div>
+                            <div class="">
+                                <h4 class="mb-2">Cargar Archivo</h4>
+                                <div class="perfil-buttons">
+                                    <p:fileUpload  value="#{avanceController.aentregable}"  mode="simple" skinSimple="true"/>
+                                    <div class="btn-e"> 
+                                        <i class="uil uil-image-times"></i>
+                                        Cargar
+                                        <h:commandButton class="btn" action="#{avanceController.subirArchivoEntregable()}" value="" /> 
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> 
+                        <div class="btns-container justify-content-between">
+                            <div class="btn-s" title="Anterior">
+                                <label>Anterior</label>
+                                <h:commandButton class="btn" value="+" action="#{avanceController.volverAsignaturas()}" />
+                            </div>
+                            <div class="btn-e" title="Agregar">
+                                <label>Agregar</label>
+                                <h:commandButton class="btn" value="+" action="#{avanceController.vincularEntregable()}" />
+                            </div>
+                        </div>
+
+                    </p:panel>
+                </p:tab>
+            </p:tabView>
+        </p:panel>
+    </h:body>
+    <style>
+        .grid-cuatro{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px , 1fr));
+            gap: .5rem;
+        }
+    </style>
+</html>
+

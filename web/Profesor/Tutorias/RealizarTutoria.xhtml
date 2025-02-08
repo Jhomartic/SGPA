@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div class="card">
+            
+            <div class="btn-normal inline-flex border-none" title="Volver">
+                <i class="ri-arrow-left-line text-xl"></i>
+                <h:commandButton class="btn" value="volver" action="#{profesorController.pvolverdeProgramar()}" />
+            </div>
+            <div class="flex mt-4 responsive-flex justify-content-between gap-4">
+                <div class="md:w-8 sm:w-full">
+                    <p:dataTable  scrollable="true"  var="integ" value="#{tutoriasController.asistentes}">
+
+                        <p:column  headerText="Integrantes">
+                            <div class="flex align-items-center gap-2">
+                                <p:graphicImage value="/Imagenes/Perfiles/#{integ.estudiante.matricula.estudiante.imagenPerfil()}" style="width: 40px;height: 40px "  />
+                                <h:outputText class="w-8" value="#{integ.estudiante.matricula.estudiante.toString()}" /> 
+                            </div>
+                        </p:column>   
+                        <p:column width="100" headerText="Asistencia">
+                            <p:selectBooleanCheckbox value="#{integ.asistio}"/>
+                        </p:column>
+                        <p:column  headerText="Motivo">
+                            <p:inputText value="#{integ.motivo}" />
+                        </p:column>
+                    </p:dataTable>  
+                </div>
+                <div class="md:w-4 sm:w-full h-full flex md:flex-column sm:flex-row gap-2">
+                    <div class="w-full">
+                        <h4 class="mb-2">Recomendaciones</h4>
+                        <p:inputTextarea  class="w-full " placeholder="Recomendaciones" value="#{tutoriasController.tutoria.recomendaciones}" />
+                    </div>
+                    <div class="w-full ">
+                        <h4 class="mb-2">Compromisos</h4>
+                        <p:inputTextarea  class="w-full" placeholder="Compromisos" value="#{tutoriasController.tutoria.compromisos}" />
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="btns-container justify-content-end">
+                <div class="btn-p" title="Crear tutoria">
+                    <label>Crear tutoria</label>
+                    <h:commandButton class="btn" value="+"  action="#{profesorController.palmacenarTutoria()}" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="contImgTutoria">
+            <div class="cbimag">
+                <p:fileUpload  value="#{tutoriasController.itutoria}"  mode="simple" skinSimple="true"/>                 
+            </div>
+            <div class="cimag">
+                <p:graphicImage value="/Imagenes/Tutorias/#{tutoriasController.tutoria.imagenTutoria()}" style="max-width:100%;height: auto;"  />
+                    
+            </div>
+        </div>
+
+
+        <style>
+
+            .contImgTutoria {  display: grid;
+                          grid-template-columns: 1fr 1fr;
+                          grid-template-rows: 0.2fr 1.8fr;
+                          grid-auto-columns: 1fr;
+                          gap: 0px 0px;
+                          grid-auto-flow: row;
+                          align-content: center;
+                          grid-template-areas:
+                              "cbimag cbimag"
+                              "cimag cimag";
+            }
+
+            .cbimag { grid-area: cbimag; }
+
+            .cimag { grid-area: cimag; }
+
+
+        </style>
+
+
+    </h:body>
+</html>
+

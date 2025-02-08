@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class=" contenedor top">
+                <div class="card">
+                    <div class="relative pb-2 mb-2">
+                        <h3 class="text-2xl ">Gestor Tipo de Entregable</h3>
+                        <small class="block mb-4 text-gray-600">Un tipo entregable se refiere a la clasificación o categoría de los diferentes elementos o documentos que se deben presentar como parte del avance del proyecto</small>  
+                        <div class="espaceador"></div>
+                    </div>
+
+                    <p:tabView>
+                        <p:tab title="Elige Asinatura">
+                            <div class="grid-dos">
+                                <p:repeat  var="asig" value="#{asignaturaController.asignaturas}">
+                                    <div class="p-4 flex justify-content-between card mb-1 responsive-flex cdppa">
+                                        <h:commandButton class="btn" value="seleccionar" action="#{tipo_EntregableController.seleccionarAsignatura(asig)}" />
+                                        <div>
+                                            <div class="mb-2">
+                                                <h4>Asignatura</h4>
+                                                <p>#{asig.nombre}</p>
+                                            </div>
+                                            <div class="mb-1">
+                                                <h4><i class="fas fa-credit-card mr-1"></i>créditos : #{asig.creditos}</h4> 
+                                            </div>
+
+                                            <div >
+                                                <small>#{asig.area.nombre}</small>
+                                            </div>
+
+                                        </div>
+                                        <div class="flex flex-column gap-2">
+                                            <small>#{asig.seccion.programa.nombre}</small>
+                                            <h4>#{asig.seccion.semestre.denominacion} - #{asig.seccion.denominacion}</h4>
+                                        </div>
+                                    </div>
+                                </p:repeat>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Crear TE">
+                            <div class="relative pb-2 mb-2">
+                                <p class="block mb-2 text-gray-600"  >Crear Tipo De Entregable para la asignatura: <span style="color: var(--first-color-p);">#{tipo_EntregableController.asignatura.nombre}</span></p>
+                            </div>
+                            <div class="form" >
+                                <div >
+                                    <h4>Nombre</h4>
+                                    <p:inputText  value="#{tipo_EntregableController.tipo_entregable.nombre}" />
+                                </div>
+
+                                <div >
+                                    <h4 >Descripcion</h4>
+                                    <p:inputTextarea class="w-full"  value="#{tipo_EntregableController.tipo_entregable.descripcion}"/>
+                                </div>
+                            </div>
+
+                            <h:form>
+                                <div class="btns-container justify-content-end">
+                                    <div class="btn-p">
+                                        <label>Agregar</label>
+                                        <p:defaultCommand target="submitTe" />
+                                        <h:commandButton id="submitTe" class="btn " value="agregar" action="#{tipo_EntregableController.registrarTipo_Entregable()}" />
+                                    </div>  
+                                </div>
+                            </h:form>   
+
+                        </p:tab>
+                        <p:tab title="TE Creados">
+                            <p:dataTable scrollable="true" var="te" value="#{tipo_EntregableController.tipos_Entregable}" >
+                                <p:column headerText="Nombre">
+                                    #{te.nombre}
+
+                                </p:column>
+                                <p:column headerText="Descripcion">
+                                    #{te.descripcion}
+                                </p:column>
+                                <p:column headerText="Eliminar">
+                                    <div class="btn-normal">
+                                        <i class="uil uil-trash-alt"></i>
+                                        <h:commandButton class="btn" value="Eliminar" action="#{tipo_EntregableController.eliminartipo_Entregable(te)}" />
+                                    </div>
+                                </p:column>
+                            </p:dataTable>  
+                        </p:tab>
+                    </p:tabView>
+
+                </div>
+            </div>
+        </section>
+    </h:body>
+
+
+
+</html>

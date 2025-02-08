@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class=" contenedor top">
+                <div class="card">
+
+                    <div class="relative pb-3 mb-2">
+                        <h3 class="text-2xl ">Estudiantes Matriculados</h3>
+                        <div class="espaceador"></div>
+                    </div>
+                    <p:tabView activeIndex="#{matriculaController.activeIcest}">
+                        <p:tab title="Programa">
+                            <div class="relative pb-3 mb-2">
+                                <h3 >Mis programas</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <p:dataTable scrollable="true" var="prog" value="#{programaController.programas}">
+                                <p:column headerText="Codigo">
+                                    #{prog.codigo}
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    #{prog.nombreCompleto}
+                                </p:column>
+                                <p:column headerText="Seleccionar">
+                                    <div class="btn-normal">
+                                        <i class="fa fa-hand-pointer"></i>
+                                        <h:commandButton class="btn" value="+" action="#{matriculaController.agregarPrograma(prog)}" />
+                                    </div>
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Periodo">
+                            <p:dataTable scrollable="true" var="per" value="#{periodoController.periodos}" >
+
+                                <p:column headerText="Inicio">
+                                    #{per.fechaInicial}
+                                </p:column>
+                                <p:column headerText="Fin">
+                                    #{per.fechaFinal}
+                                </p:column>
+                                <p:column headerText="Periodo">
+                                    #{per.anio}-#{per.numero}
+                                </p:column>
+                                <p:column headerText="Seleccionar">
+                                    <div class="btn-normal">
+                                        <i class="fa fa-hand-pointer"></i>
+                                        <h:commandButton class="btn" value="+" action="#{matriculaController.seleccionarPeriodo(per)}" />
+                                    </div>
+                                </p:column>
+                            </p:dataTable> 
+                        </p:tab>
+                        <p:tab title="Semestre - Seccion">
+                            <div class="relative pb-3 mb-2">
+                                <h3 >Semestres</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <div class="grid-seis">
+                                <p:repeat    var="sem"  value="#{semestreController.semestres}">
+                                    <div class="relative img-negra bg-black" >
+                                        <div class="w-full h-full">
+                                            <h:graphicImage class="img" value="/resources/img/imgsemestres.jpg"/> 
+                                        </div>
+                                        <div class="contenido">
+                                            <p>Semestre <br></br>#{sem.denominacion}</p>
+                                        </div>
+                                        <h:commandButton   class="btn" value="Abrir" action="#{matriculaController.seleccionarSemestre(sem)}" />
+                                    </div>
+                                </p:repeat>
+                            </div>
+                            <div class="relative pb-3 mb-2 mt-4">
+                                <h3 >Secciones</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <div class="grid-cuatro">
+                                <p:repeat var="sec" value="#{matriculaController.secciones}">
+                                    <div class="relative img-negra bg-black">
+                                        <div class="w-full h-full">
+                                            <h:graphicImage class="img" value="/resources/img/imgsemestres.jpg"/> 
+                                        </div>
+                                        <div class="contenido-grid">
+                                            <h2 class="text-white">#{sec.programa.nombre}</h2>
+                                            <span>Semestre #{sec.semestre.denominacion} -  Seccion #{sec.denominacion}</span>
+                                            <h3 class="text-white">Año #{sec.periodo.anio} - #{sec.periodo.numero}</h3>
+
+                                        </div>
+                                        <h:commandButton   class="btn" value="Abrir" action="#{matriculaController.obtenerMatriculadosSeccion(sec)}" />
+                                    </div> 
+                                </p:repeat>
+                            </div>
+
+                        </p:tab>
+                        <p:tab rendered="#{not empty matriculaController.seccion.semestre}" title="Estudiantes de la Seccion:#{matriculaController.seccion.getSeccion()} ">
+                            <div class="btn-normal inline-flex border-none" title="Volver">
+                                <i class="ri-arrow-left-line text-xl"></i>
+                                <h:commandButton class="btn" value="volver" action="#{matriculaController.regresarProgramas()}"/>
+                            </div>
+
+                            <p:dataTable paginator="true" rows="10" scrollable="true" style="font-size: 10pt" var="est" value="#{matriculaController.matriculasXSeccion}">
+                                <p:column headerText="Tipo de Identificacion">
+                                    #{est.estudiante.tipo_ide}
+                                </p:column>
+                                <p:column filterBy="#{est.estudiante.identificacion}" headerText="Identificacion">
+                                    #{est.estudiante.identificacion}
+                                </p:column>
+                                <p:column filterBy="#{est.estudiante.primerNombre}" headerText="Primer Nombre">
+                                    #{est.estudiante.primerNombre}
+                                </p:column>
+                                <p:column filterBy="#{est.estudiante.segundoNombre}" headerText="Segundo Nombre">
+                                    #{est.estudiante.segundoNombre}
+                                </p:column>
+                                <p:column filterBy="#{est.estudiante.primerApellido}" headerText="Primer Apellido">
+                                    #{est.estudiante.primerApellido}
+                                </p:column>
+                                <p:column filterBy="#{est.estudiante.segundoApellido}" headerText="Segundo Apellido">
+                                    #{est.estudiante.segundoApellido}
+                                </p:column>
+                            </p:dataTable>                        
+                        </p:tab>
+                    </p:tabView>
+                </div>
+            </div>
+        </section>
+    </h:body>
+</html>
+
