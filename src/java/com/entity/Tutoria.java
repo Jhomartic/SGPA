@@ -45,6 +45,8 @@ public class Tutoria implements Serializable {
     private Asignatura asignatura;
     private String recomendaciones;
     private String compromisos;
+    @OneToMany(mappedBy = "tutoria")
+    private List<AsignaturaInvitada> asignaturaInvitadas;
 
     public Tutoria() {
     }
