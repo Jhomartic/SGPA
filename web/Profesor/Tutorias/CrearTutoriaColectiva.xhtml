@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <section class="contenido-contenedor">
+            <div class=" contenedor top" >
+                <div class="card">
+                    <div class="relative pb-2 mb-2">
+                        <h3 >Mis Secciones</h3>
+                        <p class="block mb-4 text-gray-600">Selecciona una seccion para configurar la evalución</p>  
+                        <div class="espaceador"></div>
+                    </div>
+                    <p:tabView  activeIndex="#{tutoriasController.indTavTutoriaColectiva}" scrollable="true" >
+                        <p:tab title="Seccion">
+                            <div class="relative pb-2 mb-2">
+                                <h3 >Mis Secciones</h3>
+                                <p class="block mb-4 text-gray-600">Selecciona una seccion para configurar la evalución</p>  
+                                <div class="espaceador"></div>
+                            </div>
+                            <div class="grid-cuatro">
+                                <p:repeat  var="sem" value="#{profesorController.semestresLider}">
+                                    <div class="relative img-negra bg-black">
+                                        <div class="w-full h-full">
+                                            <h:graphicImage class="img" value="/resources/img/imgsemestres.jpg"/> 
+                                        </div>
+                                        <div class="contenido-grid">
+                                            <h2 class="text-white">#{sem.seccion.programa.nombre}</h2>
+                                            <span>Semestre #{sem.seccion.semestre.denominacion} -  Seccion #{sem.seccion.denominacion}</span>
+                                            <h3 class="text-white">Año #{sem.seccion.periodo.anio} - #{sem.seccion.periodo.numero}</h3>
+                                        </div>
+                                        <h:commandButton   class="btn" value="Abrir" action="#{profesorController.seleccionarSeccionLider(sem)}" />
+                                    </div> 
+                                </p:repeat>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Asignaturas a Evaluar">
+                            <div class="flex justify-content-between gap-4 responsive-flex">
+                                <div class="md:w-5 sm:w-full">
+                                    <div class="relative pb-3 mb-2">
+                                        <h3 >Asignaturas Vinculadas</h3>
+                                        <p class="block mb-4 text-gray-600">Selecciona las asignaturas involucradas en la evaluacion</p>  
+                                        <div class="espaceador"></div>
+                                    </div>
+                                    <ui:repeat var="asig" value="#{evaluacionController.asignaturasSeccion}">
+                                        <div class="p-4 flex justify-content-between card mb-1 responsive-flex cdppa">
+                                            <h:commandButton class="btn" value="seleccionar"  action="#{evaluacionController.seleccionarAsignatura(asig)}" />
+                                            <div>
+                                                <div class="mb-2">
+                                                    <h4>Asignatura</h4>
+                                                    <p>#{asig.nombre}</p>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <h4><i class="fas fa-credit-card mr-1"></i>créditos : #{asig.creditos}</h4> 
+                                                </div>
+
+                                                <div >
+                                                    <small>#{asig.area.nombre}</small>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-column gap-2">
+                                                <small>#{asigs.profesor.toString()}</small>
+                                                <h4>#{asig.seccion.semestre.denominacion} - #{asig.seccion.denominacion}</h4>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                                <div class="md:w-7 sm:w-full">
+                                    <div class="relative pb-3 mb-2">
+                                        <h3 >Asignaturas Seleccionadas</h3>
+                                        <p class="block mb-4 text-gray-600">Puedes quitar asignatura de la seleccion pulsando el botón de la x</p>  
+                                        <div class="espaceador"></div>
+                                    </div>
+                                    <p:dataTable var="asige" value="#{evaluacionController.asignaturasEvaluacion}">
+                                        <p:column headerText="Asignatura">
+                                            #{asige.nombre}
+                                        </p:column>
+                                        <p:column headerText="Docente">
+                                            #{asige.profesor.toString()}
+                                        </p:column>
+                                        <p:column headerText="Seccion">
+                                            #{asige.seccion.getSeccion()}
+                                        </p:column>
+                                        <p:column>
+                                            <div class="btn-eliminar" title="Deseleccionar asignatura">
+                                                <i class="ri-close-line"></i>
+                                                <h:commandButton class="btn" value="+" action="#{evaluacionController.quitarAsignatura(asige)}" />
+                                            </div>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+                            </div>
+                            <div class="btns-container justify-content-end">
+                                <div class="btn-p" title="continuar">
+                                    <label>continuar</label>
+                                    <h:commandButton class="btn" value="+" action="#{evaluacionController.irDimensiones()}" />
+                                </div>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Proyectos">
+                            <div class="relative pb-4 mb-2">
+                                <h3 >Proyectos Existentes</h3>
+                                <div class="espaceador"></div>
+                            </div>
+                            <p:dataTable scrollable="true" class="tabla-reporte" var="proa" value="#{profesorController.proyectosSemestre}">
+                                <p:column  headerText="Codigo" >
+                                    <div title="#{proa.titulo}">#{proa.codigo}</div>
+                                </p:column>    
+                                <p:column  headerText="Ingreso" >
+                                    #{proa.fecha_ingreso}
+                                </p:column>   
+                                <p:column  headerText="Integrantes">
+                                    <p:repeat var="integ" value="#{proa.integrantes}">
+                                        <div class="flex gap-1 align-items-center">
+                                            <div class="w-1 border-circle overflow-hidden flex">
+                                                <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                                            </div>
+                                            <small>#{integ.matricula.estudiante.toString()}</small>
+                                        </div>
+                                    </p:repeat>
+                                </p:column>
+                                <p:column width="80" headerText="Opciones">
+                                    <div class="btn-normal" title="Consultar">
+                                        <i class="ri-search-line"></i><h:commandButton class="btn" value="." action="#{profesorController.proacon.seleccionarProyectoTC(pa)}" />
+                                    </div>
+
+                                    <div class="btn-normal" title="Evaluar">
+                                        <i class="ri-quill-pen-line"></i><h:commandButton class="btn" value="." disabled="#{!evaluacionController.evaluacion.habilitarEvaluacion()}"  action="#{profesorController.evaluarProyecto(proa)}" />
+                                    </div>
+                                </p:column>  
+                            </p:dataTable> 
+                        </p:tab>
+                        <p:tab title="Programar">
+                            <p:tabView>
+                                <p:tab title="Programar">
+                                    <div class="relative pb-2 mb-2">
+                                        <h3 >Programa Tutoria</h3>
+                                        <p class="block mb-4  text-gray-600">Establece fecha y hora para la tutoria</p>  
+                                        <div class="espaceador"></div>
+                                    </div>
+                                    <div class="flex w-full justify-content-center gap-4">
+                                        <p:datePicker class="" value="#{tutoriasController.tutoria.fechaAsignacion}" inline="true" showTime="true" timeInput="true"/>
+                                        <div class="btns-container justify-content-end">
+                                            <div class="btn-p" title="Programar">
+                                                <label>Programar</label>
+                                                <h:commandButton class="btn" value="+" action="#{profesorController.programarTutoria()}" />
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </p:tab>
+                                <p:tab title="Información de la solicitud">
+                                    <div class="info-proyecto">
+                                        <div class="info-tittle">Infórmacion del proyecto</div>
+                                        <div class="info-data">
+                                            <div class="profesores-invitados">
+                                        <div class="info-tittle">Asignaturas invitadas</div>
+                                        <p:dataTable var="asige" value="#{evaluacionController.asignaturasEvaluacion}">
+                                        <p:column headerText="Asignatura">
+                                            #{asige.nombre}
+                                        </p:column>
+                                        <p:column headerText="Docente">
+                                            #{asige.profesor.toString()}
+                                        </p:column>
+                                        <p:column headerText="Seccion">
+                                            #{asige.seccion.getSeccion()}
+                                        </p:column>
+                                        <p:column>
+                                            <div class="btn-eliminar" title="Deseleccionar asignatura">
+                                                <i class="ri-close-line"></i>
+                                                <h:commandButton class="btn" value="+" action="#{evaluacionController.quitarAsignatura(asige)}" />
+                                            </div>
+                                        </p:column>
+                                    </p:dataTable>
+                                        <div class="info-data">
+                                            <div class="info-data-item">
+                                                <div>
+                                                    <i class="ri-calendar-todo-fill"></i>
+                                                    Fecha programada:
+                                                </div>
+                                                #{tutoriasController.tutoria.fechaSolicitud}
+                                            </div>
+                                        </div>
+                                    </div>
+                                            <div class="info-data-item">
+                                                <div>
+                                                    <i class="ri-qr-code-line"></i>
+                                                    Código Proyecto:
+                                                </div>
+                                                <p> #{tutoriasController.tutoria.proyecto.codigo}</p>
+
+                                            </div>
+                                            <div class="info-data-item">
+                                                <div>
+                                                    <i class="ri-qr-code-line"></i>
+                                                    Titulo:
+                                                </div>
+                                                <p> #{tutoriasController.tutoria.proyecto.titulo}</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="espaceador"></div>
+                                    </div>
+                                    <div class="info-proyecto">
+                                        <div class="info-tittle">Información de la solicitud</div>
+                                        <div class="info-data">
+                                            <div class="info-data-item">
+                                                <div>
+                                                    <i class="ri-calendar-todo-fill"></i>
+                                                    Fecha programada:
+                                                </div>
+                                                #{tutoriasController.tutoria.fechaSolicitud}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p:tab>
+                            </p:tabView>
+                        </p:tab>
+
+
+
+                    </p:tabView>
+                </div>
+            </div>
+        </section>  
+
+        <style>
+
+            .contImgTutoria {  display: grid;
+                               grid-template-columns: 1fr 1fr;
+                               grid-template-rows: 0.2fr 1.8fr;
+                               grid-auto-columns: 1fr;
+                               gap: 0px 0px;
+                               grid-auto-flow: row;
+                               align-content: center;
+                               grid-template-areas:
+                                   "cbimag cbimag"
+                                   "cimag cimag";
+            }
+
+            .cbimag { grid-area: cbimag; }
+
+            .cimag { grid-area: cimag; }
+
+
+        </style>
+
+
+    </h:body>
+</html>
+

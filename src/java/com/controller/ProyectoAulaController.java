@@ -163,6 +163,9 @@ public class ProyectoAulaController implements Serializable {
         proyecto = pa;
         setIntegrantesseleccionados(pa.getIntegrantes());
     }
+    public void seleccionarProyectoTC(Proyecto_Aula pa) {
+        proyecto = pa;
+    }
 
     public boolean tieneProcesos(Proyecto_Aula pa) {
         boolean tiene = false;

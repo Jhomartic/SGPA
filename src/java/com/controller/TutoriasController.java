@@ -54,6 +54,7 @@ public class TutoriasController implements Serializable {
     AsistenteServices asisser = new AsistenteServices();
 
     private UploadedFile itutoria;
+    private int indTavTutoriaColectiva = 0;
 
     /**
      * Creates a new instance of TutoriasController
@@ -391,6 +392,14 @@ public class TutoriasController implements Serializable {
      */
     public void setItutoria(UploadedFile itutoria) {
         this.itutoria = itutoria;
+    }
+
+    public int getIndTavTutoriaColectiva() {
+        return indTavTutoriaColectiva;
+    }
+
+    public void setIndTavTutoriaColectiva(int indTavTutoriaColectiva) {
+        this.indTavTutoriaColectiva = indTavTutoriaColectiva;
     }
 
 }

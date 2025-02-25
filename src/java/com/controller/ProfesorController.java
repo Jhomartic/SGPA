@@ -516,6 +516,10 @@ public class ProfesorController implements Serializable {
         mostPanelSemestres = true;
         paginaActualP = "/Profesor/GestorGrupos.xhtml";
     }
+    public void gtutoria_colectiva() {
+        mostPanelSemestres = true;
+        paginaActualP = "/Profesor/Tutorias/CrearTutoriaColectiva.xhtml";
+    }
 
     public void gproyectosaula() {
         mostPanelSemestres = true;
