@@ -16,7 +16,7 @@
                         <p class="block mb-4 text-gray-600">Selecciona una seccion para configurar la evalución</p>  
                         <div class="espaceador"></div>
                     </div>
-                    <p:tabView  activeIndex="#{tutoriasController.indTavTutoriaColectiva}" scrollable="true" >
+                    <p:tabView  activeIndex="#{tutoriasController.indTabTutoriaColectiva}" scrollable="true" >
                         <p:tab title="Seccion">
                             <div class="relative pb-2 mb-2">
                                 <h3 >Mis Secciones</h3>
@@ -34,7 +34,7 @@
                                             <span>Semestre #{sem.seccion.semestre.denominacion} -  Seccion #{sem.seccion.denominacion}</span>
                                             <h3 class="text-white">Año #{sem.seccion.periodo.anio} - #{sem.seccion.periodo.numero}</h3>
                                         </div>
-                                        <h:commandButton   class="btn" value="Abrir" action="#{profesorController.seleccionarSeccionLider(sem)}" />
+                                        <h:commandButton   class="btn" value="Abrir" action="#{profesorController.seleccionarSeccionLiderTC(sem)}" />
                                     </div> 
                                 </p:repeat>
                             </div>

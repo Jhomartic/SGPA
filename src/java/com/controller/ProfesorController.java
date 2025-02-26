@@ -302,6 +302,21 @@ public class ProfesorController implements Serializable {
         evacon.prepararEvaluacion(liderPa.getSeccion());
         mostPanelEvaluaciones = true;
     }
+    
+    public void seleccionarSeccionLiderTC(LiderPA lider) {
+        liderPa = lider;
+        evacon.consultarDimensionesProgramaAndPeriodoAndSemestre(liderPa);
+        evacon.consultarCriteriosSeccion(liderPa.getSeccion());
+        asigcon.obtenerAsignaturasXSeccion(liderPa.getSeccion());
+        evacon.setAsignaturasSeccion(asigcon.getAsignaturas());
+        evacon.prepararEvaluacion(liderPa.getSeccion());
+        proyectosXSeccion(liderPa.getSeccion());
+        if (tutcon.getIndTabTutoriaColectiva() < 3) 
+        {
+            tutcon.setIndTabTutoriaColectiva(tutcon.getIndTabTutoriaColectiva() + 1);
+        }
+
+    }
 
     public void volverSeccionesdesdeEvaluacion() {
         mostPanelEvaluaciones = false;
@@ -518,6 +533,7 @@ public class ProfesorController implements Serializable {
     }
     public void gtutoria_colectiva() {
         mostPanelSemestres = true;
+        tutcon.setIndTabTutoriaColectiva(0);
         paginaActualP = "/Profesor/Tutorias/CrearTutoriaColectiva.xhtml";
     }
 
