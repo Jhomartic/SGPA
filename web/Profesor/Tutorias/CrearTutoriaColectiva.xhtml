@@ -98,7 +98,7 @@
                             <div class="btns-container justify-content-end">
                                 <div class="btn-p" title="continuar">
                                     <label>continuar</label>
-                                    <h:commandButton class="btn" value="+" action="#{evaluacionController.irDimensiones()}" />
+                                    <h:commandButton class="btn" value="+" action="#{profesorController.irProyectos()}" />
                                 </div>
                             </div>
                         </p:tab>
@@ -126,11 +126,7 @@
                                 </p:column>
                                 <p:column width="80" headerText="Opciones">
                                     <div class="btn-normal" title="Consultar">
-                                        <i class="ri-search-line"></i><h:commandButton class="btn" value="." action="#{profesorController.proacon.seleccionarProyectoTC(pa)}" />
-                                    </div>
-
-                                    <div class="btn-normal" title="Evaluar">
-                                        <i class="ri-quill-pen-line"></i><h:commandButton class="btn" value="." disabled="#{!evaluacionController.evaluacion.habilitarEvaluacion()}"  action="#{profesorController.evaluarProyecto(proa)}" />
+                                        <i class="ri-search-line"></i><h:commandButton class="btn" value="." action="#{profesorController.proacon.seleccionarProyectoTC(proa)}" />
                                     </div>
                                 </p:column>  
                             </p:dataTable> 
@@ -191,7 +187,7 @@
                                                     <i class="ri-qr-code-line"></i>
                                                     Código Proyecto:
                                                 </div>
-                                                <p> #{tutoriasController.tutoria.proyecto.codigo}</p>
+                                                <p> #{proa.codigo}</p>
 
                                             </div>
                                             <div class="info-data-item">
@@ -199,7 +195,7 @@
                                                     <i class="ri-qr-code-line"></i>
                                                     Titulo:
                                                 </div>
-                                                <p> #{tutoriasController.tutoria.proyecto.titulo}</p>
+                                                <p> #{proa.titulo}</p>
 
                                             </div>
                                         </div>

@@ -216,6 +216,15 @@ public class EvaluacionController implements Serializable {
             FacesUtil.addErrorMessage("Debes Seleccionar las asignaturas que evaluaran los proyectos de aula");
         }
     }
+    
+    public boolean validarAsignaturasTC() {
+        if (asignaturasEvaluacion.size() > 1) {
+            return true;
+        } else {
+            FacesUtil.addErrorMessage("Debes Seleccionar al menos 2 asignaturas");
+            return false;
+        }
+    }
 
     public void publicarEvaluacion() {
         evaluacion.setEstado("Publicada");

@@ -317,6 +317,21 @@ public class ProfesorController implements Serializable {
         }
 
     }
+    
+    public void irProyectos(){
+        if (tutcon.getIndTabTutoriaColectiva() < 3 && evacon.validarAsignaturasTC() == true) 
+        {
+            tutcon.setIndTabTutoriaColectiva(tutcon.getIndTabTutoriaColectiva() + 1);
+        }else{
+            
+        }
+    }
+    
+    public void crearTutoriasColectivas(){
+       // getProyectosSemestre()  //aqui estan los proyectos
+       // asignaturasEvaluacion// aqui estan las asignaturas seleccionadas para la tutoria
+                
+    }
 
     public void volverSeccionesdesdeEvaluacion() {
         mostPanelEvaluaciones = false;
