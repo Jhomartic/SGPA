@@ -25,13 +25,11 @@ import javax.servlet.ServletContext;
 @Entity
 public class Asignatura implements Serializable {
 
-
     @OneToMany(mappedBy = "asignatura")
     private List<Tipo_Entregable> tipo_Entregables;
 
     @OneToMany(mappedBy = "asignatura")
     private List<UnidadCompetencia> unidadCompetencias;
-
 
     @OneToMany(mappedBy = "asignatura")
     private List<Entregable> entregables;
@@ -51,6 +49,8 @@ public class Asignatura implements Serializable {
     private Seccion seccion;
     @ManyToOne
     private Profesor profesor;
+    @OneToMany(mappedBy = "asignatura")
+    private List<Tutoria_Proyecto> tutoriasProyecto;
 
     public boolean validarAsignatura() {
         boolean valido = true;
@@ -61,10 +61,12 @@ public class Asignatura implements Serializable {
         if (this.creditos < 0) {
             FacesUtil.addErrorMessage("creditos de asignatura deben ser superiores a 0");
             valido = false;
-        }if(this.area.getId()<0){
+        }
+        if (this.area.getId() < 0) {
             FacesUtil.addErrorMessage("debe seleccionar el area o componente de la asignatura");
             valido = false;
-        }if(this.seccion.getId()<0){
+        }
+        if (this.seccion.getId() < 0) {
             FacesUtil.addErrorMessage("No hay seccion o curso seleccionado para esta asignatura");
             valido = false;
         }
@@ -72,21 +74,19 @@ public class Asignatura implements Serializable {
         return valido;
     }
 
-    
-    public boolean tieneDocumento(){
-        boolean existe=false;
+    public boolean tieneDocumento() {
+        boolean existe = false;
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String path = servletContext.getRealPath("/fuente.png").replace("fuente.png", "Soportes\\Curriculos\\");
         //this.setId(Long.getLong("5"));
-        String archivo=path+this.getId()+".pdf";
-        File f=new File(archivo);
-        if(f.length()>0){
-            existe=true;
+        String archivo = path + this.getId() + ".pdf";
+        File f = new File(archivo);
+        if (f.length() > 0) {
+            existe = true;
         }
         return existe;
     }
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -115,20 +115,18 @@ public class Asignatura implements Serializable {
         return true;
     }
 
-    
-    
     @Override
     public String toString() {
-        String info="";        
-        try{
-            info="Codigo: "+this.codigo
-                +" - Asignatura: "+this.nombre
-                +" - Area: "+this.area.getNombre()
-                +" => Profesor: "+this.profesor.toString()
-                +" - Seccion: "+this.seccion.getSeccion();
-        }catch(java.lang.NullPointerException npe){
-            info="No hay Asignatura seleccionada";
-        }        
+        String info = "";
+        try {
+            info = "Codigo: " + this.codigo
+                    + " - Asignatura: " + this.nombre
+                    + " - Area: " + this.area.getNombre()
+                    + " => Profesor: " + this.profesor.toString()
+                    + " - Seccion: " + this.seccion.getSeccion();
+        } catch (java.lang.NullPointerException npe) {
+            info = "No hay Asignatura seleccionada";
+        }
         return info;
     }
 
@@ -243,6 +241,7 @@ public class Asignatura implements Serializable {
     public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
+
     /**
      * @param seccion the seccion to set
      */
@@ -255,6 +254,14 @@ public class Asignatura implements Serializable {
      */
     public Seccion getSeccion() {
         return seccion;
+    }
+
+    public List<Tutoria_Proyecto> getTutoriasProyecto() {
+        return tutoriasProyecto;
+    }
+
+    public void setTutoriasProyecto(List<Tutoria_Proyecto> tutoriasProyecto) {
+        this.tutoriasProyecto = tutoriasProyecto;
     }
 
 }

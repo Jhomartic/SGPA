@@ -39,6 +39,8 @@ public class Fase implements Serializable {
     private Periodo periodo;
     @OneToMany(mappedBy = "fase")
     private List<Avance> avances;
+       @OneToMany(mappedBy = "fase")
+    private List<Tutoria_Colectiva> tutoriasColectiva;
 
     public Fase() {
     }

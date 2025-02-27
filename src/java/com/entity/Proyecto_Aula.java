@@ -49,6 +49,7 @@ public class Proyecto_Aula implements Serializable {
     private String codigo;
     @ManyToOne
     private Seccion seccion;
+    
 
     @OneToMany(mappedBy = "proyecto", fetch = FetchType.EAGER)
     private List<Item_Proyecto> itenes_Proyecto;
@@ -58,6 +59,8 @@ public class Proyecto_Aula implements Serializable {
     private List<Avance> avances;    
     @OneToMany(mappedBy = "proyecto")
     private List<Tutoria> tutorias;
+    @OneToMany(mappedBy = "proyecto")
+    private List<Tutoria_Proyecto> tutoriasProyecto;
 
     public Proyecto_Aula() {
     }
@@ -430,6 +433,14 @@ public class Proyecto_Aula implements Serializable {
      */
     public void setSeccion(Seccion seccion) {
         this.seccion = seccion;
+    }
+
+    public List<Tutoria_Proyecto> getTutoriasProyecto() {
+        return tutoriasProyecto;
+    }
+
+    public void setTutoriasProyecto(List<Tutoria_Proyecto> tutoriasProyecto) {
+        this.tutoriasProyecto = tutoriasProyecto;
     }
 
 }

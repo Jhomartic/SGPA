@@ -41,6 +41,8 @@ public class Seccion implements Serializable {
 
     @OneToMany(mappedBy = "seccion", fetch = FetchType.LAZY)
     private List<Asignatura> asignaturas;
+    @OneToMany(mappedBy = "seccion")
+    private List<Tutoria_Colectiva> tutoriasColectivas;
 
     public Long getId() {
         return id;
@@ -61,7 +63,8 @@ public class Seccion implements Serializable {
             if (this.getPeriodo().getId() < 0 || this.getPrograma().getId() < 0 || this.getSemestre().getId() < 0) {
                 habilitar = false;
                 FacesUtil.addErrorMessage("Falta informacion para registrar una sección");
-            }if(this.denominacion.trim().equals("")){
+            }
+            if (this.denominacion.trim().equals("")) {
                 habilitar = false;
                 FacesUtil.addErrorMessage("Falta la denominación para registrar una sección");
             }
@@ -150,6 +153,14 @@ public class Seccion implements Serializable {
             sec = "";
         }
         return sec;
+    }
+
+    public List<Tutoria_Colectiva> getTutoriasColectivas() {
+        return tutoriasColectivas;
+    }
+
+    public void setTutoriasColectivas(List<Tutoria_Colectiva> tutoriasColectivas) {
+        this.tutoriasColectivas = tutoriasColectivas;
     }
 
 }
