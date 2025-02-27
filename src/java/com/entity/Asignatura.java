@@ -24,8 +24,7 @@ import javax.servlet.ServletContext;
  */
 @Entity
 public class Asignatura implements Serializable {
-    @OneToMany(mappedBy = "asignatura")
-    private List<AsignaturaInvitada> asignaturaInvitadas;
+
 
     @OneToMany(mappedBy = "asignatura")
     private List<Tipo_Entregable> tipo_Entregables;
