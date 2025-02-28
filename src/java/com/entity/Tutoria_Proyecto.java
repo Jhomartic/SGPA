@@ -6,11 +6,13 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -33,10 +35,11 @@ public class Tutoria_Proyecto implements Serializable {
     @ManyToOne
     private Asignatura asignatura;
     @ManyToOne
-    private Proyecto_Aula proyectoAula;
+    private Proyecto_Aula proyecto;
     @ManyToOne
-    private Tutoria_Colectiva tutoriaColectiva;
-    private String hora;
+    private Tutoria_Colectiva tutoriacolectiva;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date hora;
     private Integer orden;
     private String observaciones;
     private String recomendaciones;
@@ -84,28 +87,22 @@ public class Tutoria_Proyecto implements Serializable {
     }
 
     public Proyecto_Aula getProyectoAula() {
-        return proyectoAula;
+        return proyecto;
     }
 
     public void setProyectoAula(Proyecto_Aula proyectoAula) {
-        this.proyectoAula = proyectoAula;
+        this.proyecto = proyectoAula;
     }
 
     public Tutoria_Colectiva getTutoriaColectiva() {
-        return tutoriaColectiva;
+        return tutoriacolectiva;
     }
 
     public void setTutoriaColectiva(Tutoria_Colectiva tutoriaColectiva) {
-        this.tutoriaColectiva = tutoriaColectiva;
+        this.tutoriacolectiva = tutoriaColectiva;
     }
 
-    public String getHora() {
-        return hora;
-    }
 
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
 
     public Integer getOrden() {
         return orden;
@@ -129,6 +126,14 @@ public class Tutoria_Proyecto implements Serializable {
 
     public void setRecomendaciones(String recomendaciones) {
         this.recomendaciones = recomendaciones;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
     
 }

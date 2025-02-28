@@ -11,7 +11,7 @@ import com.entity.Asignatura;
 import com.entity.Competencia;
 import com.entity.CriterioEvaluacion;
 import com.entity.Profesor;
-import com.implDao.IArea;
+import com.implDao.ITutoria_Colectiva;
 import com.implDao.ICompetencia;
 import java.io.Serializable;
 import java.util.LinkedList;

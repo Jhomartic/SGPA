@@ -43,7 +43,7 @@ public class Tutoria_Colectiva implements Serializable {
     private Seccion seccion;
     @ManyToOne
     private Fase fase;
-    @OneToMany(mappedBy = "tutoriaColectiva")
+    @OneToMany(mappedBy = "tutoriacolectiva")
     private List<Tutoria_Proyecto> tutoriasProyecto;
 
     public Long getId() {

@@ -5,15 +5,13 @@
 package com.services;
 
 import com.dao.ImplDao;
-import com.entity.Area;
-import com.entity.Semestre;
+import com.entity.Tutoria_Colectiva;
 import com.implDao.ITutoria_Colectiva;
-import com.implDao.ISemestre;
 import java.io.Serializable;
 /**
  *
  * @author Jcmm
  */
-public class SemestreServices extends ImplDao<Semestre, Long> implements ISemestre,Serializable{
+public class Tutoria_ColectivaServices extends ImplDao<Tutoria_Colectiva, Long> implements ITutoria_Colectiva,Serializable{
    
 }

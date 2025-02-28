@@ -39,8 +39,8 @@ public class Fase implements Serializable {
     private Periodo periodo;
     @OneToMany(mappedBy = "fase")
     private List<Avance> avances;
-       @OneToMany(mappedBy = "fase")
-    private List<Tutoria_Colectiva> tutoriasColectiva;
+    @OneToMany(mappedBy = "fase")
+    private List<Tutoria_Colectiva> tutoriasColectivas;
 
     public Fase() {
     }
@@ -194,6 +194,14 @@ public class Fase implements Serializable {
      */
     public void setPeriodo(Periodo periodo) {
         this.periodo = periodo;
+    }
+
+    public List<Tutoria_Colectiva> getTutoriasColectivas() {
+        return tutoriasColectivas;
+    }
+
+    public void setTutoriasColectivas(List<Tutoria_Colectiva> tutoriasColectivas) {
+        this.tutoriasColectivas = tutoriasColectivas;
     }
     
 }
