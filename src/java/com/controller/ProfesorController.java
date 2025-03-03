@@ -15,6 +15,7 @@ import com.entity.Proyecto_Aula;
 import com.entity.Seccion;
 import com.entity.Semestre;
 import com.entity.Tutoria;
+import com.entity.Tutoria_Colectiva;
 import com.entity.UnidadCompetencia;
 import com.services.LiderPAServices;
 import com.services.ProfesorServices;
@@ -75,6 +76,10 @@ public class ProfesorController implements Serializable {
     private FasesController fascon;
     @ManagedProperty("#{tutoriasController}")
     private TutoriasController tutcon;
+    @ManagedProperty("#{tutoria_ColectivaController}")
+    private Tutoria_ColectivaController tutcolcon;
+    @ManagedProperty("#{tutoria_ProyectoController}")
+    private Tutoria_ProyectoController tutprocon;
     @ManagedProperty("#{competenciasController}")
     private CompetenciasController compcon;
     @ManagedProperty("#{tipo_EntregableController}")
@@ -305,27 +310,43 @@ public class ProfesorController implements Serializable {
     
     public void seleccionarSeccionLiderTC(LiderPA lider) {
         liderPa = lider;
-        evacon.consultarDimensionesProgramaAndPeriodoAndSemestre(liderPa);
-        evacon.consultarCriteriosSeccion(liderPa.getSeccion());
-        asigcon.obtenerAsignaturasXSeccion(liderPa.getSeccion());
-        evacon.setAsignaturasSeccion(asigcon.getAsignaturas());
-        evacon.prepararEvaluacion(liderPa.getSeccion());
-        proyectosXSeccion(liderPa.getSeccion());
-        if (tutcon.getIndTabTutoriaColectiva() < 3) 
-        {
-            tutcon.setIndTabTutoriaColectiva(tutcon.getIndTabTutoriaColectiva() + 1);
-        }
-
+        tutcolcon.setSeccion(liderPa.getSeccion());
+        adelantarTabTC();
     }
     
-    public void irProyectos(){
-        if (tutcon.getIndTabTutoriaColectiva() < 3 && evacon.validarAsignaturasTC() == true) 
+    public void adelantarTabTC(){
+        if (tutcolcon.getIndTabTC() < 2) 
         {
-            tutcon.setIndTabTutoriaColectiva(tutcon.getIndTabTutoriaColectiva() + 1);
+            tutcolcon.setIndTabTC(tutcolcon.getIndTabTC() + 1);
         }else{
             
         }
     }
+    
+    public void seleccionarSeccionLiderTP(LiderPA lider) {
+        liderPa = lider;
+        asigcon.obtenerAsignaturasXSeccion(liderPa.getSeccion());
+        tutprocon.setAsignaturasSeccion(asigcon.getAsignaturas());
+        adelantarTabTP();
+        //tutprocon.limpiarAsignaturasInvitadas();
+    }
+    
+    public void adelantarTabTP(){
+        if (tutprocon.getIndTabTP() < 3) 
+        {
+            tutprocon.setIndTabTP(tutprocon.getIndTabTP() + 1);
+        }else{
+            
+        }
+    }
+    
+    public void irProyectosTP(){
+        if(tutprocon.validarAsignaturasInvitadas()==true){
+            adelantarTabTP();
+        }
+    }
+    
+    
     
     public void crearTutoriasColectivas(){
        // getProyectosSemestre()  //aqui estan los proyectos
@@ -548,7 +569,8 @@ public class ProfesorController implements Serializable {
     }
     public void gtutoria_colectiva() {
         mostPanelSemestres = true;
-        tutcon.setIndTabTutoriaColectiva(0);
+        tutcolcon.setIndTabTC(0);
+        tutprocon.setIndTabTP(0);
         paginaActualP = "/Profesor/Tutorias/CrearTutoriaColectiva.xhtml";
     }
 
@@ -1208,4 +1230,20 @@ public class ProfesorController implements Serializable {
         this.lideresXseccionPrograma = lideresXseccionPrograma;
     }
 
+    public Tutoria_ColectivaController getTutcolcon() {
+        return tutcolcon;
+    }
+    
+    public void setTutcolcon(Tutoria_ColectivaController tutcolcon) {
+        this.tutcolcon = tutcolcon;
+    }
+
+    public Tutoria_ProyectoController getTutprocon() {
+        return tutprocon;
+    }
+
+    public void setTutprocon(Tutoria_ProyectoController tutprocon) {
+        this.tutprocon = tutprocon;
+    }
+    
 }

@@ -14,6 +14,7 @@ import com.entity.Proyecto_Aula;
 import com.entity.Seccion;
 import com.entity.Semestre;
 import com.entity.Usuario;
+import com.services.AreaServices;
 import com.services.Tutoria_ColectivaServices;
 import com.services.CoordinadorServices;
 import com.services.SeccionServices;
@@ -53,7 +54,7 @@ public class CoordinadorController implements Serializable {
 
     //servicios
     CoordinadorServices coordser = new CoordinadorServices();
-    Tutoria_ColectivaServices areaser = new Tutoria_ColectivaServices();
+    AreaServices areaser = new AreaServices();
     SeccionServices secser = new SeccionServices();
     UsuarioServices user = new UsuarioServices();
 
