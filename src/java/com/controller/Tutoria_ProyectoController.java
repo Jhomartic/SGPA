@@ -11,6 +11,7 @@ import com.entity.Tutoria_Colectiva;
 import com.entity.Tutoria_Proyecto;
 import com.services.Tutoria_ProyectoServices;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -24,19 +25,39 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class Tutoria_ProyectoController implements Serializable {
     
+    private Tutoria_Proyecto tutoriaProyecto = new Tutoria_Proyecto();
     private Tutoria_Colectiva tutoriaColectiva;
     private Asignatura asignatura;
     private Proyecto_Aula proaula;
     
     private List<Tutoria_Proyecto> tutoriasProyecto = new LinkedList();
     private List<Tutoria_Proyecto> tutoriasProyectoRealizadas = new LinkedList();
-    private List<Asignatura> asignaturasSeccion;
+    private List<Proyecto_Aula> proyectosSemestre = new LinkedList();
     private List<Asignatura> asignaturasInvitadas = new LinkedList();
-    private List <Proyecto_Aula> proyectosAula;
+    
     
     Tutoria_ProyectoServices tutPser = new Tutoria_ProyectoServices();
     
     private int indTabTP = 0;
+    
+    
+    public void crearTutoriasProyecto() {
+        if (tutoriaProyecto == null) {
+            tutoriaProyecto = new Tutoria_Proyecto();
+        }
+        int orden = 1; 
+        for (Proyecto_Aula proyecto : proyectosSemestre) { for (Asignatura asignatura : asignaturasInvitadas) {
+            tutoriaProyecto.setTutoriaColectiva(tutoriaColectiva);
+            tutoriaProyecto.setAsignatura(asignatura);
+            tutoriaProyecto.setProyectoAula(proyecto);
+            tutoriaProyecto.setHora(tutoriaColectiva.getFecha_programacion());
+            tutoriaProyecto.setOrden(orden++);
+            tutoriaProyecto.setObservaciones(null);
+            tutoriaProyecto.setRecomendaciones(null);
+            tutoriaProyecto = tutPser.modificar(tutoriaProyecto);
+            }
+        }
+    }
     
     public void seleccionarAsignatura(Asignatura a) {
         if (!asignaturaSeleccionada(a)) {
@@ -71,7 +92,11 @@ public class Tutoria_ProyectoController implements Serializable {
         
         return true;
     }
-   
+    
+    public void seleccionarTutoriaColectiva(Tutoria_Colectiva tc) {
+        tutoriaColectiva = tc;
+        
+    }
 
     public Tutoria_Colectiva getTutoriaColectiva() {
         return tutoriaColectiva;
@@ -113,14 +138,6 @@ public class Tutoria_ProyectoController implements Serializable {
         this.tutoriasProyectoRealizadas = tutoriasProyectoRealizadas;
     }
 
-    public List <Proyecto_Aula> getProyectosAula() {
-        return proyectosAula;
-    }
-
-    public void setProyectosAula(List <Proyecto_Aula> proyectosAula) {
-        this.proyectosAula = proyectosAula;
-    }
-
     public int getIndTabTP() {
         return indTabTP;
     }
@@ -129,20 +146,28 @@ public class Tutoria_ProyectoController implements Serializable {
         this.indTabTP = indTabTP;
     }
 
-    public List<Asignatura> getAsignaturasSeccion() {
-        return asignaturasSeccion;
-    }
-
-    public void setAsignaturasSeccion(List<Asignatura> asignaturasSeccion) {
-        this.asignaturasSeccion = asignaturasSeccion;
-    }
-
     public List<Asignatura> getAsignaturasInvitadas() {
         return asignaturasInvitadas;
     }
 
     public void setAsignaturasInvitadas(List<Asignatura> asignaturasInvitadas) {
         this.asignaturasInvitadas = asignaturasInvitadas;
+    }
+
+    public List<Proyecto_Aula> getProyectosSemestre() {
+        return proyectosSemestre;
+    }
+
+    public void setProyectosSemestre(List<Proyecto_Aula> proyectosSemestre) {
+        this.proyectosSemestre = proyectosSemestre;
+    }
+
+    public Tutoria_Proyecto getTutoriaProyecto() {
+        return tutoriaProyecto;
+    }
+
+    public void setTutoriaProyecto(Tutoria_Proyecto tutoriaProyecto) {
+        this.tutoriaProyecto = tutoriaProyecto;
     }
     
 }

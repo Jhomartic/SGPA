@@ -140,12 +140,30 @@
                                             </div>
                                         </p:column>
                                     </p:dataTable>
+                                    <p:dataTable scrollable="true" var="proa" value="#{tutoria_ProyectoController.proyectosSemestre}">
+                            <p:column headerText="Codigo">
+                                #{proa.codigo}
+                            </p:column>
+                            <p:column headerText="Ingreso">
+                                #{proa.fecha_ingreso}
+                            </p:column>                             
+                            <p:column  headerText="Integrantes">
+                                <p:repeat var="integ" value="#{proa.integrantes}">
+                                    <div class="flex gap-1 align-items-center">
+                                        <div class="w-2 border-circle overflow-hidden flex">
+                                            <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                                        </div>
+                                        <small class="w-full text-justify">#{integ.matricula.estudiante.toString()}</small>
+                                    </div>
+                                </p:repeat>                                
+                            </p:column>  
+                        </p:dataTable> 
                                 </div>
                             </div>
                             <div class="btns-container justify-content-end">
                                 <div class="btn-p" title="continuar">
                                     <label>continuar</label>
-                                    <h:commandButton class="btn" value="+" action="#{profesorController.adelantarTabTP()}" />
+                                    <h:commandButton class="btn" value="+" action="#{profesorController.irProyectosTP()}" />
                                 </div>
                             </div>
                         </p:tab>
