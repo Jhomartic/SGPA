@@ -326,7 +326,10 @@ public class ProfesorController implements Serializable {
     public void seleccionarSeccionLiderTP(LiderPA lider) {
         liderPa = lider;
         asigcon.obtenerAsignaturasXSeccion(liderPa.getSeccion());
-        tutprocon.setAsignaturasInvitadas(asigcon.getAsignaturas());
+        tutprocon.setAsignaturasSeccion(asigcon.getAsignaturas());
+        if (tutprocon.getAsignaturasInvitadas() != null) {
+        tutprocon.getAsignaturasInvitadas().clear();
+        }
         proyectosXSeccion(lider.getSeccion());
         matcont.obtenerMatriculasXSeccion(lider.getSeccion());
         avancon.consultarAvancesXSeccion(lider.getSeccion());

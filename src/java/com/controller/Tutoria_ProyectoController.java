@@ -32,6 +32,7 @@ public class Tutoria_ProyectoController implements Serializable {
     
     private List<Tutoria_Proyecto> tutoriasProyecto = new LinkedList();
     private List<Tutoria_Proyecto> tutoriasProyectoRealizadas = new LinkedList();
+    private List<Asignatura> asignaturasSeccion;
     private List<Proyecto_Aula> proyectosSemestre = new LinkedList();
     private List<Asignatura> asignaturasInvitadas = new LinkedList();
     
@@ -168,6 +169,14 @@ public class Tutoria_ProyectoController implements Serializable {
 
     public void setTutoriaProyecto(Tutoria_Proyecto tutoriaProyecto) {
         this.tutoriaProyecto = tutoriaProyecto;
+    }
+
+    public List<Asignatura> getAsignaturasSeccion() {
+        return asignaturasSeccion;
+    }
+
+    public void setAsignaturasSeccion(List<Asignatura> asignaturasSeccion) {
+        this.asignaturasSeccion = asignaturasSeccion;
     }
     
 }
