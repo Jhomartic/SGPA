@@ -30,6 +30,7 @@ public class Tutoria_ColectivaController implements Serializable {
     private Tutoria_Colectiva tutoriaColectiva = new Tutoria_Colectiva();
     
     private List<Tutoria_Colectiva> tutoriasColectivas = new LinkedList();
+    private List<Tutoria_Colectiva> tutoriasColSeccion;
 
     Tutoria_ColectivaServices tutCser = new Tutoria_ColectivaServices();
     
@@ -60,6 +61,14 @@ public class Tutoria_ColectivaController implements Serializable {
     
     public void consultarTutoriasColectivas() {
         setTutoriasColectivas(tutCser.consultarTodo(Tutoria_Colectiva.class));
+    }
+    
+    public void tutoriasColectivasXSeccion(Seccion s){
+        for (Tutoria_Colectiva t : tutoriasColectivas) {
+        if (t.getSeccion().equals(s)) {
+        tutoriasColSeccion.add(t);
+            }
+        }
     }
    
 
@@ -101,6 +110,14 @@ public class Tutoria_ColectivaController implements Serializable {
 
     public void setIndTabTC(int indTabTC) {
         this.indTabTC = indTabTC;
+    }
+
+    public List<Tutoria_Colectiva> getTutoriasColSeccion() {
+        return tutoriasColSeccion;
+    }
+
+    public void setTutoriasColSeccion(List<Tutoria_Colectiva> tutoriasColSeccion) {
+        this.tutoriasColSeccion = tutoriasColSeccion;
     }
 
    

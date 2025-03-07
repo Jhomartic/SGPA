@@ -43,19 +43,34 @@ public class Tutoria_ProyectoController implements Serializable {
     
     
     public void crearTutoriasProyecto() {
-        if (tutoriaProyecto == null) {
-            tutoriaProyecto = new Tutoria_Proyecto();
+        if (tutoriaColectiva == null) {
+            FacesUtil.addErrorMessage("Error: tutoriaColectiva es null");
+            return;
         }
+
+        if (proyectosSemestre == null || proyectosSemestre.isEmpty()) {
+            FacesUtil.addErrorMessage("Error: proyectosSemestre es null o vacío");
+            return;
+        }
+
+        if (asignaturasInvitadas == null || asignaturasInvitadas.isEmpty()) {
+            FacesUtil.addErrorMessage("Error: asignaturasInvitadas es null o vacío");
+            return;
+        }
+
         int orden = 1; 
-        for (Proyecto_Aula proyecto : proyectosSemestre) { for (Asignatura asignatura : asignaturasInvitadas) {
-            tutoriaProyecto.setTutoriaColectiva(tutoriaColectiva);
-            tutoriaProyecto.setAsignatura(asignatura);
-            tutoriaProyecto.setProyectoAula(proyecto);
-            tutoriaProyecto.setHora(tutoriaColectiva.getFecha_programacion());
-            tutoriaProyecto.setOrden(orden++);
-            tutoriaProyecto.setObservaciones(null);
-            tutoriaProyecto.setRecomendaciones(null);
-            tutoriaProyecto = tutPser.modificar(tutoriaProyecto);
+        for (Proyecto_Aula proyecto : proyectosSemestre) { 
+            for (Asignatura asignatura : asignaturasInvitadas) {
+                Tutoria_Proyecto nuevaTutoria = new Tutoria_Proyecto();
+                nuevaTutoria.setTutoriaColectiva(tutoriaColectiva);
+                nuevaTutoria.setAsignatura(asignatura);
+                nuevaTutoria.setProyectoAula(proyecto);
+                nuevaTutoria.setHora(tutoriaColectiva.getFecha_programacion());
+                nuevaTutoria.setOrden(orden++);
+                nuevaTutoria.setObservaciones(null);
+                nuevaTutoria.setRecomendaciones(null);
+
+                tutPser.modificar(nuevaTutoria);
             }
         }
     }
@@ -96,7 +111,6 @@ public class Tutoria_ProyectoController implements Serializable {
     
     public void seleccionarTutoriaColectiva(Tutoria_Colectiva tc) {
         tutoriaColectiva = tc;
-        
     }
 
     public Tutoria_Colectiva getTutoriaColectiva() {

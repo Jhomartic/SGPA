@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/EvaluacionController.java</file>
-            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/web/Profesor/GUIProyectosAula.xhtml</file>
+            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/CompetenciasController.java</file>
+            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/services/TutoriaServices.java</file>
+            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/web/Profesor/GestorTipo_Item.xhtml</file>
+            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/CriteriosController.java</file>
+            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/Tutoria_ColectivaController.java</file>
             <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/ProfesorController.java</file>
-            <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/CoordinadorController.java</file>
             <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/web/Profesor/Tutorias/CrearTutoriaColectiva.xhtml</file>
             <file>file:/C:/Users/Richard/Desktop/SGPA/SGPA/src/java/com/controller/Tutoria_ProyectoController.java</file>
         </group>
