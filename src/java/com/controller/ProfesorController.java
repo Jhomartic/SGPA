@@ -618,6 +618,13 @@ public class ProfesorController implements Serializable {
     public void gproflider() {
         paginaActualP = "/Profesor/GestorProfesorLider.xhtml";
     }
+    
+    public void gcalificarTP() {
+        asigcon.obtenerAsignaturasXSeccion(getSeccion());
+        System.out.println(asigcon.getAsignatura()+"11111");
+        tutprocon.tutPser.consultarTutoriaProyectoXAsignaturaInvitada(asigcon.getAsignatura());
+        paginaActualP = "/Profesor/Tutorias/CalificarTutoriaProyecto.xhtml";
+    }
 
     public void gDimensiones() {
         evacon.setPeriodo(periodo);

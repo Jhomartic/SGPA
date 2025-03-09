@@ -31,10 +31,12 @@ public class Tutoria_ProyectoController implements Serializable {
     private Proyecto_Aula proaula;
     
     private List<Tutoria_Proyecto> tutoriasProyecto = new LinkedList();
-    private List<Tutoria_Proyecto> tutoriasProyectoRealizadas = new LinkedList();
     private List<Asignatura> asignaturasSeccion;
     private List<Proyecto_Aula> proyectosSemestre = new LinkedList();
     private List<Asignatura> asignaturasInvitadas = new LinkedList();
+    private List<Tutoria_Proyecto> tutoriasProyectoProgramadas = new LinkedList();
+    private List<Tutoria_Proyecto> tutoriasProyectoRealizadas = new LinkedList();
+    
     
     
     Tutoria_ProyectoServices tutPser = new Tutoria_ProyectoServices();
@@ -63,15 +65,16 @@ public class Tutoria_ProyectoController implements Serializable {
             for (Asignatura asignatura : asignaturasInvitadas) {
                 Tutoria_Proyecto nuevaTutoria = new Tutoria_Proyecto();
                 nuevaTutoria.setTutoriaColectiva(tutoriaColectiva);
+                tutoriaColectiva.setEstado("Programada");
                 nuevaTutoria.setAsignatura(asignatura);
                 nuevaTutoria.setProyectoAula(proyecto);
                 nuevaTutoria.setHora(tutoriaColectiva.getFecha_programacion());
-                nuevaTutoria.setOrden(orden++);
+                nuevaTutoria.setOrden(orden);
                 nuevaTutoria.setObservaciones(null);
                 nuevaTutoria.setRecomendaciones(null);
-
                 tutPser.modificar(nuevaTutoria);
             }
+            orden++;
         }
     }
     
@@ -111,6 +114,11 @@ public class Tutoria_ProyectoController implements Serializable {
     
     public void seleccionarTutoriaColectiva(Tutoria_Colectiva tc) {
         tutoriaColectiva = tc;
+    }
+    
+    public void consultarTutoriasXAsignaturaProfesor(Asignatura a) {
+        tutoriasProyecto=tutPser.consultarTutoriaProyectoXAsignaturaInvitada(a);
+        System.out.println(a);
     }
 
     public Tutoria_Colectiva getTutoriaColectiva() {
@@ -191,6 +199,14 @@ public class Tutoria_ProyectoController implements Serializable {
 
     public void setAsignaturasSeccion(List<Asignatura> asignaturasSeccion) {
         this.asignaturasSeccion = asignaturasSeccion;
+    }
+
+    public List<Tutoria_Proyecto> getTutoriasProyectoProgramadas() {
+        return tutoriasProyectoProgramadas;
+    }
+
+    public void setTutoriasProyectoProgramadas(List<Tutoria_Proyecto> tutoriasProyectoProgramadas) {
+        this.tutoriasProyectoProgramadas = tutoriasProyectoProgramadas;
     }
     
 }

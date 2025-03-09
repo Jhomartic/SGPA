@@ -43,6 +43,8 @@ public class Tutoria_Proyecto implements Serializable {
     private Integer orden;
     private String observaciones;
     private String recomendaciones;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date fecha_revision;
             
 
     public Long getId() {
@@ -134,6 +136,30 @@ public class Tutoria_Proyecto implements Serializable {
 
     public void setHora(Date hora) {
         this.hora = hora;
+    }
+
+    public Proyecto_Aula getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(Proyecto_Aula proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public Tutoria_Colectiva getTutoriacolectiva() {
+        return tutoriacolectiva;
+    }
+
+    public void setTutoriacolectiva(Tutoria_Colectiva tutoriacolectiva) {
+        this.tutoriacolectiva = tutoriacolectiva;
+    }
+
+    public Date getFecha_revision() {
+        return fecha_revision;
+    }
+
+    public void setFecha_revision(Date fecha_revision) {
+        this.fecha_revision = fecha_revision;
     }
     
 }

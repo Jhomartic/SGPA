@@ -46,15 +46,15 @@ public class Tutoria_ColectivaController implements Serializable {
         tutoriaColectiva.setSeccion(seccion);
         tutoriaColectiva.setFecha_creacion(new Date());
         tutoriaColectiva.setFase(fase);
-        tutoriaColectiva.setEstado("Programada");
+        tutoriaColectiva.setEstado("Creada");
         tutoriaColectiva = tutCser.modificar(tutoriaColectiva);
     }
     
     public void eliminarTutoriaColectiva(Tutoria_Colectiva tc) {
-        if (tc.getEstado().equals("Programada")) {
+        if (tc.getEstado().equals("Creada")) {
             tutCser.eliminar(tc);
         } else {
-            FacesUtil.addErrorMessage("No se puede Eliminar: La tutoria ya ha sido realizada");
+            FacesUtil.addErrorMessage("No se puede Eliminar: La tutoria ya ha sido realizada o programada");
         }
         consultarTutoriasColectivas();
     }
