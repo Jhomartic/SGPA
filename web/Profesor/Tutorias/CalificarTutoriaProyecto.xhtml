@@ -12,32 +12,53 @@
             <div class=" contenedor top" >
                 <div class="card">
                     <div class="relative pb-4 mb-2">
-                            <h3>Proyectos Existentes</h3>
+                            <h3>Mis asignaturas</h3>
                             <div class="espaceador"></div>
                         </div>
-                    <p:dataTable scrollable="true" var="tp" value="#{tutoria_ProyectoController.tutoriasProyectoProgramadas}">
-                            <p:column headerText="Codigo">
-                                #{tp.proyecto.codigo}
-                            </p:column>
-                            <p:column headerText="Ingreso">
-                                #{tp.proyecto.fecha_ingreso}
-                            </p:column>                             
-                            <p:column  headerText="Integrantes">
-                                <p:repeat var="integ" value="#{tp.proyecto.integrantes}">
-                                    <div class="flex gap-1 align-items-center">
-                                        <div class="w-2 border-circle overflow-hidden flex">
-                                            <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                    <div class="grid-dos">
+
+                            <ui:repeat var="asig" value="#{asignaturaController.asignaturas}">
+                                <div class="p-4 flex justify-content-between card mb-1 responsive-flex cdppa">
+                                    <h:commandButton class="btn" value="seleccionar"  action="#{profesorController.seleccionarAsignaturaTP(asig)}" />
+                                    <div>
+                                        <div class="mb-2">
+                                            <h4>Asignatura</h4>
+                                            <p>#{asig.nombre}</p>
                                         </div>
-                                        <small class="w-full text-justify">#{integ.matricula.estudiante.toString()}</small>
+                                        <div class="mb-1">
+                                            <h4><i class="fas fa-credit-card mr-1"></i>créditos : #{asig.creditos}</h4> 
+                                        </div>
+
+                                        <div >
+                                            <small>#{asig.area.nombre}</small>
+                                        </div>
+
                                     </div>
-                                </p:repeat>                                
-                            </p:column>
-                            <p:column headerText="Opciones">
-                                <div class="btn-normal" title="Ver proyecto">
-                                    <i class="uil uil-file-search-alt" ></i><h:commandButton class="icono" value="." action="#{profesorController.consultarProyecto(proa)}" />
+                                    <div class="flex flex-column gap-2">
+                                        <small>#{asig.seccion.programa.nombre}</small>
+                                        <h4>#{asig.seccion.semestre.denominacion} - #{asig.seccion.denominacion}</h4>
+                                    </div>
                                 </div>
-                            </p:column>  
-                        </p:dataTable>
+                            </ui:repeat>
+                        <p:dataTable scrollable="true" var="tp" value="#{tutoria_ProyectoController.tutoriasProyecto}">
+                                        <p:column headerText="Proyecto">
+                                            #{tp.proyecto.codigo}
+                                        </p:column>
+                                        <p:column headerText="Tutoria Colectiva">
+                                            #{tp.tutoriaColectiva.getId()}
+                                        </p:column>                             
+                                        <p:column  headerText="Integrantes">
+                                            <p:repeat var="integ" value="#{proa.integrantes}">
+                                                <div class="flex gap-1 align-items-center">
+                                                    <div class="w-2 border-circle overflow-hidden flex">
+                                                        <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                                                    </div>
+                                                    <small class="w-full text-justify">#{integ.matricula.estudiante.toString()}</small>
+                                                </div>
+                                            </p:repeat>                                
+                                        </p:column>  
+                                    </p:dataTable>
+                        </div>
                 </div>
             </div>
         </section>  

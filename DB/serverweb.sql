@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2024 a las 18:45:35
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Mar 07, 2025 at 09:12 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `serverweb`
+-- Database: `serverweb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `area`
+-- Table structure for table `area`
 --
 
 CREATE TABLE `area` (
@@ -36,7 +36,7 @@ CREATE TABLE `area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `area`
+-- Dumping data for table `area`
 --
 
 INSERT INTO `area` (`id`, `descripcion`, `estado`, `nombre`, `nombreCorto`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `area` (`id`, `descripcion`, `estado`, `nombre`, `nombreCorto`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignatura`
+-- Table structure for table `asignatura`
 --
 
 CREATE TABLE `asignatura` (
@@ -63,7 +63,7 @@ CREATE TABLE `asignatura` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `asignatura`
+-- Dumping data for table `asignatura`
 --
 
 INSERT INTO `asignatura` (`id`, `codigo`, `creditos`, `estado`, `nombre`, `nombreCorto`, `area_id`, `seccion_id`, `profesor_id`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `asignatura` (`id`, `codigo`, `creditos`, `estado`, `nombre`, `nombr
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asistente`
+-- Table structure for table `asistente`
 --
 
 CREATE TABLE `asistente` (
@@ -126,7 +126,7 @@ CREATE TABLE `asistente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `asistente`
+-- Dumping data for table `asistente`
 --
 
 INSERT INTO `asistente` (`id`, `estudiante_id`, `tutoria_id`, `asistio`, `motivo`) VALUES
@@ -172,12 +172,13 @@ INSERT INTO `asistente` (`id`, `estudiante_id`, `tutoria_id`, `asistio`, `motivo
 (45, 175, 29, b'0', ''),
 (46, 173, 27, b'1', ''),
 (47, 174, 27, b'1', ''),
-(48, 175, 27, b'1', '');
+(48, 175, 27, b'1', ''),
+(49, 180, 30, b'1', '');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `aspecto`
+-- Table structure for table `aspecto`
 --
 
 CREATE TABLE `aspecto` (
@@ -190,7 +191,7 @@ CREATE TABLE `aspecto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `avance`
+-- Table structure for table `avance`
 --
 
 CREATE TABLE `avance` (
@@ -205,7 +206,7 @@ CREATE TABLE `avance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `avance`
+-- Dumping data for table `avance`
 --
 
 INSERT INTO `avance` (`id`, `descripcion`, `estado`, `fechaEntrega`, `numero`, `fase_id`, `integrante_id`, `proyecto_id`) VALUES
@@ -222,7 +223,7 @@ INSERT INTO `avance` (`id`, `descripcion`, `estado`, `fechaEntrega`, `numero`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `competencia`
+-- Table structure for table `competencia`
 --
 
 CREATE TABLE `competencia` (
@@ -237,7 +238,7 @@ CREATE TABLE `competencia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `competencia`
+-- Dumping data for table `competencia`
 --
 
 INSERT INTO `competencia` (`id`, `unidad_id`, `tipo_id`, `evidencia`, `bibliografia`, `estrategia`, `horas`, `tipoentregable_id`) VALUES
@@ -288,7 +289,7 @@ INSERT INTO `competencia` (`id`, `unidad_id`, `tipo_id`, `evidencia`, `bibliogra
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `coordinador`
+-- Table structure for table `coordinador`
 --
 
 CREATE TABLE `coordinador` (
@@ -296,7 +297,7 @@ CREATE TABLE `coordinador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `coordinador`
+-- Dumping data for table `coordinador`
 --
 
 INSERT INTO `coordinador` (`id`) VALUES
@@ -307,7 +308,7 @@ INSERT INTO `coordinador` (`id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `criterio`
+-- Table structure for table `criterio`
 --
 
 CREATE TABLE `criterio` (
@@ -319,7 +320,7 @@ CREATE TABLE `criterio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `criterio`
+-- Dumping data for table `criterio`
 --
 
 INSERT INTO `criterio` (`id`, `descripcion`, `competencia_id`, `porcentaje`, `tipo`) VALUES
@@ -378,7 +379,7 @@ INSERT INTO `criterio` (`id`, `descripcion`, `competencia_id`, `porcentaje`, `ti
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `criterioevaluacion`
+-- Table structure for table `criterioevaluacion`
 --
 
 CREATE TABLE `criterioevaluacion` (
@@ -389,7 +390,7 @@ CREATE TABLE `criterioevaluacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `criterioevaluacion`
+-- Dumping data for table `criterioevaluacion`
 --
 
 INSERT INTO `criterioevaluacion` (`id`, `criterio_id`, `evaluacion_id`, `dimension_id`) VALUES
@@ -440,7 +441,7 @@ INSERT INTO `criterioevaluacion` (`id`, `criterio_id`, `evaluacion_id`, `dimensi
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dimension`
+-- Table structure for table `dimension`
 --
 
 CREATE TABLE `dimension` (
@@ -455,7 +456,7 @@ CREATE TABLE `dimension` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `dimension`
+-- Dumping data for table `dimension`
 --
 
 INSERT INTO `dimension` (`id`, `nombre`, `descripcion`, `porcentaje`, `periodo_id`, `programa_id`, `semestre_id`, `tipo`) VALUES
@@ -512,7 +513,7 @@ INSERT INTO `dimension` (`id`, `nombre`, `descripcion`, `porcentaje`, `periodo_i
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `entregable`
+-- Table structure for table `entregable`
 --
 
 CREATE TABLE `entregable` (
@@ -532,7 +533,7 @@ CREATE TABLE `entregable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `entregable`
+-- Dumping data for table `entregable`
 --
 
 INSERT INTO `entregable` (`id`, `descripcion`, `fechaEntrega`, `fechaRevisado`, `tipo_id`, `estado`, `asignatura_id`, `porcentajeEjecucion`, `porcentajeAutoevaluacion`, `avance_id`, `nombreArchivo`, `extencionArchivo`, `observaciones`) VALUES
@@ -559,7 +560,7 @@ INSERT INTO `entregable` (`id`, `descripcion`, `fechaEntrega`, `fechaRevisado`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estudiante`
+-- Table structure for table `estudiante`
 --
 
 CREATE TABLE `estudiante` (
@@ -568,7 +569,7 @@ CREATE TABLE `estudiante` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `estudiante`
+-- Dumping data for table `estudiante`
 --
 
 INSERT INTO `estudiante` (`codigo`, `id`) VALUES
@@ -600,9 +601,9 @@ INSERT INTO `estudiante` (`codigo`, `id`) VALUES
 (NULL, 31),
 (NULL, 32),
 (NULL, 33),
-(NULL, 34),
+('0011007134', 34),
 (NULL, 35),
-(NULL, 36),
+('0011007636', 36),
 (NULL, 37),
 (NULL, 38),
 (NULL, 39),
@@ -699,7 +700,7 @@ INSERT INTO `estudiante` (`codigo`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `evaluacion`
+-- Table structure for table `evaluacion`
 --
 
 CREATE TABLE `evaluacion` (
@@ -713,7 +714,7 @@ CREATE TABLE `evaluacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `evaluacion`
+-- Dumping data for table `evaluacion`
 --
 
 INSERT INTO `evaluacion` (`id`, `seccion_id`, `fechacreacion`, `fechaprogramada`, `fecharealizacion`, `estado`, `fechapublicacion`) VALUES
@@ -724,7 +725,7 @@ INSERT INTO `evaluacion` (`id`, `seccion_id`, `fechacreacion`, `fechaprogramada`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fase`
+-- Table structure for table `fase`
 --
 
 CREATE TABLE `fase` (
@@ -737,7 +738,7 @@ CREATE TABLE `fase` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `fase`
+-- Dumping data for table `fase`
 --
 
 INSERT INTO `fase` (`id`, `fechaFinal`, `fechaInicial`, `numero`, `periodo_id`, `programa_id`) VALUES
@@ -753,7 +754,7 @@ INSERT INTO `fase` (`id`, `fechaFinal`, `fechaInicial`, `numero`, `periodo_id`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `integrante`
+-- Table structure for table `integrante`
 --
 
 CREATE TABLE `integrante` (
@@ -767,7 +768,7 @@ CREATE TABLE `integrante` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `integrante`
+-- Dumping data for table `integrante`
 --
 
 INSERT INTO `integrante` (`id`, `estado`, `fechaIngreso`, `fechaUltimaModificacion`, `rol`, `matricula_id`, `proyecto_id`) VALUES
@@ -796,12 +797,15 @@ INSERT INTO `integrante` (`id`, `estado`, `fechaIngreso`, `fechaUltimaModificaci
 (172, 'Activo', '2023-07-01', NULL, 'Estudiante', 51, 59),
 (173, 'Activo', '2023-07-06', NULL, 'Estudiante', 60, 60),
 (174, 'Activo', '2023-07-06', NULL, 'Estudiante', 61, 60),
-(175, 'Activo', '2023-07-06', NULL, 'Estudiante', 62, 60);
+(175, 'Activo', '2023-07-06', NULL, 'Estudiante', 62, 60),
+(177, 'Activo', '2024-12-11', NULL, 'Estudiante', 64, 48),
+(179, 'Activo', '2024-12-11', NULL, 'Estudiante', 64, 62),
+(180, 'Activo', '2024-12-11', NULL, 'Estudiante', 65, 63);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `item_proyecto`
+-- Table structure for table `item_proyecto`
 --
 
 CREATE TABLE `item_proyecto` (
@@ -815,7 +819,7 @@ CREATE TABLE `item_proyecto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `item_proyecto`
+-- Dumping data for table `item_proyecto`
 --
 
 INSERT INTO `item_proyecto` (`id`, `contenido`, `fechamodificacion`, `fecharegistro`, `editor_id`, `proyecto_id`, `tipo_id`) VALUES
@@ -835,12 +839,13 @@ INSERT INTO `item_proyecto` (`id`, `contenido`, `fechamodificacion`, `fecharegis
 (17, 'adsfgasdfgasdf', NULL, '2023-06-16', 11, 48, 9),
 (18, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', NULL, '2023-07-06', 62, 60, 6),
 (19, 'aaaaaaaaaaaaaaaaa aaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', NULL, '2023-07-06', 62, 60, 7),
-(20, 'skldfg sdfogsdf gsdif gsidf gnsd fgsdf', NULL, '2023-07-06', 62, 60, 9);
+(20, 'skldfg sdfogsdf gsdif gsidf gnsd fgsdf', NULL, '2023-07-06', 62, 60, 9),
+(21, 'Resumen de Ejemplo', NULL, '2024-12-11', 65, 63, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `liderpa`
+-- Table structure for table `liderpa`
 --
 
 CREATE TABLE `liderpa` (
@@ -850,7 +855,7 @@ CREATE TABLE `liderpa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `liderpa`
+-- Dumping data for table `liderpa`
 --
 
 INSERT INTO `liderpa` (`id`, `profesor_id`, `seccion_id`) VALUES
@@ -870,7 +875,7 @@ INSERT INTO `liderpa` (`id`, `profesor_id`, `seccion_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `matricula`
+-- Table structure for table `matricula`
 --
 
 CREATE TABLE `matricula` (
@@ -883,7 +888,7 @@ CREATE TABLE `matricula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `matricula`
+-- Dumping data for table `matricula`
 --
 
 INSERT INTO `matricula` (`id`, `estado`, `fecha`, `seccion_id`, `estadopa`, `estudiante_id`) VALUES
@@ -936,12 +941,14 @@ INSERT INTO `matricula` (`id`, `estado`, `fecha`, `seccion_id`, `estadopa`, `est
 (60, 'Academica', '2023-07-06', 34, 'Asignado', 61),
 (61, 'Academica', '2023-07-06', 34, 'Asignado', 83),
 (62, 'Academica', '2023-07-06', 34, 'Asignado', 78),
-(63, 'Academica', '2024-10-09', 39, 'Libre', 14);
+(63, 'Academica', '2024-10-09', 39, 'Libre', 14),
+(64, 'Academica', '2024-12-11', 1, 'Asignado', 34),
+(65, 'Academica', '2024-12-11', 1, 'Asignado', 36);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `nucleo`
+-- Table structure for table `nucleo`
 --
 
 CREATE TABLE `nucleo` (
@@ -953,7 +960,7 @@ CREATE TABLE `nucleo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `nucleo`
+-- Dumping data for table `nucleo`
 --
 
 INSERT INTO `nucleo` (`id`, `semestre_id`, `programa_id`, `descripcion`, `fecha`) VALUES
@@ -964,7 +971,7 @@ INSERT INTO `nucleo` (`id`, `semestre_id`, `programa_id`, `descripcion`, `fecha`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `periodo`
+-- Table structure for table `periodo`
 --
 
 CREATE TABLE `periodo` (
@@ -978,7 +985,7 @@ CREATE TABLE `periodo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `periodo`
+-- Dumping data for table `periodo`
 --
 
 INSERT INTO `periodo` (`id`, `anio`, `fecha`, `fechaFinal`, `fechaInicial`, `numero`, `actual`) VALUES
@@ -988,7 +995,7 @@ INSERT INTO `periodo` (`id`, `anio`, `fecha`, `fechaFinal`, `fechaInicial`, `num
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesor`
+-- Table structure for table `profesor`
 --
 
 CREATE TABLE `profesor` (
@@ -1001,7 +1008,7 @@ CREATE TABLE `profesor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `profesor`
+-- Dumping data for table `profesor`
 --
 
 INSERT INTO `profesor` (`idioma2`, `idioma3`, `nivelacademico`, `perfil`, `tipocontrato`, `id`) VALUES
@@ -1019,7 +1026,7 @@ INSERT INTO `profesor` (`idioma2`, `idioma3`, `nivelacademico`, `perfil`, `tipoc
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `programaacademico`
+-- Table structure for table `programaacademico`
 --
 
 CREATE TABLE `programaacademico` (
@@ -1033,11 +1040,11 @@ CREATE TABLE `programaacademico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `programaacademico`
+-- Dumping data for table `programaacademico`
 --
 
 INSERT INTO `programaacademico` (`id`, `codigo`, `estado`, `nombre`, `nombreCompleto`, `coordinador_id`, `coordinadorPA_id`) VALUES
-(1, '001', 'Activo', 'Tecnologia En Sistemas', 'Tecnologia En Sistemas', 3, 6),
+(1, '001', 'Activo', 'Tecnologia En Sistemas', 'Tecnologia En Sistemas', 3, 134),
 (4, '002', 'Activo', 'Produccion Industrial', 'Produccion Industrial', 2, 131),
 (5, '003', 'Activo', 'Administracion de Empresas', 'Administracion de Empresas', 2, 130),
 (6, '004', 'Activo', 'ing. sistemas', 'ingenieria de sistemas', 137, NULL);
@@ -1045,7 +1052,7 @@ INSERT INTO `programaacademico` (`id`, `codigo`, `estado`, `nombre`, `nombreComp
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proyecto_aula`
+-- Table structure for table `proyecto_aula`
 --
 
 CREATE TABLE `proyecto_aula` (
@@ -1064,7 +1071,7 @@ CREATE TABLE `proyecto_aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `proyecto_aula`
+-- Dumping data for table `proyecto_aula`
 --
 
 INSERT INTO `proyecto_aula` (`id`, `estado`, `fecha_aprobacion`, `fecha_finalizacion`, `fecha_ingreso`, `fecha_inicio`, `problematica`, `titulo`, `coordinadorPA_id`, `codigo`, `seccion_id`, `profesorLider_id`) VALUES
@@ -1078,12 +1085,14 @@ INSERT INTO `proyecto_aula` (`id`, `estado`, `fecha_aprobacion`, `fecha_finaliza
 (50, 'Produccion', '2023-05-18', '2023-05-31', '2023-05-18', '2023-03-06', 'Sistema de informacion de parqueaderos', 'Sistema de informacion de parqueaderos', NULL, '001IV2022514', 8, 3),
 (58, 'Guardado', NULL, NULL, '2023-06-24', NULL, NULL, NULL, NULL, '001III202229', 4, 5),
 (59, 'Aplazado', '2023-07-10', NULL, '2023-07-01', NULL, '', '', NULL, '001I2023837', 14, 6),
-(60, 'Produccion', '2023-07-06', '2023-06-06', '2023-07-06', '2023-02-06', 'En el contexto de la produccion de lacteos....', 'Proceso industrial para-.....', NULL, '002IV2023854', 34, 17);
+(60, 'Produccion', '2023-07-06', '2023-06-06', '2023-07-06', '2023-02-06', 'En el contexto de la produccion de lacteos....', 'Proceso industrial para-.....', NULL, '002IV2023854', 34, 17),
+(62, 'Guardado', NULL, NULL, '2024-12-11', NULL, NULL, NULL, NULL, '001II202234', 1, 1),
+(63, 'Produccion', '2024-12-11', '2025-01-08', '2024-12-11', '2024-12-12', 'sasdasdasdsadasdasdasda', 'SGPA', NULL, '001II2022874', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `seccion`
+-- Table structure for table `seccion`
 --
 
 CREATE TABLE `seccion` (
@@ -1095,7 +1104,7 @@ CREATE TABLE `seccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `seccion`
+-- Dumping data for table `seccion`
 --
 
 INSERT INTO `seccion` (`id`, `denominacion`, `semestre_id`, `periodo_id`, `programa_id`) VALUES
@@ -1136,7 +1145,7 @@ INSERT INTO `seccion` (`id`, `denominacion`, `semestre_id`, `periodo_id`, `progr
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `semestre`
+-- Table structure for table `semestre`
 --
 
 CREATE TABLE `semestre` (
@@ -1145,7 +1154,7 @@ CREATE TABLE `semestre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `semestre`
+-- Dumping data for table `semestre`
 --
 
 INSERT INTO `semestre` (`id`, `denominacion`) VALUES
@@ -1164,7 +1173,7 @@ INSERT INTO `semestre` (`id`, `denominacion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipocompetencia`
+-- Table structure for table `tipocompetencia`
 --
 
 CREATE TABLE `tipocompetencia` (
@@ -1173,7 +1182,7 @@ CREATE TABLE `tipocompetencia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `tipocompetencia`
+-- Dumping data for table `tipocompetencia`
 --
 
 INSERT INTO `tipocompetencia` (`id`, `descripcion`) VALUES
@@ -1184,7 +1193,7 @@ INSERT INTO `tipocompetencia` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_entregable`
+-- Table structure for table `tipo_entregable`
 --
 
 CREATE TABLE `tipo_entregable` (
@@ -1196,7 +1205,7 @@ CREATE TABLE `tipo_entregable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `tipo_entregable`
+-- Dumping data for table `tipo_entregable`
 --
 
 INSERT INTO `tipo_entregable` (`id`, `descripcion`, `nombre`, `asignatura_id`, `tipo`) VALUES
@@ -1506,12 +1515,13 @@ INSERT INTO `tipo_entregable` (`id`, `descripcion`, `nombre`, `asignatura_id`, `
 (307, 'Tutorias', 'Tutorias', 74, 'Global'),
 (308, 'Sustentacion', 'Sustentacion', 74, 'Global'),
 (309, 'Tutorias', 'Tutorias', 48, 'Global'),
-(310, 'Sustentacion', 'Sustentacion', 48, 'Global');
+(310, 'Sustentacion', 'Sustentacion', 48, 'Global'),
+(311, 'Descripcion ', 'Codigo de Proyecto', 11, 'Especifico');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_item`
+-- Table structure for table `tipo_item`
 --
 
 CREATE TABLE `tipo_item` (
@@ -1521,7 +1531,7 @@ CREATE TABLE `tipo_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `tipo_item`
+-- Dumping data for table `tipo_item`
 --
 
 INSERT INTO `tipo_item` (`id`, `descripcion`, `nombre`) VALUES
@@ -1544,7 +1554,7 @@ INSERT INTO `tipo_item` (`id`, `descripcion`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tutoria`
+-- Table structure for table `tutoria`
 --
 
 CREATE TABLE `tutoria` (
@@ -1561,7 +1571,7 @@ CREATE TABLE `tutoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `tutoria`
+-- Dumping data for table `tutoria`
 --
 
 INSERT INTO `tutoria` (`id`, `estado`, `fechaAsignacion`, `fechaEjecucion`, `fechaSolicitud`, `asignatura_id`, `integrante_id`, `proyecto_id`, `recomendaciones`, `compromisos`) VALUES
@@ -1586,12 +1596,58 @@ INSERT INTO `tutoria` (`id`, `estado`, `fechaAsignacion`, `fechaEjecucion`, `fec
 (26, 'Programada', '2023-07-08 15:14:00', NULL, '2023-07-07 15:14:11', 48, 175, 60, NULL, NULL),
 (27, 'Realizada', '2023-05-17 10:30:00', '2023-07-10 08:07:54', '2023-07-10 07:04:34', 62, 175, 60, 'hu9oyuo', 'uioguiotuio'),
 (28, 'Realizada', NULL, '2023-07-10 07:55:20', NULL, 62, NULL, 60, 'recomendaciones 1', 'compromisos 1'),
-(29, 'Realizada', NULL, '2023-07-10 08:04:16', NULL, 62, NULL, 60, 'cxgghxfghxf', 'fghxfgh');
+(29, 'Realizada', NULL, '2023-07-10 08:04:16', NULL, 62, NULL, 60, 'cxgghxfghxf', 'fghxfgh'),
+(30, 'Realizada', '2024-12-12 17:11:00', '2024-12-11 17:12:48', '2024-12-11 17:11:14', 11, 180, 63, 'Mejorar documento', 'Entregar en 1 semana'),
+(32, 'Solicitada', NULL, NULL, '2025-02-24 19:47:22', 11, 101, 37, NULL, NULL),
+(33, 'Programada', '2025-02-25 20:10:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `unidadcompetencia`
+-- Table structure for table `tutoria_colectiva`
+--
+
+CREATE TABLE `tutoria_colectiva` (
+  `id` bigint(20) NOT NULL,
+  `seccion_id` bigint(20) DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `fecha_programacion` datetime DEFAULT NULL,
+  `fase_id` bigint(20) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tutoria_colectiva`
+--
+
+INSERT INTO `tutoria_colectiva` (`id`, `seccion_id`, `fecha_creacion`, `fecha_programacion`, `fase_id`, `estado`) VALUES
+(1, 1, '2025-03-02 00:00:00', '2025-03-19 00:00:00', NULL, 'Programada'),
+(4, 8, '2025-03-02 21:09:17', '2025-03-19 21:09:00', NULL, 'Programada'),
+(7, 1, '2025-03-02 21:19:37', '2025-03-25 21:19:00', NULL, 'Programada'),
+(8, 1, '2025-03-03 16:22:01', '2025-03-19 16:21:00', NULL, 'Programada'),
+(9, 1, '2025-03-06 23:09:06', '2025-03-12 23:09:00', NULL, 'Programada');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tutoria_proyecto`
+--
+
+CREATE TABLE `tutoria_proyecto` (
+  `id` bigint(20) NOT NULL,
+  `tutoriacolectiva_id` bigint(20) DEFAULT NULL,
+  `asignatura_id` bigint(20) DEFAULT NULL,
+  `proyecto_id` bigint(20) DEFAULT NULL,
+  `hora` date DEFAULT NULL,
+  `orden` int(50) DEFAULT NULL,
+  `recomendaciones` varchar(1000) DEFAULT NULL,
+  `observaciones` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unidadcompetencia`
 --
 
 CREATE TABLE `unidadcompetencia` (
@@ -1601,7 +1657,7 @@ CREATE TABLE `unidadcompetencia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `unidadcompetencia`
+-- Dumping data for table `unidadcompetencia`
 --
 
 INSERT INTO `unidadcompetencia` (`id`, `descripcion`, `asignatura_id`) VALUES
@@ -1651,7 +1707,7 @@ INSERT INTO `unidadcompetencia` (`id`, `descripcion`, `asignatura_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -1673,7 +1729,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `direccion`, `email`, `estado`, `genero`, `identificacion`, `login`, `password`, `primerApellido`, `primerNombre`, `segundoApellido`, `segundoNombre`, `telefono`, `tipo`, `tipo_ide`) VALUES
@@ -1818,7 +1874,7 @@ INSERT INTO `usuario` (`id`, `direccion`, `email`, `estado`, `genero`, `identifi
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `valoracion`
+-- Table structure for table `valoracion`
 --
 
 CREATE TABLE `valoracion` (
@@ -1829,7 +1885,7 @@ CREATE TABLE `valoracion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `valoracion`
+-- Dumping data for table `valoracion`
 --
 
 INSERT INTO `valoracion` (`id`, `integrante_id`, `criterio_id`, `valor`) VALUES
@@ -1977,20 +2033,24 @@ INSERT INTO `valoracion` (`id`, `integrante_id`, `criterio_id`, `valor`) VALUES
 (275, 175, 468, 4.2),
 (276, 175, 469, 4.3),
 (277, 175, 465, 4.5),
-(278, 175, 466, 4);
+(278, 175, 466, 4),
+(279, 180, 453, 3),
+(280, 180, 454, 5),
+(281, 180, 449, 2.5),
+(282, 180, 450, 1.5);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `area`
+-- Indexes for table `area`
 --
 ALTER TABLE `area`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `asignatura`
+-- Indexes for table `asignatura`
 --
 ALTER TABLE `asignatura`
   ADD PRIMARY KEY (`id`),
@@ -1999,7 +2059,7 @@ ALTER TABLE `asignatura`
   ADD KEY `FKseccionasignaturadhfkjef` (`seccion_id`);
 
 --
--- Indices de la tabla `asistente`
+-- Indexes for table `asistente`
 --
 ALTER TABLE `asistente`
   ADD PRIMARY KEY (`id`),
@@ -2007,14 +2067,14 @@ ALTER TABLE `asistente`
   ADD KEY `fktutoriaasistenciasfr` (`tutoria_id`);
 
 --
--- Indices de la tabla `aspecto`
+-- Indexes for table `aspecto`
 --
 ALTER TABLE `aspecto`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fkdimensionaspecto` (`dimension_id`);
 
 --
--- Indices de la tabla `avance`
+-- Indexes for table `avance`
 --
 ALTER TABLE `avance`
   ADD PRIMARY KEY (`id`),
@@ -2023,7 +2083,7 @@ ALTER TABLE `avance`
   ADD KEY `FK_hgovry0bb31xy57t7xis4ur0h` (`proyecto_id`);
 
 --
--- Indices de la tabla `competencia`
+-- Indexes for table `competencia`
 --
 ALTER TABLE `competencia`
   ADD PRIMARY KEY (`id`),
@@ -2032,20 +2092,20 @@ ALTER TABLE `competencia`
   ADD KEY `fktipoentregablecompetencia` (`tipoentregable_id`);
 
 --
--- Indices de la tabla `coordinador`
+-- Indexes for table `coordinador`
 --
 ALTER TABLE `coordinador`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `criterio`
+-- Indexes for table `criterio`
 --
 ALTER TABLE `criterio`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fkcompetenciacriteriosfd` (`competencia_id`);
 
 --
--- Indices de la tabla `criterioevaluacion`
+-- Indexes for table `criterioevaluacion`
 --
 ALTER TABLE `criterioevaluacion`
   ADD PRIMARY KEY (`id`),
@@ -2054,7 +2114,7 @@ ALTER TABLE `criterioevaluacion`
   ADD KEY `fkdimensioncriterioevaluacione` (`dimension_id`);
 
 --
--- Indices de la tabla `dimension`
+-- Indexes for table `dimension`
 --
 ALTER TABLE `dimension`
   ADD PRIMARY KEY (`id`),
@@ -2063,7 +2123,7 @@ ALTER TABLE `dimension`
   ADD KEY `fksemestredimensionsdjfd` (`semestre_id`);
 
 --
--- Indices de la tabla `entregable`
+-- Indexes for table `entregable`
 --
 ALTER TABLE `entregable`
   ADD PRIMARY KEY (`id`),
@@ -2072,20 +2132,20 @@ ALTER TABLE `entregable`
   ADD KEY `fkavanceentregable` (`avance_id`);
 
 --
--- Indices de la tabla `estudiante`
+-- Indexes for table `estudiante`
 --
 ALTER TABLE `estudiante`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `evaluacion`
+-- Indexes for table `evaluacion`
 --
 ALTER TABLE `evaluacion`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fkseccionevaluacion` (`seccion_id`);
 
 --
--- Indices de la tabla `fase`
+-- Indexes for table `fase`
 --
 ALTER TABLE `fase`
   ADD PRIMARY KEY (`id`),
@@ -2093,7 +2153,7 @@ ALTER TABLE `fase`
   ADD KEY `FK_2q2n03ftxwc7nwbctetapryx3` (`programa_id`);
 
 --
--- Indices de la tabla `integrante`
+-- Indexes for table `integrante`
 --
 ALTER TABLE `integrante`
   ADD PRIMARY KEY (`id`),
@@ -2101,7 +2161,7 @@ ALTER TABLE `integrante`
   ADD KEY `FK_j30eoql6w4okktijjnwf8t3dg` (`proyecto_id`);
 
 --
--- Indices de la tabla `item_proyecto`
+-- Indexes for table `item_proyecto`
 --
 ALTER TABLE `item_proyecto`
   ADD PRIMARY KEY (`id`),
@@ -2110,7 +2170,7 @@ ALTER TABLE `item_proyecto`
   ADD KEY `FK_oj3e0bi2x1fb1mxe4u4akg4p4` (`tipo_id`);
 
 --
--- Indices de la tabla `liderpa`
+-- Indexes for table `liderpa`
 --
 ALTER TABLE `liderpa`
   ADD PRIMARY KEY (`id`),
@@ -2118,7 +2178,7 @@ ALTER TABLE `liderpa`
   ADD KEY `FKseccionliderjrgrg` (`seccion_id`);
 
 --
--- Indices de la tabla `matricula`
+-- Indexes for table `matricula`
 --
 ALTER TABLE `matricula`
   ADD PRIMARY KEY (`id`),
@@ -2126,7 +2186,7 @@ ALTER TABLE `matricula`
   ADD KEY `FK_semestrematriculafsdfg` (`seccion_id`);
 
 --
--- Indices de la tabla `nucleo`
+-- Indexes for table `nucleo`
 --
 ALTER TABLE `nucleo`
   ADD PRIMARY KEY (`id`),
@@ -2134,19 +2194,19 @@ ALTER TABLE `nucleo`
   ADD KEY `fkprohgramanucleokdjf` (`programa_id`);
 
 --
--- Indices de la tabla `periodo`
+-- Indexes for table `periodo`
 --
 ALTER TABLE `periodo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `profesor`
+-- Indexes for table `profesor`
 --
 ALTER TABLE `profesor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `programaacademico`
+-- Indexes for table `programaacademico`
 --
 ALTER TABLE `programaacademico`
   ADD PRIMARY KEY (`id`),
@@ -2154,7 +2214,7 @@ ALTER TABLE `programaacademico`
   ADD KEY `FK_tpg2xruw4mfymn2hcsg7ob1uu` (`coordinadorPA_id`);
 
 --
--- Indices de la tabla `proyecto_aula`
+-- Indexes for table `proyecto_aula`
 --
 ALTER TABLE `proyecto_aula`
   ADD PRIMARY KEY (`id`),
@@ -2163,7 +2223,7 @@ ALTER TABLE `proyecto_aula`
   ADD KEY `FKseccionproyectoaulasdkhjf` (`seccion_id`);
 
 --
--- Indices de la tabla `seccion`
+-- Indexes for table `seccion`
 --
 ALTER TABLE `seccion`
   ADD PRIMARY KEY (`id`),
@@ -2172,32 +2232,32 @@ ALTER TABLE `seccion`
   ADD KEY `FKprogramaacademicoseccioniejf` (`programa_id`);
 
 --
--- Indices de la tabla `semestre`
+-- Indexes for table `semestre`
 --
 ALTER TABLE `semestre`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tipocompetencia`
+-- Indexes for table `tipocompetencia`
 --
 ALTER TABLE `tipocompetencia`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tipo_entregable`
+-- Indexes for table `tipo_entregable`
 --
 ALTER TABLE `tipo_entregable`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fkasignaturatipoentregablesf` (`asignatura_id`);
 
 --
--- Indices de la tabla `tipo_item`
+-- Indexes for table `tipo_item`
 --
 ALTER TABLE `tipo_item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tutoria`
+-- Indexes for table `tutoria`
 --
 ALTER TABLE `tutoria`
   ADD PRIMARY KEY (`id`),
@@ -2206,20 +2266,37 @@ ALTER TABLE `tutoria`
   ADD KEY `FK_sd6r4d9ka4htw4jhhm4d7dxjb` (`asignatura_id`);
 
 --
--- Indices de la tabla `unidadcompetencia`
+-- Indexes for table `tutoria_colectiva`
+--
+ALTER TABLE `tutoria_colectiva`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_seccionTutoriaCo` (`seccion_id`),
+  ADD KEY `FK_faseTutoriaCo` (`fase_id`);
+
+--
+-- Indexes for table `tutoria_proyecto`
+--
+ALTER TABLE `tutoria_proyecto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_tutoriaCotutoriaPro` (`tutoriacolectiva_id`),
+  ADD KEY `FK_asignaturaTutoriapro` (`asignatura_id`),
+  ADD KEY `Fk_proyectoaulaTutoriapro` (`proyecto_id`);
+
+--
+-- Indexes for table `unidadcompetencia`
 --
 ALTER TABLE `unidadcompetencia`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fkasignaturaunidad` (`asignatura_id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `valoracion`
+-- Indexes for table `valoracion`
 --
 ALTER TABLE `valoracion`
   ADD PRIMARY KEY (`id`),
@@ -2227,189 +2304,201 @@ ALTER TABLE `valoracion`
   ADD KEY `fkcriteriovaloraciontryh` (`criterio_id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `area`
+-- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `asignatura`
+-- AUTO_INCREMENT for table `asignatura`
 --
 ALTER TABLE `asignatura`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
--- AUTO_INCREMENT de la tabla `asistente`
+-- AUTO_INCREMENT for table `asistente`
 --
 ALTER TABLE `asistente`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT de la tabla `aspecto`
+-- AUTO_INCREMENT for table `aspecto`
 --
 ALTER TABLE `aspecto`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `avance`
+-- AUTO_INCREMENT for table `avance`
 --
 ALTER TABLE `avance`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT de la tabla `competencia`
+-- AUTO_INCREMENT for table `competencia`
 --
 ALTER TABLE `competencia`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
 
 --
--- AUTO_INCREMENT de la tabla `criterio`
+-- AUTO_INCREMENT for table `criterio`
 --
 ALTER TABLE `criterio`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=317;
 
 --
--- AUTO_INCREMENT de la tabla `criterioevaluacion`
+-- AUTO_INCREMENT for table `criterioevaluacion`
 --
 ALTER TABLE `criterioevaluacion`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=473;
 
 --
--- AUTO_INCREMENT de la tabla `dimension`
+-- AUTO_INCREMENT for table `dimension`
 --
 ALTER TABLE `dimension`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
--- AUTO_INCREMENT de la tabla `entregable`
+-- AUTO_INCREMENT for table `entregable`
 --
 ALTER TABLE `entregable`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT de la tabla `evaluacion`
+-- AUTO_INCREMENT for table `evaluacion`
 --
 ALTER TABLE `evaluacion`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT de la tabla `fase`
+-- AUTO_INCREMENT for table `fase`
 --
 ALTER TABLE `fase`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `integrante`
+-- AUTO_INCREMENT for table `integrante`
 --
 ALTER TABLE `integrante`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
--- AUTO_INCREMENT de la tabla `item_proyecto`
+-- AUTO_INCREMENT for table `item_proyecto`
 --
 ALTER TABLE `item_proyecto`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT de la tabla `liderpa`
+-- AUTO_INCREMENT for table `liderpa`
 --
 ALTER TABLE `liderpa`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `matricula`
+-- AUTO_INCREMENT for table `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
--- AUTO_INCREMENT de la tabla `nucleo`
+-- AUTO_INCREMENT for table `nucleo`
 --
 ALTER TABLE `nucleo`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `periodo`
+-- AUTO_INCREMENT for table `periodo`
 --
 ALTER TABLE `periodo`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `programaacademico`
+-- AUTO_INCREMENT for table `programaacademico`
 --
 ALTER TABLE `programaacademico`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `proyecto_aula`
+-- AUTO_INCREMENT for table `proyecto_aula`
 --
 ALTER TABLE `proyecto_aula`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT de la tabla `seccion`
+-- AUTO_INCREMENT for table `seccion`
 --
 ALTER TABLE `seccion`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT de la tabla `semestre`
+-- AUTO_INCREMENT for table `semestre`
 --
 ALTER TABLE `semestre`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `tipocompetencia`
+-- AUTO_INCREMENT for table `tipocompetencia`
 --
 ALTER TABLE `tipocompetencia`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_entregable`
+-- AUTO_INCREMENT for table `tipo_entregable`
 --
 ALTER TABLE `tipo_entregable`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=311;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=312;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_item`
+-- AUTO_INCREMENT for table `tipo_item`
 --
 ALTER TABLE `tipo_item`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT de la tabla `tutoria`
+-- AUTO_INCREMENT for table `tutoria`
 --
 ALTER TABLE `tutoria`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT de la tabla `unidadcompetencia`
+-- AUTO_INCREMENT for table `tutoria_colectiva`
+--
+ALTER TABLE `tutoria_colectiva`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tutoria_proyecto`
+--
+ALTER TABLE `tutoria_proyecto`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `unidadcompetencia`
 --
 ALTER TABLE `unidadcompetencia`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=308;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
--- AUTO_INCREMENT de la tabla `valoracion`
+-- AUTO_INCREMENT for table `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=279;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `asignatura`
+-- Constraints for table `asignatura`
 --
 ALTER TABLE `asignatura`
   ADD CONSTRAINT `FK_jfx4la722xpbufvby4er1php9` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`),
@@ -2417,20 +2506,20 @@ ALTER TABLE `asignatura`
   ADD CONSTRAINT `FKseccionasignaturadhfkjef` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
 
 --
--- Filtros para la tabla `asistente`
+-- Constraints for table `asistente`
 --
 ALTER TABLE `asistente`
   ADD CONSTRAINT `FkIntegranteAsistentekd` FOREIGN KEY (`estudiante_id`) REFERENCES `integrante` (`id`),
   ADD CONSTRAINT `fktutoriaasistenciasfr` FOREIGN KEY (`tutoria_id`) REFERENCES `tutoria` (`id`);
 
 --
--- Filtros para la tabla `aspecto`
+-- Constraints for table `aspecto`
 --
 ALTER TABLE `aspecto`
   ADD CONSTRAINT `fkdimensionaspecto` FOREIGN KEY (`dimension_id`) REFERENCES `dimension` (`id`);
 
 --
--- Filtros para la tabla `avance`
+-- Constraints for table `avance`
 --
 ALTER TABLE `avance`
   ADD CONSTRAINT `FK_5sgod911kqo7uol1t4it5mbju` FOREIGN KEY (`integrante_id`) REFERENCES `integrante` (`id`),
@@ -2438,7 +2527,7 @@ ALTER TABLE `avance`
   ADD CONSTRAINT `FK_mqgofphtf8hnmte30ojal442a` FOREIGN KEY (`fase_id`) REFERENCES `fase` (`id`);
 
 --
--- Filtros para la tabla `competencia`
+-- Constraints for table `competencia`
 --
 ALTER TABLE `competencia`
   ADD CONSTRAINT `fktipocompetenciacompetencia` FOREIGN KEY (`tipo_id`) REFERENCES `tipocompetencia` (`id`),
@@ -2446,19 +2535,19 @@ ALTER TABLE `competencia`
   ADD CONSTRAINT `fkunidadccompetencia` FOREIGN KEY (`unidad_id`) REFERENCES `unidadcompetencia` (`id`);
 
 --
--- Filtros para la tabla `coordinador`
+-- Constraints for table `coordinador`
 --
 ALTER TABLE `coordinador`
   ADD CONSTRAINT `FK_pdmq90fua29xd1qcg5n98xavw` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`);
 
 --
--- Filtros para la tabla `criterio`
+-- Constraints for table `criterio`
 --
 ALTER TABLE `criterio`
   ADD CONSTRAINT `fkcriteriocompetenciasfsf` FOREIGN KEY (`competencia_id`) REFERENCES `competencia` (`id`);
 
 --
--- Filtros para la tabla `criterioevaluacion`
+-- Constraints for table `criterioevaluacion`
 --
 ALTER TABLE `criterioevaluacion`
   ADD CONSTRAINT `fkcriteriocevaluacion` FOREIGN KEY (`criterio_id`) REFERENCES `criterio` (`id`),
@@ -2466,7 +2555,7 @@ ALTER TABLE `criterioevaluacion`
   ADD CONSTRAINT `fkevaluacioncrievaluacion` FOREIGN KEY (`evaluacion_id`) REFERENCES `evaluacion` (`id`);
 
 --
--- Filtros para la tabla `dimension`
+-- Constraints for table `dimension`
 --
 ALTER TABLE `dimension`
   ADD CONSTRAINT `fkperiododimension` FOREIGN KEY (`periodo_id`) REFERENCES `periodo` (`id`),
@@ -2474,7 +2563,7 @@ ALTER TABLE `dimension`
   ADD CONSTRAINT `fksemestredimension` FOREIGN KEY (`semestre_id`) REFERENCES `semestre` (`id`);
 
 --
--- Filtros para la tabla `entregable`
+-- Constraints for table `entregable`
 --
 ALTER TABLE `entregable`
   ADD CONSTRAINT `FK_qd93ou8ykauwidni97bl0gfj9` FOREIGN KEY (`tipo_id`) REFERENCES `tipo_entregable` (`id`),
@@ -2482,33 +2571,33 @@ ALTER TABLE `entregable`
   ADD CONSTRAINT `fkavanceentregable` FOREIGN KEY (`avance_id`) REFERENCES `avance` (`id`);
 
 --
--- Filtros para la tabla `estudiante`
+-- Constraints for table `estudiante`
 --
 ALTER TABLE `estudiante`
   ADD CONSTRAINT `FK_751y8g99a4ss0s6ljggwahg83` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`);
 
 --
--- Filtros para la tabla `evaluacion`
+-- Constraints for table `evaluacion`
 --
 ALTER TABLE `evaluacion`
   ADD CONSTRAINT `fkseccionevaluacion` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
 
 --
--- Filtros para la tabla `fase`
+-- Constraints for table `fase`
 --
 ALTER TABLE `fase`
   ADD CONSTRAINT `FK_2q2n03ftxwc7nwbctetapryx3` FOREIGN KEY (`programa_id`) REFERENCES `programaacademico` (`id`),
   ADD CONSTRAINT `FK_ko87odmvx82wccmvra38012yh` FOREIGN KEY (`periodo_id`) REFERENCES `periodo` (`id`);
 
 --
--- Filtros para la tabla `integrante`
+-- Constraints for table `integrante`
 --
 ALTER TABLE `integrante`
   ADD CONSTRAINT `FK_aoyloigy6dmb3ue1ocvjmgftr` FOREIGN KEY (`matricula_id`) REFERENCES `matricula` (`id`),
   ADD CONSTRAINT `FK_j30eoql6w4okktijjnwf8t3dg` FOREIGN KEY (`proyecto_id`) REFERENCES `proyecto_aula` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `item_proyecto`
+-- Constraints for table `item_proyecto`
 --
 ALTER TABLE `item_proyecto`
   ADD CONSTRAINT `FK_jvksqtddf55vt958j2kvyqnvu` FOREIGN KEY (`editor_id`) REFERENCES `matricula` (`id`),
@@ -2516,41 +2605,41 @@ ALTER TABLE `item_proyecto`
   ADD CONSTRAINT `FK_oyojpdv1cc85k0mytd2eiftae` FOREIGN KEY (`proyecto_id`) REFERENCES `proyecto_aula` (`id`);
 
 --
--- Filtros para la tabla `liderpa`
+-- Constraints for table `liderpa`
 --
 ALTER TABLE `liderpa`
   ADD CONSTRAINT `FKprofesorliderkjh` FOREIGN KEY (`profesor_id`) REFERENCES `profesor` (`id`),
   ADD CONSTRAINT `FKseccionliderjrgrg` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
 
 --
--- Filtros para la tabla `matricula`
+-- Constraints for table `matricula`
 --
 ALTER TABLE `matricula`
   ADD CONSTRAINT `FK_m95uuox2pkybrffpesrxc592g` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiante` (`id`),
   ADD CONSTRAINT `FK_semestrematriculafsdfg` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
 
 --
--- Filtros para la tabla `nucleo`
+-- Constraints for table `nucleo`
 --
 ALTER TABLE `nucleo`
   ADD CONSTRAINT `fkprohgramanucleokdjf` FOREIGN KEY (`programa_id`) REFERENCES `programaacademico` (`id`),
   ADD CONSTRAINT `fksemestrenucleodf` FOREIGN KEY (`semestre_id`) REFERENCES `semestre` (`id`);
 
 --
--- Filtros para la tabla `profesor`
+-- Constraints for table `profesor`
 --
 ALTER TABLE `profesor`
   ADD CONSTRAINT `FK_or5mf3rfj9ecf3r5wndriorfj` FOREIGN KEY (`id`) REFERENCES `usuario` (`id`);
 
 --
--- Filtros para la tabla `programaacademico`
+-- Constraints for table `programaacademico`
 --
 ALTER TABLE `programaacademico`
   ADD CONSTRAINT `FK_ku552utuafjkw5rmj5thr8f35` FOREIGN KEY (`coordinador_id`) REFERENCES `coordinador` (`id`),
   ADD CONSTRAINT `FK_tpg2xruw4mfymn2hcsg7ob1uu` FOREIGN KEY (`coordinadorPA_id`) REFERENCES `profesor` (`id`);
 
 --
--- Filtros para la tabla `proyecto_aula`
+-- Constraints for table `proyecto_aula`
 --
 ALTER TABLE `proyecto_aula`
   ADD CONSTRAINT `FK_87uuwdrr3xqdwpeak2a57wjpq` FOREIGN KEY (`coordinadorPA_id`) REFERENCES `profesor` (`id`),
@@ -2558,7 +2647,7 @@ ALTER TABLE `proyecto_aula`
   ADD CONSTRAINT `FKseccionproyectoaulasdkhjf` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
 
 --
--- Filtros para la tabla `seccion`
+-- Constraints for table `seccion`
 --
 ALTER TABLE `seccion`
   ADD CONSTRAINT `FKperiodoseccionkjehrter` FOREIGN KEY (`periodo_id`) REFERENCES `periodo` (`id`),
@@ -2566,13 +2655,13 @@ ALTER TABLE `seccion`
   ADD CONSTRAINT `FKsemestreseccionjhdfgkd` FOREIGN KEY (`semestre_id`) REFERENCES `semestre` (`id`);
 
 --
--- Filtros para la tabla `tipo_entregable`
+-- Constraints for table `tipo_entregable`
 --
 ALTER TABLE `tipo_entregable`
   ADD CONSTRAINT `fkasignaturatipoentregablesf` FOREIGN KEY (`asignatura_id`) REFERENCES `asignatura` (`id`);
 
 --
--- Filtros para la tabla `tutoria`
+-- Constraints for table `tutoria`
 --
 ALTER TABLE `tutoria`
   ADD CONSTRAINT `FK_64noap21fb9xlhi5k37dbil9u` FOREIGN KEY (`proyecto_id`) REFERENCES `proyecto_aula` (`id`),
@@ -2580,13 +2669,28 @@ ALTER TABLE `tutoria`
   ADD CONSTRAINT `FK_su05jpc2reksb1h2jrywicy49` FOREIGN KEY (`integrante_id`) REFERENCES `integrante` (`id`);
 
 --
--- Filtros para la tabla `unidadcompetencia`
+-- Constraints for table `tutoria_colectiva`
+--
+ALTER TABLE `tutoria_colectiva`
+  ADD CONSTRAINT `FK_faseTutoriaCo` FOREIGN KEY (`fase_id`) REFERENCES `fase` (`id`),
+  ADD CONSTRAINT `FK_seccionTutoriaCo` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
+
+--
+-- Constraints for table `tutoria_proyecto`
+--
+ALTER TABLE `tutoria_proyecto`
+  ADD CONSTRAINT `FK_asignaturaTutoriapro` FOREIGN KEY (`asignatura_id`) REFERENCES `asignatura` (`id`),
+  ADD CONSTRAINT `FK_tutoriaCotutoriaPro` FOREIGN KEY (`tutoriacolectiva_id`) REFERENCES `tutoria_colectiva` (`id`),
+  ADD CONSTRAINT `Fk_proyectoaulaTutoriapro` FOREIGN KEY (`proyecto_id`) REFERENCES `proyecto_aula` (`id`);
+
+--
+-- Constraints for table `unidadcompetencia`
 --
 ALTER TABLE `unidadcompetencia`
   ADD CONSTRAINT `fkasignaturaunidad` FOREIGN KEY (`asignatura_id`) REFERENCES `asignatura` (`id`);
 
 --
--- Filtros para la tabla `valoracion`
+-- Constraints for table `valoracion`
 --
 ALTER TABLE `valoracion`
   ADD CONSTRAINT `fkcriteriovaloraciontryh` FOREIGN KEY (`criterio_id`) REFERENCES `criterioevaluacion` (`id`),

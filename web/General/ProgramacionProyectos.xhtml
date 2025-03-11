@@ -7,13 +7,14 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <section class="contenido-contenedor hidden xl:block md:block min-h-0">
-            <div class=" w-full m-auto top" >
+        <p:repeat  rendered="#{not empty fasesController.fases}"  var="fas" value="#{fasesController.fases}"  >
 
-                <div class="">
+            <section class="contenido-contenedor hidden xl:block md:block min-h-0">
+                <div class=" w-full m-auto top" >
+
                     <div class="">
-                        <div class="progress-bar w-full bg-gray-600 p-1 " >
-                            <p:repeat  rendered="#{not empty fasesController.fases}"  var="fas" value="#{fasesController.fases}"  >
+                        <div class="">
+                            <div class="progress-bar w-full bg-gray-600 p-1 " >
                                 <div class="progress-tittle text-center">
                                     <i class="ri-hashtag"></i>
                                     Corte #{fas.numero}
@@ -27,26 +28,27 @@
                                 <div>
                                     Finaliza : #{fas.fechaFinal}
                                 </div>
-                            </p:repeat>
-                        </div>
-                    </div>
-                    <p:panel rendered="#{not empty evaluacionController.evaluacion}" class="inline-flex">
-                        <div class="progress-bar p-1 inline-flex">
-                            <div class="progress-tittle">
-                                <i class="ri-article-line"></i>
-                                Evaluacion
-                            </div>
-                            >
-                            <i class="ri-calendar-line"></i>
-                            <div>
-                                Sustentacion: #{evaluacionController.evaluacion.fechaprogramada}
-                            </div>
 
+                            </div>
                         </div>
-                    </p:panel>
+                        <p:panel rendered="#{not empty evaluacionController.evaluacion}" class="inline-flex">
+                            <div class="progress-bar p-1 inline-flex">
+                                <div class="progress-tittle">
+                                    <i class="ri-article-line"></i>
+                                    Evaluacion
+                                </div>
+                                >
+                                <i class="ri-calendar-line"></i>
+                                <div>
+                                    Sustentacion: #{evaluacionController.evaluacion.fechaprogramada}
+                                </div>
+
+                            </div>
+                        </p:panel>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </p:repeat>
     </h:body>
     <style>
 

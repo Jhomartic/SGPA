@@ -118,7 +118,7 @@ public class Tutoria_ProyectoController implements Serializable {
     
     public void consultarTutoriasXAsignaturaProfesor(Asignatura a) {
         tutoriasProyecto=tutPser.consultarTutoriaProyectoXAsignaturaInvitada(a);
-        System.out.println(a);
+        System.out.println("Lista tutorias proyecto: "+tutoriasProyecto);
     }
 
     public Tutoria_Colectiva getTutoriaColectiva() {

@@ -108,6 +108,7 @@ public class ProfesorController implements Serializable {
     private boolean mpanelPCTutoria;//mostrar panel para crear tutorias
     private boolean mpanelPCompetencias;//mostrar obciones del modulo de competencias
     private boolean mostPanelEvaluaciones;
+
     private int activeIRes = 0;
     private int activeIproy = 0;
     private int activeItut = 0;
@@ -262,6 +263,12 @@ public class ProfesorController implements Serializable {
         mostPanelProyectoAula = true;
         evacon.obtenerEvaluacionXSeccion(a.getSeccion());
         evacon.obtenerValoracionesAsignatura(a);
+    }
+    
+    public void seleccionarAsignaturaTP(Asignatura a) {
+        asigcon.setAsignatura(a);
+        tutprocon.setTutoriasProyecto(tutprocon.tutPser.consultarTutoriaProyectoXAsignaturaInvitada(a));
+        System.out.println(tutprocon.getTutoriasProyecto());
     }
 
     public void obtenerAvances(Seccion s) {
@@ -620,9 +627,7 @@ public class ProfesorController implements Serializable {
     }
     
     public void gcalificarTP() {
-        asigcon.obtenerAsignaturasXSeccion(getSeccion());
-        System.out.println(asigcon.getAsignatura()+"11111");
-        tutprocon.tutPser.consultarTutoriaProyectoXAsignaturaInvitada(asigcon.getAsignatura());
+        asigcon.obtenerAsignaturasXProfesor(periodo, profesor);
         paginaActualP = "/Profesor/Tutorias/CalificarTutoriaProyecto.xhtml";
     }
 
