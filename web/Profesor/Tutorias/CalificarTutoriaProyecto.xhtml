@@ -12,11 +12,12 @@
             <div class=" contenedor top" >
                 <div class="card">
                     <div class="relative pb-4 mb-2">
-                            <h3>Mis asignaturas</h3>
+                            <h3>Tutorias Programadas</h3>
                             <div class="espaceador"></div>
                         </div>
                     <div class="grid-dos">
-
+                        <p:tabView activeIndex="#{tutoria_ProyectoController.indTabCalificarTP}" scrollable="true">
+                            <p:tab title="Seleccionar tutoria">
                             <ui:repeat var="asig" value="#{asignaturaController.asignaturas}">
                                 <div class="p-4 flex justify-content-between card mb-1 responsive-flex cdppa">
                                     <h:commandButton class="btn" value="seleccionar"  action="#{profesorController.seleccionarAsignaturaTP(asig)}" />
@@ -40,15 +41,12 @@
                                     </div>
                                 </div>
                             </ui:repeat>
-                        <p:dataTable scrollable="true" var="tp" value="#{tutoria_ProyectoController.tutoriasProyecto}">
-                                        <p:column headerText="Proyecto">
+                        <p:dataTable scrollable="true" var="tp" value="#{tutoria_ProyectoController.tutoriasProyectoProgramadas}">
+                                        <p:column headerText="Codigo de proyecto">
                                             #{tp.proyecto.codigo}
                                         </p:column>
-                                        <p:column headerText="Tutoria Colectiva">
-                                            #{tp.tutoriaColectiva.getId()}
-                                        </p:column>                             
                                         <p:column  headerText="Integrantes">
-                                            <p:repeat var="integ" value="#{proa.integrantes}">
+                                            <p:repeat var="integ" value="#{tp.proyecto.integrantes}">
                                                 <div class="flex gap-1 align-items-center">
                                                     <div class="w-2 border-circle overflow-hidden flex">
                                                         <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
@@ -57,7 +55,76 @@
                                                 </div>
                                             </p:repeat>                                
                                         </p:column>  
+                                        <p:column headerText="Fecha programada">
+                                            #{tp.tutoriaColectiva.fecha_programacion}
+                                        </p:column>                             
+                                        <p:column headerText="Seleccionar">
+                                            <div class="btn-normal" title="Ver">
+                                                <i class="uil uil-file-search-alt" ></i>
+                                                <h:commandButton class="btn" value="." action="#{profesorController.seleccionarTutoriaProyecto(tp)}" />
+                                            </div>  
+                                        </p:column>
                                     </p:dataTable>
+                            </p:tab>
+                            <p:tab title="Calificar tutoria">
+                                    <div >
+                                        <div class="info-proyecto">
+                                            <div class="info-tittle">Infórmacion de la tutoria</div>
+                                            <div class="info-data">
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-qr-code-line"></i>
+                                                        Código Proyecto:
+                                                    </div>
+                                                    <p>#{tutoria_ProyectoController.tutoriaProyecto.proyecto.codigo}</p>
+
+                                                </div>
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-medal-2-line"></i>
+                                                        Integrantes:
+                                                    </div>
+                                                    <p:repeat var="integ" value="#{tutoria_ProyectoController.tutoriaProyecto.proyecto.integrantes}">
+                                                <div class="flex gap-1 align-items-center">
+                                                    <div class="w-2 border-circle overflow-hidden flex">
+                                                        <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                                                    </div>
+                                                    <small class="w-full text-justify">#{integ.matricula.estudiante.toString()}</small>
+                                                </div>
+                                            </p:repeat>
+                                                </div>
+                                            </div>
+                                            <div class="espaceador"></div>
+                                        </div>
+
+                                        <div class="info-proyecto">
+                                            <div class="info-tittle">Establezca las observaciones y recomendaciones</div>
+                                            <div class="info-data">
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-calendar-todo-fill"></i>
+                                                        Observaciones:
+                                                    </div>
+                                                    <p:inputText value="#{tutoria_ProyectoController.tutoriaProyecto.observaciones}" />
+                                                </div>
+                                                <div class="info-data-item">
+                                                    <div>
+                                                        <i class="ri-calendar-todo-fill"></i>
+                                                        Recomendaciones:
+                                                    </div>
+                                                    <p:inputText value="#{tutoria_ProyectoController.tutoriaProyecto.recomendaciones}" />
+                                                </div>
+                                            </div>
+                                            <div class="espaceador"></div>
+                                            <div class="btn-p" title="Programar">
+                                                <label>Guardar</label>
+                                                <h:commandButton class="btn" value="+" action="#{tutoria_ProyectoController.calificarTutoriaProyecto()}" />
+                                            </div> 
+                                            
+                                        </div>
+                                    </div>
+                                </p:tab>
+                            </p:tabView>
                         </div>
                 </div>
             </div>

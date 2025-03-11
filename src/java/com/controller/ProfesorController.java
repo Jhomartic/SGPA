@@ -16,6 +16,7 @@ import com.entity.Seccion;
 import com.entity.Semestre;
 import com.entity.Tutoria;
 import com.entity.Tutoria_Colectiva;
+import com.entity.Tutoria_Proyecto;
 import com.entity.UnidadCompetencia;
 import com.services.LiderPAServices;
 import com.services.ProfesorServices;
@@ -266,9 +267,19 @@ public class ProfesorController implements Serializable {
     }
     
     public void seleccionarAsignaturaTP(Asignatura a) {
-        asigcon.setAsignatura(a);
-        tutprocon.setTutoriasProyecto(tutprocon.tutPser.consultarTutoriaProyectoXAsignaturaInvitada(a));
-        System.out.println(tutprocon.getTutoriasProyecto());
+        tutprocon.setAsignatura(a);
+        tutprocon.consultarTutoriasProgramadasXAsignatura(a);
+    }
+    
+    public void seleccionarTutoriaProyecto(Tutoria_Proyecto tp) {
+        tutprocon.setTutoriaProyecto(tp);
+        if (tutprocon.getIndTabCalificarTP() < 2) 
+        {
+            tutprocon.setIndTabCalificarTP(tutprocon.getIndTabCalificarTP() + 1);
+        }else{
+            
+        }
+        System.out.println(tp);
     }
 
     public void obtenerAvances(Seccion s) {
@@ -628,6 +639,7 @@ public class ProfesorController implements Serializable {
     
     public void gcalificarTP() {
         asigcon.obtenerAsignaturasXProfesor(periodo, profesor);
+        tutprocon.setIndTabCalificarTP(0);
         paginaActualP = "/Profesor/Tutorias/CalificarTutoriaProyecto.xhtml";
     }
 

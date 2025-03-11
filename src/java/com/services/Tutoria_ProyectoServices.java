@@ -28,13 +28,12 @@ public class Tutoria_ProyectoServices extends ImplDao<Tutoria_Proyecto, Long> im
             EntityManager em = getEntityManagger();
             em.getTransaction().begin();
             String q = "select t from Tutoria_Proyecto t where t.asignatura.id = ?1";
-            System.out.println(a.getId());
             System.out.println(" Consulta: " + q);
             Query qu = em.createQuery(q)
                     .setParameter(1, a.getId());
             tutorias = qu.getResultList();
              em.getTransaction().commit();
-            System.out.println("consultarTutoriaProyectoXAsignaturaInvitada"+ tutorias);  
+            System.out.println("consultarTutoriaProyectoXAsignaturaInvitada");  
         } catch (Exception ex) {
             ex.printStackTrace();
         }

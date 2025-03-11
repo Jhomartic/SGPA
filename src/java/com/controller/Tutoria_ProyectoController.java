@@ -42,6 +42,7 @@ public class Tutoria_ProyectoController implements Serializable {
     Tutoria_ProyectoServices tutPser = new Tutoria_ProyectoServices();
     
     private int indTabTP = 0;
+    private int indTabCalificarTP = 0;
     
     
     public void crearTutoriasProyecto() {
@@ -116,10 +117,37 @@ public class Tutoria_ProyectoController implements Serializable {
         tutoriaColectiva = tc;
     }
     
-    public void consultarTutoriasXAsignaturaProfesor(Asignatura a) {
-        tutoriasProyecto=tutPser.consultarTutoriaProyectoXAsignaturaInvitada(a);
-        System.out.println("Lista tutorias proyecto: "+tutoriasProyecto);
+    public void consultarTutoriasProgramadasXAsignatura(Asignatura a) {
+        tutoriasProyecto.clear();
+        tutoriasProyectoProgramadas.clear();
+        tutoriasProyectoRealizadas.clear();
+        tutoriasProyecto = tutPser.consultarTutoriaProyectoXAsignaturaInvitada(a);
+        for (Tutoria_Proyecto tp : tutoriasProyecto) {
+            if (tp.getObservaciones() == null || tp.getRecomendaciones() == null) {
+                tutoriasProyectoProgramadas.add(tp);
+            } else {
+                tutoriasProyectoRealizadas.add(tp);
+                }
+            }
     }
+    
+    public void calificarTutoriaProyecto() {
+    if (tutoriaProyecto.getRecomendaciones() == null || tutoriaProyecto.getRecomendaciones().trim().isEmpty()) {
+        FacesUtil.addErrorMessage("Ingrese las recomendaciones");
+        return; // Detiene la ejecución si el campo está vacío
+    }
+
+    if (tutoriaProyecto.getObservaciones() == null || tutoriaProyecto.getObservaciones().trim().isEmpty()) {
+        FacesUtil.addErrorMessage("Ingrese las observaciones");
+        return; // Detiene la ejecución si el campo está vacío
+    }
+
+    // Si pasa las validaciones, guarda la información
+    FacesUtil.addInfoMessage("Información guardada");
+    setIndTabCalificarTP(0);
+    consultarTutoriasProgramadasXAsignatura(asignatura);
+}
+
 
     public Tutoria_Colectiva getTutoriaColectiva() {
         return tutoriaColectiva;
@@ -207,6 +235,14 @@ public class Tutoria_ProyectoController implements Serializable {
 
     public void setTutoriasProyectoProgramadas(List<Tutoria_Proyecto> tutoriasProyectoProgramadas) {
         this.tutoriasProyectoProgramadas = tutoriasProyectoProgramadas;
+    }
+
+    public int getIndTabCalificarTP() {
+        return indTabCalificarTP;
+    }
+
+    public void setIndTabCalificarTP(int indTabCalificarTP) {
+        this.indTabCalificarTP = indTabCalificarTP;
     }
     
 }
