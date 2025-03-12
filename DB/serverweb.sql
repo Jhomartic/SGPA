@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2025 at 09:12 PM
+-- Generation Time: Mar 12, 2025 at 05:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,8 +70,8 @@ INSERT INTO `asignatura` (`id`, `codigo`, `creditos`, `estado`, `nombre`, `nombr
 (2, 'A0214', 4, 'Activa', 'Algoritmo', 'Algoritmo y Programación de Computadores', 1, 3, 133),
 (6, 'A2658', 4, 'Activa', 'Estructuras de Datos', 'Estructuras de Datos', 1, 8, 129),
 (7, 'A2658', 4, 'Activa', 'Estructuras de Datos', 'Estructuras de Datos', 1, 11, 131),
-(8, 'A1111', 4, 'Activa', 'Analisis y Diseño de software', 'Analisis y Diseño de software', 1, 8, 132),
-(9, 'A1111', 4, 'Activa', 'Analisis y Diseño de software', 'Analisis y Diseño de software', 1, 11, 5),
+(8, 'A1111', 4, 'Activa', 'Analisis y Diseño de software', 'Analisis y Diseño de software', 1, 8, 5),
+(9, 'A1111', 4, 'Activa', 'Analisis y Diseño de software', 'Analisis y Diseño de software', 1, 11, 132),
 (10, 'A0021', 4, 'Activa', 'Matematicas I', 'Matematicas I', 2, 3, NULL),
 (11, 'Q0451', 3, 'Activa', 'Calculo I', 'Calculo I', 2, 1, 134),
 (17, 'A3654', 2, 'Activa', 'Introduccion a los Sistemas', 'Introduccion a los Sistemas de informacion', 1, 3, NULL),
@@ -1625,7 +1625,9 @@ INSERT INTO `tutoria_colectiva` (`id`, `seccion_id`, `fecha_creacion`, `fecha_pr
 (4, 8, '2025-03-02 21:09:17', '2025-03-19 21:09:00', NULL, 'Programada'),
 (7, 1, '2025-03-02 21:19:37', '2025-03-25 21:19:00', NULL, 'Programada'),
 (8, 1, '2025-03-03 16:22:01', '2025-03-19 16:21:00', NULL, 'Programada'),
-(9, 1, '2025-03-06 23:09:06', '2025-03-12 23:09:00', NULL, 'Programada');
+(9, 1, '2025-03-06 23:09:06', '2025-03-12 23:09:00', NULL, 'Programada'),
+(10, 1, '2025-03-09 12:22:12', '2025-03-15 12:22:00', NULL, 'Programada'),
+(11, 8, '2025-03-10 23:00:28', '2025-03-31 23:00:00', NULL, 'Programada');
 
 -- --------------------------------------------------------
 
@@ -1638,11 +1640,22 @@ CREATE TABLE `tutoria_proyecto` (
   `tutoriacolectiva_id` bigint(20) DEFAULT NULL,
   `asignatura_id` bigint(20) DEFAULT NULL,
   `proyecto_id` bigint(20) DEFAULT NULL,
-  `hora` date DEFAULT NULL,
+  `hora` datetime DEFAULT NULL,
   `orden` int(50) DEFAULT NULL,
   `recomendaciones` varchar(1000) DEFAULT NULL,
-  `observaciones` varchar(1000) DEFAULT NULL
+  `observaciones` varchar(1000) DEFAULT NULL,
+  `fecha_revision` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tutoria_proyecto`
+--
+
+INSERT INTO `tutoria_proyecto` (`id`, `tutoriacolectiva_id`, `asignatura_id`, `proyecto_id`, `hora`, `orden`, `recomendaciones`, `observaciones`, `fecha_revision`) VALUES
+(71, 11, 30, 49, '2025-03-31 23:00:00', 1, 'recomendacion', 'observacion', '2025-03-12 10:17:03'),
+(72, 11, 8, 49, '2025-03-31 23:00:00', 1, 'dfg', 'abc', '2025-03-11 23:43:31'),
+(73, 11, 30, 50, '2025-03-31 23:00:00', 2, 'aklsjfbgaskljbfgaskljbgaksjlgbaskjbgasjklgbaskjgbaskljgbsakjgbakljgbaskjgbaskjgbaskjgbaskjbgalksjbgaksjbgaslkjgbskjgbaskjbgakjlsbgakbgakjgbagkjabgakjbgaklsjfbgaskljbfgaskljbgaksjlgbaskjbgasjklgbaskjgbaskljgbsakjgbakljgbaskjgbaskjgbaskjgbaskjbgalksjbgaksjbgaslkjgbskjgbaskjbgakjlsbgakbgakjgbagkjabgakjbg', 'aklsjfbgaskljbfgaskljbgaksjlgbaskjbgasjklgbaskjgbaskljgbsakjgbakljgbaskjgbaskjgbaskjgbaskjbgalksjbgaksjbgaslkjgbskjgbaskjbgakjlsbgakbgakjgbagkjabgakjbg', '2025-03-12 10:38:24'),
+(74, 11, 8, 50, '2025-03-31 23:00:00', 2, 'corregir aquello', 'corregir esto', '2025-03-12 10:22:03');
 
 -- --------------------------------------------------------
 
@@ -2467,13 +2480,13 @@ ALTER TABLE `tutoria`
 -- AUTO_INCREMENT for table `tutoria_colectiva`
 --
 ALTER TABLE `tutoria_colectiva`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tutoria_proyecto`
 --
 ALTER TABLE `tutoria_proyecto`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `unidadcompetencia`
