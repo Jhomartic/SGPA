@@ -173,41 +173,42 @@
                                     </div>
                                 </p:tab>
                                 <p:tab title="Seleccionar Tutoria Colectiva">
-                                    <div class="flex justify-content-between gap-4 responsive-flex">
-
-                                        <div>
-                                            <div class="relative pb-3 mb-2">
-                                                <h3 >Seleccionar Tutoria Colectiva</h3>
-                                                <p class="block mb-4 text-gray-600">Selecciona la Tutoria Colectiva y luego pulsa Crear</p>  
-                                                <div class="espaceador"></div>
+                            <div class="flex justify-content-between gap-4 responsive-flex">
+                                
+                                <div>
+                                    <div class="relative pb-3 mb-2">
+                                        <h3 >Seleccionar Tutoria Colectiva</h3>
+                                        <p class="block mb-4 text-gray-600">Selecciona la Tutoria Colectiva y luego pulsa Crear</p>  
+                                        <div class="espaceador"></div>
+                                    </div>
+                                    <p:dataTable var="tutcole" value="#{tutoria_ColectivaController.tutoriasColectivasCreadas}">
+                                        <p:column headerText="Seccion">
+                                            #{tutcole.seccion.getSeccion()}
+                                        </p:column>
+                                        <p:column headerText="Fecha de programacion">
+                                            #{tutcole.fecha_programacion}
+                                        </p:column>
+                                        <p:column headerText="Estado">
+                                            #{tutcole.estado}
+                                        </p:column>
+                                        <p:column headerText="Seleccionar">
+                                            <div class="btn-normal" title="Seleccionar Tutoria Colectiva">
+                                                <i class="ri-cursor-fill"></i>
+                                                <h:commandButton class="btn" value="+" action="#{tutoria_ProyectoController.seleccionarTutoriaColectiva(tutcole)}" />
                                             </div>
-                                            <p:dataTable var="tutcole" value="#{tutoria_ColectivaController.tutoriasColectivas}">
-                                                <p:column headerText="Seccion">
-                                                    #{tutcole.seccion.getSeccion()}
-                                                </p:column>
-                                                <p:column headerText="Fecha de programacion">
-                                                    #{tutcole.fecha_programacion}
-                                                </p:column>
-                                                <p:column headerText="Estado">
-                                                    #{tutcole.estado}
-                                                </p:column>
-                                                <p:column headerText="Seleccionar">
-                                                    <div class="btn-normal" title="Seleccionar Tutoria Colectiva">
-                                                        <i class="ri-cursor-fill"></i>
-                                                        <h:commandButton class="btn" value="+" action="#{tutoria_ProyectoController.seleccionarTutoriaColectiva(tutcole)}" />
-                                                    </div>
-                                                </p:column>
-                                            </p:dataTable>
+                                        </p:column>
+                                    </p:dataTable>
+                                    
+                                </div>
+                            </div>
+                            <div class="btns-container justify-content-end">
+                                <div class="btn-p" title="continuar">
+                                    <label>Programar</label>
+                                    <h:commandButton class="btn" value="+" action="#{tutoria_ProyectoController.crearTutoriasProyecto()}" />
+                                </div>
+                            </div>
+                        </p:tab>
 
-                                        </div>
-                                    </div>
-                                    <div class="btns-container justify-content-end">
-                                        <div class="btn-p" title="continuar">
-                                            <label>crear</label>
-                                            <h:commandButton class="btn" value="+" action="#{tutoria_ProyectoController.crearTutoriasProyecto()}" />
-                                        </div>
-                                    </div>
-                                </p:tab>
                             </p:tabView>
                         </p:tab>
                     </p:tabView>

@@ -349,7 +349,7 @@ public class ProfesorController implements Serializable {
         matcont.obtenerMatriculasXSeccion(lider.getSeccion());
         avancon.consultarAvancesXSeccion(lider.getSeccion());
         tutprocon.setProyectosSemestre(proyectosSemestre);
-        tutcolcon.consultarTutoriasColectivas();
+        tutcolcon.filtrarTutoriasColectivasXSeccion(lider.getSeccion());
         //tutcolcon.tutoriasColectivasXSeccion(lider.getSeccion());
         adelantarTabTP();
     }
