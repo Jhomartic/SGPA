@@ -178,7 +178,7 @@
                                 <div class="md:w-7 sm:w-full">
                                     <div class="relative pb-3 mb-2">
                                         <h3 >Seleccionar Tutoria Colectiva</h3>
-                                        <p class="block mb-4 text-gray-600">Puedes quitar asignatura de la seleccion pulsando el botón de la x</p>  
+                                        <p class="block mb-4 text-gray-600">Selecciona la Tutoria Colectiva y luego pulsa Crear</p>  
                                         <div class="espaceador"></div>
                                     </div>
                                     <p:dataTable var="tutcole" value="#{tutoria_ColectivaController.tutoriasColectivas}">
@@ -191,9 +191,9 @@
                                         <p:column headerText="Estado">
                                             #{tutcole.estado}
                                         </p:column>
-                                        <p:column>
-                                            <div class="btn-eliminar" title="Deseleccionar asignatura">
-                                                <i class="ri-close-line"></i>
+                                        <p:column headerText="Seleccionar">
+                                            <div class="btn-normal" title="Seleccionar Tutoria Colectiva">
+                                                <i class="ri-cursor-fill"></i>
                                                 <h:commandButton class="btn" value="+" action="#{tutoria_ProyectoController.seleccionarTutoriaColectiva(tutcole)}" />
                                             </div>
                                         </p:column>
