@@ -14,6 +14,8 @@
                         <h3 class="text-2xl ">Mis tutorias</h3>
                         <div class="espaceador"></div>
                     </div>
+                    <p:tabView activeIndex="#{null}" scrollable="true">
+                        <p:tab title="Tutorias">
                     <p:panel rendered="#{!estudianteController.mpanelTutorias}">
                         <p:repeat var="asig" value="#{asignaturaController.asignaturas}">
                             <div class="p-4 flex justify-content-between card mb-1 responsive-flex cdppa">
@@ -113,6 +115,43 @@
                             </p:column>         
                         </p:dataTable>     
                     </p:panel>
+                                </p:tab>
+                        <p:tab title="Tutorias colectivas">
+                            <p:dataTable scrollable="true" var="tp" value="#{tutoria_ProyectoController.tutoriasProyectoCalificadas}">
+                                        <p:column headerText="Tutoria colectiva">
+                                            #{tp.tutoriaColectiva.getId()}
+                                        </p:column>                             
+                                        <p:column headerText="Fecha programada">
+                                            #{tp.tutoriaColectiva.fecha_programacion}
+                                        </p:column>                             
+                                        <p:column headerText="Codigo de proyecto">
+                                            #{tp.proyecto.codigo}
+                                        </p:column>
+                                        <p:column  headerText="Integrantes">
+                                            <p:repeat var="integ" value="#{tp.proyecto.integrantes}">
+                                                <div class="flex gap-1 align-items-center">
+                                                    <div class="w-2 border-circle overflow-hidden flex">
+                                                        <p:graphicImage value="/Imagenes/Perfiles/#{integ.matricula.estudiante.imagenPerfil()}" class="img"  />
+                                                    </div>
+                                                    <small class="w-full text-justify">#{integ.matricula.estudiante.toString()}</small>
+                                                </div>
+                                            </p:repeat>                                
+                                        </p:column>  
+                                        <p:column headerText="Fecha revision">
+                                            #{tp.fecha_revision}
+                                        </p:column>                             
+                                        <p:column headerText="Asignatura">
+                                            #{tp.asignatura.nombre}
+                                        </p:column>                             
+                                        <p:column headerText="Observaciones">
+                                            #{tp.observaciones}
+                                        </p:column>                             
+                                        <p:column headerText="Recomendaciones">
+                                            #{tp.recomendaciones}
+                                        </p:column>                             
+                                    </p:dataTable>
+                        </p:tab>
+                        </p:tabView>
                 </div>
 
             </div>

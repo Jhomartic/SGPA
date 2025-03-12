@@ -60,6 +60,8 @@ public class EstudianteController implements Serializable {
     private TutoriasController tutcon;
     @ManagedProperty("#{avanceController}")
     private AvanceController avancon;
+    @ManagedProperty("#{tutoria_ProyectoController}")
+    private Tutoria_ProyectoController tutprocon;
 
     //Servicios
     EstudianteServices estser = new EstudianteServices();
@@ -294,6 +296,7 @@ public class EstudianteController implements Serializable {
             if (!proacon.getProyecto().getCodigo().trim().equals("")) {
                 tutcon.setProyecto(proacon.getProyecto());
                 tutcon.setIntegrante(proacon.getIntegrante());
+                tutprocon.consultarTutoriasProyectoXProyectoAula(proacon.getProyecto());
                 System.out.println("Proyecto:" + tutcon.getProyecto().getCodigo() + " " + "Integrante: " + tutcon.getIntegrante().getMatricula().getEstudiante().toString());
                 paginaActualE = "/Estudiante/GestorTutorias.xhtml";
             }
@@ -564,6 +567,14 @@ public class EstudianteController implements Serializable {
      */
     public void setEstudiantehabilitado(boolean estudiantehabilitado) {
         this.estudiantehabilitado = estudiantehabilitado;
+    }
+
+    public Tutoria_ProyectoController getTutprocon() {
+        return tutprocon;
+    }
+
+    public void setTutprocon(Tutoria_ProyectoController tutprocon) {
+        this.tutprocon = tutprocon;
     }
 
 }

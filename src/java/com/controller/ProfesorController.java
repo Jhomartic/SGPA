@@ -276,10 +276,7 @@ public class ProfesorController implements Serializable {
         if (tutprocon.getIndTabCalificarTP() < 2) 
         {
             tutprocon.setIndTabCalificarTP(tutprocon.getIndTabCalificarTP() + 1);
-        }else{
-            
         }
-        System.out.println(tp);
     }
 
     public void obtenerAvances(Seccion s) {

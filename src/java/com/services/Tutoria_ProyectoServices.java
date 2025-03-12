@@ -40,19 +40,18 @@ public class Tutoria_ProyectoServices extends ImplDao<Tutoria_Proyecto, Long> im
         return tutorias;
     }
     
-    public List<Tutoria_Proyecto> consultarTutoriaProyectoXTutoriaColectivaXProyectoAula(Proyecto_Aula p, Tutoria_Colectiva tc) {
+    public List<Tutoria_Proyecto> consultarTutoriaProyectoXProyectoAula(Proyecto_Aula p) {
         List<Tutoria_Proyecto> tutorias = new LinkedList();
         try {
             EntityManager em = getEntityManagger();
             em.getTransaction().begin();
-            String q = "select t from Tutoria_Proyecto t where t.tutoriacolectiva.id = ?1 and t.proyecto.id = ?2";
+            String q = "select t from Tutoria_Proyecto t where t.proyecto.id = ?1";
             System.out.println(" Consulta: " + q);
             Query qu = em.createQuery(q)
-                    .setParameter(1, tc.getId())
-                    .setParameter(2, p.getId());
+                    .setParameter(1, p.getId());
             tutorias = qu.getResultList();
              em.getTransaction().commit();
-            System.out.println("consultarTutoriaProyectoXTutoriaColectivaXProyectoAula");  
+            System.out.println("consultarTutoriaProyectoXProyectoAula");  
         } catch (Exception ex) {
             ex.printStackTrace();
         }

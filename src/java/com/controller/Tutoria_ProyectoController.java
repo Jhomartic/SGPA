@@ -35,7 +35,8 @@ public class Tutoria_ProyectoController implements Serializable {
     private List<Proyecto_Aula> proyectosSemestre = new LinkedList();
     private List<Asignatura> asignaturasInvitadas = new LinkedList();
     private List<Tutoria_Proyecto> tutoriasProyectoProgramadas = new LinkedList();
-    private List<Tutoria_Proyecto> tutoriasProyectoRealizadas = new LinkedList();
+    private List<Tutoria_Proyecto> tutoriasProyectoRealizadas = new LinkedList(); //Profesor
+    private List<Tutoria_Proyecto> tutoriasProyectoCalificadas = new LinkedList(); //Estudiante
     
     
     
@@ -44,6 +45,25 @@ public class Tutoria_ProyectoController implements Serializable {
     private int indTabTP = 0;
     private int indTabCalificarTP = 0;
     
+    
+    public void limpiarDatos(){
+        this.setAsignaturasInvitadas(null);
+        this.setTutoriaColectiva(null);
+        //this.set
+    }
+    
+    public void consultarTutoriasProyectoXProyectoAula(Proyecto_Aula pa){
+        tutoriasProyecto.clear();
+        tutoriasProyectoCalificadas.clear();
+        tutoriasProyecto=tutPser.consultarTutoriaProyectoXProyectoAula(pa);
+           for (Tutoria_Proyecto t : tutoriasProyecto) {
+            if (t.getRecomendaciones() != null && !t.getRecomendaciones().trim().isEmpty() &&
+                t.getObservaciones() != null && !t.getObservaciones().trim().isEmpty()) {
+                tutoriasProyectoCalificadas.add(t);
+            }
+        }
+            System.out.println(pa.getId());
+        }
     
     public void crearTutoriasProyecto() {
         if (tutoriaColectiva == null) {
@@ -77,6 +97,7 @@ public class Tutoria_ProyectoController implements Serializable {
             }
             orden++;
         }
+        limpiarDatos();
     }
     
     public void seleccionarAsignatura(Asignatura a) {
@@ -132,21 +153,19 @@ public class Tutoria_ProyectoController implements Serializable {
     }
     
     public void calificarTutoriaProyecto() {
-    if (tutoriaProyecto.getRecomendaciones() == null || tutoriaProyecto.getRecomendaciones().trim().isEmpty()) {
-        FacesUtil.addErrorMessage("Ingrese las recomendaciones");
-        return; // Detiene la ejecución si el campo está vacío
+        if (tutoriaProyecto.getObservaciones() == null || tutoriaProyecto.getObservaciones().trim().isEmpty()) {
+            FacesUtil.addErrorMessage("Ingrese las observaciones");
+            return;
+        }
+        if (tutoriaProyecto.getRecomendaciones() == null || tutoriaProyecto.getRecomendaciones().trim().isEmpty()) {
+            FacesUtil.addErrorMessage("Ingrese las recomendaciones");
+            return;
+        }
+        FacesUtil.addInfoMessage("Información guardada");
+        tutoriaProyecto.setFecha_revision(new Date());
+        setIndTabCalificarTP(0);
+        consultarTutoriasProgramadasXAsignatura(asignatura);
     }
-
-    if (tutoriaProyecto.getObservaciones() == null || tutoriaProyecto.getObservaciones().trim().isEmpty()) {
-        FacesUtil.addErrorMessage("Ingrese las observaciones");
-        return; // Detiene la ejecución si el campo está vacío
-    }
-
-    // Si pasa las validaciones, guarda la información
-    FacesUtil.addInfoMessage("Información guardada");
-    setIndTabCalificarTP(0);
-    consultarTutoriasProgramadasXAsignatura(asignatura);
-}
 
 
     public Tutoria_Colectiva getTutoriaColectiva() {
@@ -243,6 +262,14 @@ public class Tutoria_ProyectoController implements Serializable {
 
     public void setIndTabCalificarTP(int indTabCalificarTP) {
         this.indTabCalificarTP = indTabCalificarTP;
+    }
+
+    public List<Tutoria_Proyecto> getTutoriasProyectoCalificadas() {
+        return tutoriasProyectoCalificadas;
+    }
+
+    public void setTutoriasProyectoCalificadas(List<Tutoria_Proyecto> tutoriasProyectoCalificadas) {
+        this.tutoriasProyectoCalificadas = tutoriasProyectoCalificadas;
     }
     
 }
