@@ -47,7 +47,7 @@ public class Tutoria_ProyectoController implements Serializable {
     
     
     public void limpiarDatos(){
-        this.setAsignaturasInvitadas(null);
+        asignaturasInvitadas.clear();
         this.setTutoriaColectiva(null);
         //this.set
     }
@@ -67,17 +67,17 @@ public class Tutoria_ProyectoController implements Serializable {
     
     public void crearTutoriasProyecto() {
         if (tutoriaColectiva == null) {
-            FacesUtil.addErrorMessage("Error: tutoriaColectiva es null");
+            FacesUtil.addErrorMessage("Seleccione una tutoria colectiva");
             return;
         }
 
         if (proyectosSemestre == null || proyectosSemestre.isEmpty()) {
-            FacesUtil.addErrorMessage("Error: proyectosSemestre es null o vacío");
+            FacesUtil.addErrorMessage("No hay proyectos seleccionados");
             return;
         }
 
         if (asignaturasInvitadas == null || asignaturasInvitadas.isEmpty()) {
-            FacesUtil.addErrorMessage("Error: asignaturasInvitadas es null o vacío");
+            FacesUtil.addErrorMessage("No hay asignaturas invitadas");
             return;
         }
 
@@ -97,7 +97,9 @@ public class Tutoria_ProyectoController implements Serializable {
             }
             orden++;
         }
+        FacesUtil.addInfoMessage("Tutoria colectiva programada");
         limpiarDatos();
+        setIndTabTP(0);
     }
     
     public void seleccionarAsignatura(Asignatura a) {

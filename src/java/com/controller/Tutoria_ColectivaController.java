@@ -30,6 +30,8 @@ public class Tutoria_ColectivaController implements Serializable {
     private Tutoria_Colectiva tutoriaColectiva = new Tutoria_Colectiva();
     
     private List<Tutoria_Colectiva> tutoriasColectivas = new LinkedList();
+    private List<Tutoria_Colectiva> tutoriasColectivasCreadas = new LinkedList();
+    private List<Tutoria_Colectiva> tutoriasColectivasProgramadas = new LinkedList();
     private List<Tutoria_Colectiva> tutoriasColSeccion;
 
     Tutoria_ColectivaServices tutCser = new Tutoria_ColectivaServices();
@@ -48,6 +50,8 @@ public class Tutoria_ColectivaController implements Serializable {
         tutoriaColectiva.setFase(fase);
         tutoriaColectiva.setEstado("Creada");
         tutoriaColectiva = tutCser.modificar(tutoriaColectiva);
+        FacesUtil.addInfoMessage("Tutoria Creada ");
+        setIndTabTC(0);
     }
     
     public void eliminarTutoriaColectiva(Tutoria_Colectiva tc) {
@@ -61,6 +65,23 @@ public class Tutoria_ColectivaController implements Serializable {
     
     public void consultarTutoriasColectivas() {
         setTutoriasColectivas(tutCser.consultarTodo(Tutoria_Colectiva.class));
+    }
+    
+    public void filtrarTutoriasColectivasXSeccion(Seccion s){
+        tutoriasColectivas.clear();
+        tutoriasColectivasCreadas.clear();
+        tutoriasColectivasProgramadas.clear();
+        consultarTutoriasColectivas();
+         for (Tutoria_Colectiva tc : tutoriasColectivas) {
+        if (tc.getSeccion().equals(s)) {
+            if ("Creada".equals(tc.getEstado())) {
+                tutoriasColectivasCreadas.add(tc);
+            } else if ("Programada".equals(tc.getEstado())) {
+                tutoriasColectivasProgramadas.add(tc);
+            }
+        }
+    }
+        
     }
     
     public void tutoriasColectivasXSeccion(Seccion s){
@@ -118,6 +139,22 @@ public class Tutoria_ColectivaController implements Serializable {
 
     public void setTutoriasColSeccion(List<Tutoria_Colectiva> tutoriasColSeccion) {
         this.tutoriasColSeccion = tutoriasColSeccion;
+    }
+
+    public List<Tutoria_Colectiva> getTutoriasColectivasCreadas() {
+        return tutoriasColectivasCreadas;
+    }
+
+    public void setTutoriasColectivasCreadas(List<Tutoria_Colectiva> tutoriasColectivasCreadas) {
+        this.tutoriasColectivasCreadas = tutoriasColectivasCreadas;
+    }
+
+    public List<Tutoria_Colectiva> getTutoriasColectivasProgramadas() {
+        return tutoriasColectivasProgramadas;
+    }
+
+    public void setTutoriasColectivasProgramadas(List<Tutoria_Colectiva> tutoriasColectivasProgramadas) {
+        this.tutoriasColectivasProgramadas = tutoriasColectivasProgramadas;
     }
 
    
