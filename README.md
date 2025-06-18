@@ -1,4 +1,4 @@
-# 🎓 SGPA - Proactive Academic Project Management Platform
+# 🎓 SGPA - Classroom Project Management System
 
 **SGPA (Sistema de Gestión de Proyectos Académicos)**, also known as **Proactivo**, is a web-based platform designed to support the management and monitoring of academic degree projects in university institutions.
 
