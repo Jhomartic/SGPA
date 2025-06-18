@@ -33,11 +33,6 @@ It allows students and faculty to schedule tutorials, evaluate progress using cu
 
 ---
 
-## 🌐 Demo
-
-Coming soon (or add your deployment link if available)
-
----
 
 ## 👨‍💻 Contributors
 
